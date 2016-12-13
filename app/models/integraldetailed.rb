@@ -1,0 +1,2 @@
+class Integraldetailed < ApplicationRecord
+end

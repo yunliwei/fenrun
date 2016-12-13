@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consumebase: 1.5
+  memberratio: 1.5
+  agentratio: 1.5
+  refereeratio: 1.5
+  consumemin: 1.5
+  consumemax: 1.5
+  consumecash: 1.5
+  withdrawmin: 1.5
+  withdrawmax: 1.5
+  withdrawratio: 1.5
+
+two:
+  consumebase: 1.5
+  memberratio: 1.5
+  agentratio: 1.5
+  refereeratio: 1.5
+  consumemin: 1.5
+  consumemax: 1.5
+  consumecash: 1.5
+  withdrawmin: 1.5
+  withdrawmax: 1.5
+  withdrawratio: 1.5

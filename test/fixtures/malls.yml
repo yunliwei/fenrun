@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mallname: 1
+  descripte: MyString
+  telephone: MyString
+  storerecruit: MyString
+  customerservice: MyString
+
+two:
+  mallname: 1
+  descripte: MyString
+  telephone: MyString
+  storerecruit: MyString
+  customerservice: MyString

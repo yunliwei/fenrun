@@ -1,0 +1,2 @@
+class Shoppingcar < ApplicationRecord
+end

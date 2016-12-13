@@ -1,0 +1,2 @@
+class Examine < ApplicationRecord
+end

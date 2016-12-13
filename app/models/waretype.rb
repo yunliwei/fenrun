@@ -1,0 +1,2 @@
+class Waretype < ApplicationRecord
+end

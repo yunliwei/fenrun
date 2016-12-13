@@ -1,0 +1,2 @@
+class Warelabel < ApplicationRecord
+end

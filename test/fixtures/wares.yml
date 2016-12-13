@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  classification_id: 1
+  ware: MyString
+  price: 1.5
+  discountprice: 1.5
+  salevolume: 1
+  describe: MyString
+  stock: 1.5
+  freight: 1.5
+  discount: 1.5
+  baseprice: 1.5
+
+two:
+  classification_id: 1
+  ware: MyString
+  price: 1.5
+  discountprice: 1.5
+  salevolume: 1
+  describe: MyString
+  stock: 1.5
+  freight: 1.5
+  discount: 1.5
+  baseprice: 1.5

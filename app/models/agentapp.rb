@@ -1,0 +1,2 @@
+class Agentapp < ApplicationRecord
+end

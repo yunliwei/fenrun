@@ -1,0 +1,2 @@
+class Menbersettled < ApplicationRecord
+end

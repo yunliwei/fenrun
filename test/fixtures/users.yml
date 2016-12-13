@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  referee_id: 1
+  name: MyString
+  username: MyString
+  password_digest: MyString
+  sex: 1
+  phonenumber: MyString
+  birthday: 2016-12-12 16:31:35
+  age: 1
+  email: MyString
+  wecharnumber: MyString
+  refereenumber: MyString
+  menber: MyString
+  localarea: MyString
+  state: 1
+  canuserebate: 1.5
+  codetime: 2016-12-12 16:31:35
+  code: MyString
+  rebate: 1.5
+  summationamount: 1.5
+
+two:
+  referee_id: 1
+  name: MyString
+  username: MyString
+  password_digest: MyString
+  sex: 1
+  phonenumber: MyString
+  birthday: 2016-12-12 16:31:35
+  age: 1
+  email: MyString
+  wecharnumber: MyString
+  refereenumber: MyString
+  menber: MyString
+  localarea: MyString
+  state: 1
+  canuserebate: 1.5
+  codetime: 2016-12-12 16:31:35
+  code: MyString
+  rebate: 1.5
+  summationamount: 1.5

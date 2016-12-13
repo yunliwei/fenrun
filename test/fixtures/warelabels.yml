@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  waretype_id: 1
+  labelname: MyString
+  increaseprice: 1.5
+  isselect: 1
+
+two:
+  waretype_id: 1
+  labelname: MyString
+  increaseprice: 1.5
+  isselect: 1
