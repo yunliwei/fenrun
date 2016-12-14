@@ -153,11 +153,6 @@ ActiveRecord::Schema.define(version: 20161214094519) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "powers_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "power_id", null: false
-    t.integer "role_id",  null: false
-  end
-
   create_table "receiptadds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "shouhuoname"
@@ -166,13 +161,6 @@ ActiveRecord::Schema.define(version: 20161214094519) do
     t.integer  "isselect"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "role_powers", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "role_id"
-    t.integer  "power_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

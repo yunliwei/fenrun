@@ -15,7 +15,7 @@
             </a>
             <ul class="dropdown-menu animated fadeInRight m-t-xs">
               <li class="divider"></li>
-              <li>退出', logins_path %>
+              <li>退出
               </li>
 
             </ul>
@@ -24,11 +24,9 @@
             H+
           </div>
         </li>
-        <% if session[:stylesession]=='que' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
           <a href="">
             <i class="fa fa-file"></i>
 
@@ -40,13 +38,13 @@
           <ul class="nav nav-second-level">
             <li>
 
-              <%= link_to '题目',questions_path ,'data-no-turbolink'=>true%>
+              <a>题目</a>
             </li>
             <li>
-              <%= link_to '章节',chapters_path ,'data-no-turbolink'=>true%>
+            章节
             </li>
             <li>
-              <%= link_to '学科',subjects_path,'data-no-turbolink'=>true %>
+             学科
             </li>
 
           </ul>
@@ -56,11 +54,9 @@
 
 
 
-        <% if session[:stylesession]=='adm' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
         <a href="">
           <i class="fa fa-user"></i>
@@ -71,17 +67,15 @@
         </a>
           <ul class="nav nav-second-level">
             <li>
-              <%= link_to '管理员',admins_path ,'data-no-turbolink'=>true%>
+             管理员
             </li>
           </ul>
         </li>
 
 
-        <% if session[:stylesession]=='user' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
           <a href="">
             <i class="fa fa-users"></i>
@@ -91,23 +85,21 @@
           </a>
           <ul class="nav nav-second-level">
             <li>
-              <%= link_to '用户',users_path ,'data-no-turbolink'=>true %>
+             用户
             </li>
           </ul>
         </li>
 
 
 
-        <% if session[:stylesession]=='log' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
           <a href=""><i class="fa fa-history"></i> <span class="nav-label">用户记录</span><span class="fa arrow"></span> </a>
           <ul class="nav nav-second-level">
             <li>
-              <%= link_to '用户记录',loginlogs_path ,'data-no-turbolink'=>true %>
+              用户记录
             </li>
           </ul>
         </li>
@@ -117,34 +109,30 @@
 
 
 
-        <% if session[:stylesession]=='license' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
           <a href=""><i class="fa fa-ils"></i> <span class="nav-label">序列号</span><span class="fa arrow"></span> </a>
           <ul class="nav nav-second-level">
             <li>
-              <%= link_to '序列号',createlicenses_path,'data-no-turbolink'=>true %>
+              序列号
             </li>
           </ul>
         </li>
 
-        <% if session[:stylesession]=='err' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
           <a href=""><i class="fa fa-bug"></i> <span class="nav-label">错题</span><span class="fa arrow"></span> </a>
           <ul class="nav nav-second-level">
             <li>
-              <%= link_to '错题明细',errquests_path ,'data-no-turbolink'=>true%>
+             错题明细
             </li>
 
 
             <li>
-              <%= link_to '错题统计',errcount_errquests_path ,'data-no-turbolink'=>true%>
+            错题统计
             </li>
           </ul>
         </li>
