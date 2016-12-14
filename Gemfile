@@ -3,7 +3,7 @@ source 'https://gems.ruby-china.org'
 gem 'paperclip'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-
+gem 'font-awesome-rails'
 
 
 
