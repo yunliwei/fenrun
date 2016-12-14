@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213083648) do
+ActiveRecord::Schema.define(version: 20161214025645) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -32,11 +32,19 @@ ActiveRecord::Schema.define(version: 20161213083648) do
 
   create_table "busines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.float    "salessum",     limit: 24
+    t.float    "salessum",                   limit: 24
     t.string   "phonenumber"
     t.datetime "registertime"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "businelicense_file_name"
+    t.string   "businelicense_content_type"
+    t.integer  "businelicense_file_size"
+    t.datetime "businelicense_updated_at"
+    t.string   "businelogo_file_name"
+    t.string   "businelogo_content_type"
+    t.integer  "businelogo_file_size"
+    t.datetime "businelogo_updated_at"
   end
 
   create_table "businesssettleds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -95,8 +103,12 @@ ActiveRecord::Schema.define(version: 20161213083648) do
     t.string   "telephone"
     t.string   "storerecruit"
     t.string   "customerservice"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "malllogo_file_name"
+    t.string   "malllogo_content_type"
+    t.integer  "malllogo_file_size"
+    t.datetime "malllogo_updated_at"
   end
 
   create_table "menbersettleds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -105,8 +117,12 @@ ActiveRecord::Schema.define(version: 20161213083648) do
     t.string   "phonenumber"
     t.integer  "status"
     t.string   "ramarks"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "menbersettledpicture_file_name"
+    t.string   "menbersettledpicture_content_type"
+    t.integer  "menbersettledpicture_file_size"
+    t.datetime "menbersettledpicture_updated_at"
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -194,13 +210,17 @@ ActiveRecord::Schema.define(version: 20161213083648) do
     t.string   "menber"
     t.string   "localarea"
     t.integer  "state"
-    t.float    "canuserebate",    limit: 24
+    t.float    "canuserebate",             limit: 24
     t.datetime "codetime"
     t.string   "code"
-    t.float    "rebate",          limit: 24
-    t.float    "summationamount", limit: 24
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.float    "rebate",                   limit: 24
+    t.float    "summationamount",          limit: 24
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "headpicture_file_name"
+    t.string   "headpicture_content_type"
+    t.integer  "headpicture_file_size"
+    t.datetime "headpicture_updated_at"
   end
 
   create_table "warelabels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -215,16 +235,20 @@ ActiveRecord::Schema.define(version: 20161213083648) do
   create_table "wares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "classification_id"
     t.string   "ware"
-    t.float    "price",             limit: 24
-    t.float    "discountprice",     limit: 24
+    t.float    "price",                    limit: 24
+    t.float    "discountprice",            limit: 24
     t.integer  "salevolume"
     t.string   "describe"
-    t.float    "stock",             limit: 24
-    t.float    "freight",           limit: 24
-    t.float    "discount",          limit: 24
-    t.float    "baseprice",         limit: 24
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.float    "stock",                    limit: 24
+    t.float    "freight",                  limit: 24
+    t.float    "discount",                 limit: 24
+    t.float    "baseprice",                limit: 24
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "warepicture_file_name"
+    t.string   "warepicture_content_type"
+    t.integer  "warepicture_file_size"
+    t.datetime "warepicture_updated_at"
   end
 
   create_table "waretypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

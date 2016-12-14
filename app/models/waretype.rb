@@ -1,4 +1,7 @@
 class Waretype < ApplicationRecord
   belongs_to :waer
-  has_many
+belongs_to :warelabel
+
+
+
 end
