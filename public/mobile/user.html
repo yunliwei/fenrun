@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>用户</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+     <link rel="stylesheet" href="css/iconfont.css"> 
+     <link href="css/iconfont.css" rel="stylesheet" > 
+      <script src="js/iconfont.js"></script> 
+</head>
+<body>
+	<!-- 主界面不动、菜单移动 -->
+	<!-- 侧滑导航根容器 -->
+	<div class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+	  <!-- 菜单容器 -->
+	  <aside class="mui-off-canvas-left" id="offCanvasSide">
+	    <div class="mui-scroll-wrapper">
+	      <div class="mui-scroll">
+	        <!-- 菜单具体展示内容 -->
+	        
+	      </div>
+	    </div>
+	  </aside>
+	  <!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+	    <!-- 主页面标题 -->
+	    <header class="mui-bar mui-bar-nav">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	         <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-right" href="#offCanvasSide"></a>
+	        <h1 class="mui-title">个人中心</h1>
+	    </header>
+	    
+	    <nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item " href="zhuye.html">
+		        <span class="mui-icon mui-icon-home"></span>
+		        <span class="mui-tab-label">首页</span>
+		    </a>
+		    <a class="mui-tab-item"href="shangjiatype.html">
+		        <span class="mui-icon iconfont icon-shangjia2"></span>
+		        <span class="mui-tab-label">商家</span>
+		    </a>
+		    <a class="mui-tab-item mui-active">
+		        <span class="mui-icon mui-icon-contact"></span>
+		        <span class="mui-tab-label">用户</span>
+		    </a>
+		    
+		</nav>
+	    <div class="mui-content mui-scroll-wrapper">
+	      <div class="mui-scroll">
+	        <!-- 主界面具体展示内容 -->
+	        <div class="user-top">
+        	<div class="user-image"><a href="#offCanvasSide"><img src="images/u=21385237,1665284751&fm=21&gp=0.jpg" height="50px" width="50px"/></a> </div>
+        </div>
+        
+        <div class="user-tool">
+        <div class=" mui-bar-tab">
+        	<a class="mui-tab-item" href="shopcar.html">
+        		<span class="mui-icon iconfont icon-gouwuche"></span>
+        		<span class="mui-tab-label">购物车</span>
+        	</a>
+        	
+        	<a class="mui-tab-item">
+        		<span class="mui-icon mui-icon-compose"></span>
+        		<span class="mui-tab-label"></span>
+        	</a>
+        	
+        	<a class="mui-tab-item">
+        		<span class="mui-icon mui-icon-compose"></span>
+        		<span class="mui-tab-label"></span>
+        	</a>
+        	
+        	<a class="mui-tab-item">
+        		<span class="mui-icon mui-icon-compose"></span>
+        		<span class="mui-tab-label"></span>
+        	</a>
+        	
+        </div>
+        </div>
+        
+        <div class="user-main">
+        	
+       </div> 
+       
+       
+	      </div>
+	    </div>  
+	    <div class="mui-off-canvas-backdrop"></div>
+	  </div>
+	</div>
+	
+	
+    <div class="mui-content">
+  
+    </div>
+    <script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    mui.init();
+    mui('body').on('tap','a',function(){document.location.href=this.href;});
+    </script>
+</body>
+<style>
+	.user-top{
+		width:100% ;
+		height: 100px;
+		opacity: 0.8;
+	    background-color:dimgray;
+	}
+	.user-image{
+		padding-left: 40%;
+		padding-top: 25px;
+	}
+	.user-tool{
+		background-color: white;
+	}
+	.user-main{
+		height: 400px;
+		
+	}
+</style>
+</html>
+

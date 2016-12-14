@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+   
+	</head>
+	<body>
+	<div id=slider >
+	    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+	        <a class="mui-control-item mui-active" href="#item1mobile">基本信息</a>
+	        <a class="mui-control-item" href="#item2mobile">商品详情</a>
+	        <a class="mui-control-item" href="#item3mobile">评价<span class="mui-badge mui-badge-red">5</span></a>
+	    </div>
+	    
+
+	    
+	    <div class="mui-slider-group">
+	        <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+	            <ul class="mui-table-view">
+	                <div class="mui-slider" >
+	                  <div class="mui-slider-group mui-slider-loop">
+	                    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+	                    <div class="mui-slider-item mui-slider-item-duplicate">
+	                      <a href="#">
+	                        <img src="images/xiangji1.jpg">
+	                      </a>
+	                    </div>
+	                    <!-- 第一张 -->
+	                    <div class="mui-slider-item">
+	                      <a href="#">
+	                        <img src="images/xiangji2.jpg">
+	                      </a>
+	                    </div>
+	                    <!-- 第二张 -->
+	                    <div class="mui-slider-item">
+	                      <a href="#">
+	                        <img src="images/xiangji3.jpg">
+	                      </a>
+	                    </div>
+	                    <!-- 第三张 -->
+	                    <div class="mui-slider-item">
+	                      <a href="#">
+	                        <img src="images/xiangji4.jpg">
+	                      </a>
+	                    </div>
+	                    <!-- 第四张 -->
+	                    <div class="mui-slider-item">
+	                      <a href="#">
+	                        <img src="images/xiangjif4.jpg">
+	                      </a>
+	                    </div>
+	                    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+	                    <div class="mui-slider-item mui-slider-item-duplicate">
+	                      <a href="#">
+	                        <img src="images/xiangjif4.jpg">
+	                      </a>
+	                    </div>
+	                  </div>
+	                  <div class="mui-slider-indicator">
+	                    <div class="mui-indicator mui-active"></div>
+	                    <div class="mui-indicator"></div>
+	                    <div class="mui-indicator"></div>
+	                    <div class="mui-indicator"></div>
+	                  </div>
+	                </div>
+	            </ul>
+	        </div>
+
+	<div class="mui-card" style="width: 100%; float: left;">
+	<!--页眉，放置标题-->
+	<div class="mui-card-header"style="height: 20px;">【0首付分期】蚂蚁摄影单反数码
+		                相机Canon/佳能 EOS 1300D带wifi</div>
+	<!--内容区-->
+	<div class="mui-card-content" style="height: 40px;">
+		<p style="color: red;font-size: 20px ;">¥2799.00</p>
+		<p style="font-size: 10px; margin-top: -10px;">价格¥2799.00</p>
+	</div>
+	<!--页脚，放置补充信息或支持的操作-->
+	<div class="mui-card-footer">
+		<div style="float: left;" class="mui-left">快递：0.00</div>
+		<div>月销量：1007件</div>
+		<div>山东烟台</div>
+	</div>
+
+	        </div>
+	        <div id="item2mobile" class="mui-slider-item mui-control-content">
+	            <ul class="mui-table-view">
+	                <li class="mui-table-view-cell">第2个选项卡子项</li>
+	                <li class="mui-table-view-cell">第2个选项卡子项</li>
+	            </ul>
+	        </div>
+	         <div id="item3mobile" class="mui-slider-item mui-control-content">
+	            <ul class="mui-table-view">
+	                <li class="mui-table-view-cell">第3个选项卡子项</li>
+	                <li class="mui-table-view-cell">第3个选项卡子项</li>
+	            </ul>
+	        </div>
+	    </div>
+	    
+	    <nav class="mui-bar mui-bar-tab">
+	        <a class="mui-tab-item mui-active">
+	            <span class="mui-icon mui-icon-home"></span>
+	            <span class="mui-tab-label">客服</span>
+	        </a>
+	        <a class="mui-tab-item">
+	            <span class="mui-icon mui-icon-phone"></span>
+	            <span class="mui-tab-label">进店</span>
+	        </a>
+	        <a class="mui-tab-item">
+	            <span class="mui-icon mui-icon-email"></span>
+	            <span class="mui-tab-label">收藏</span>
+	        </a>
+	        <a class="mui-tab-item" style="width: 5px;">
+	           
+	           <span>加入购物车</span>
+	        </a>
+	       
+	    </nav>
+	    
+	</div>
+	
+	
+	
+	 <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      		  //获得slider插件对象
+var gallery = mui('.mui-slider');
+gallery.slider({
+  interval:1000//自动轮播周期，若为0则不自动播放，默认为0；
+});
+    </script>
+	</body>
+</html>
