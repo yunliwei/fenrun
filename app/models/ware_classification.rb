@@ -1,0 +1,2 @@
+class WareClassification < ApplicationRecord
+end
