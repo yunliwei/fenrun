@@ -1,2 +1,0 @@
-class RolePower < ApplicationRecord
-end

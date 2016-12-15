@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214075056) do
+ActiveRecord::Schema.define(version: 20161215050741) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -28,13 +28,6 @@ ActiveRecord::Schema.define(version: 20161214075056) do
     t.string   "remarks"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "busine_classifications", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "busines_id"
-    t.integer  "classifications_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
   end
 
   create_table "busines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -77,6 +70,11 @@ ActiveRecord::Schema.define(version: 20161214075056) do
     t.string   "classname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "classifications_wares", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "classification_id", null: false
+    t.integer "ware_id",           null: false
   end
 
   create_table "examines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -153,6 +151,11 @@ ActiveRecord::Schema.define(version: 20161214075056) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "powers_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "power_id", null: false
+    t.integer "role_id",  null: false
+  end
+
   create_table "receiptadds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "shouhuoname"
@@ -172,7 +175,6 @@ ActiveRecord::Schema.define(version: 20161214075056) do
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "admin_id"
-    t.integer  "power_id"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -236,13 +238,6 @@ ActiveRecord::Schema.define(version: 20161214075056) do
     t.string   "headpicture_content_type"
     t.integer  "headpicture_file_size"
     t.datetime "headpicture_updated_at"
-  end
-
-  create_table "ware_classifications", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "wares_id"
-    t.integer  "classifications_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
   end
 
   create_table "warelabels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

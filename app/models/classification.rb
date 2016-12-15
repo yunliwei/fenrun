@@ -1,3 +1,8 @@
 class Classification < ApplicationRecord
-  belongs_to :ware
+
+
+
+
+  has_and_belongs_to_many :wares
+
 end
