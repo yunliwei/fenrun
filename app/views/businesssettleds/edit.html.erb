@@ -1,0 +1,69 @@
+<%= render 'layerbegin' %>
+<div class="ibox-content form-horizontal m-t">
+  <h1>商家入驻平台申请</h1>
+
+
+  <div class="form-group">
+    <%= form_for(@businesssettled,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">商家名称：</label>
+          <div class="col-sm-5">
+            <%= f.text_field  :name ,class:"form-control",disabled:'' %>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">联系电话：</label>
+          <div class="col-sm-5">
+            <%= f.text_field :phonenumber,class:"form-control",disabled:'' %>
+          </div>
+        </div>
+
+        <br>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">简介：</label>
+          <div class="col-sm-5">
+            <%= f.text_area :summary,rows:'5',class:"form-control",disabled:'' %>
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">审核状态：</label>
+          <div class="col-sm-5">
+            <select class="form-control m-b" id="selectstatus">
+
+              <option  value="1">通过</option>
+              <option value="0">未通过</option>
+            </select>
+            <%= f.text_field :status,id:'statusvalue' ,type:'hidden'%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">备注：</label>
+          <div class="col-sm-5">
+            <%= f.text_area :remarks,rows:'5',class:"form-control",disabled:'' %>
+          </div>
+        </div>
+
+
+
+        <div>
+          <%= f.submit'确定',class: "btn btn-w-m btn-success mylink pull-right",'data-no-turbolink'=>true %>
+        </div>
+
+<br>
+        <br>
+    <% end %>
+
+
+
+
+    </div>
+
+<%= render 'layerend' %>
