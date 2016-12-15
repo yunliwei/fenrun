@@ -25,9 +25,21 @@ class ClassificationsController < ApplicationController
       respond_to do |format|
         if @classification.save
           format.html { redirect_to classifications_path, notice: 'Admin was successfully created.' }
-          format.json { render :show, status: :created, location: @classification }
+          format.json { render :index, status: :created, location: @classification }
         else
           format.html { render :new }
+          format.json { render json: @classification.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def update
+      respond_to do |format|
+        if @classification.update(classification_params)
+          format.html { redirect_to classifications_path, notice: 'Test was successfully updated.' }
+          format.json { render :index, status: :ok, location: @classification }
+        else
+          format.html { render :edit }
           format.json { render json: @classification.errors, status: :unprocessable_entity }
         end
       end

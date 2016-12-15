@@ -1,0 +1,23 @@
+<%= render 'layerbegin' %>
+
+<div class="ibox-content form-horizontal m-t">
+  <div class="form-group">
+    <%= form_for(@classification,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+
+        <div class="form-group">
+          <label class="col-sm-5 control-label">类型：</label>
+          <div class="col-sm-3">
+            <%= f.text_field :classname,class:"form-control" %>
+          </div>
+
+        </div>
+       <%= f.submit '确定',class: "btn btn-w-m btn-success mylink pull-right",id:'smt','data-no-turbolink'=>true %>
+       <br>
+
+    <% end %>
+
+  </div>
+</div>
+
+<%= render 'layerend' %>
+

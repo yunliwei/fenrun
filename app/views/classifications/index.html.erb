@@ -17,23 +17,22 @@
         <tbody>
 
 
-        <% @chapters.each do |chapter| %>
+        <% @classifications.each do |classification| %>
             <tr>
-              <td><%= chapter.chapter %></td>
+              <td><%= classification.classname %></td>
               <td>
-                <%= link_to '', edit_chapter_path(chapter),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <%= link_to '', chapter,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <%= link_to '编辑', edit_classification_path(classification),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= link_to '删除', classification,class:'fa fa-trash', method: :delete, data: { confirm: '确定删除吗?' } %></td>
                         </tr>
                     <% end %>
                     </tbody>
                     </table>
                     <div class="text-center" >
 
-                      <%= will_paginate @chapters, previous_label:'上一页', next_label: '下一页' %>
                     </div>
 
 
-                    <%= link_to "新增", new_chapter_path,class: "btn btn-w-m btn-success mylink pull-right" %>
+                    <%= link_to "新增", new_classification_path, class: "btn btn-w-m btn-success mylink pull-right" %>
                         <br>
                         </div>
 
