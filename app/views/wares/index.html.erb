@@ -1,0 +1,53 @@
+<%= render 'layerbegin' %>
+
+<div class="col-lg-12">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+      <h3>商品</h3>
+
+    </div>
+    <div class="ibox-content">
+      <table class="table table-hover table-bordered text-center">
+        <thead>
+        <tr>
+          <th class="text-center">商品名称</th>
+          <th class="text-center">原价</th>
+          <th class="text-center">现价</th>
+          <th class="text-center">销量</th>
+          <th class="text-center">文字描述</th>
+          <th class="text-center">库存</th>
+          <th class="text-center">运费</th>
+          <th class="text-center">折扣</th>
+          <th class="text-center">基础价</th>
+          <th class="text-center">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @wares.each do |ware| %>
+            <tr>
+              <td><%= ware.ware %></td>
+              <td><%= ware.price %></td>
+              <td><%= ware.discountprice %></td>
+              <td><%= ware.salevolume %></td>
+              <td><%= ware.describe %></td>
+              <td><%= ware.stock %></td>
+              <td><%= ware.freight %></td>
+              <td><%= ware.discount %></td>
+              <td><%= ware.baseprice %></td>
+              <td><%= link_to '编辑', edit_ware_path(ware) %>
+                <%= link_to '删除', ware, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+
+
+      <%= link_to "新增", new_ware_path,class: "btn btn-w-m btn-success mylink pull-right" %>
+      <br>
+    </div>
+
+  </div>
+</div>
+<%= render 'layerend' %>
