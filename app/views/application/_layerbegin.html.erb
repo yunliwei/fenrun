@@ -15,7 +15,7 @@
             </a>
             <ul class="dropdown-menu animated fadeInRight m-t-xs">
               <li class="divider"></li>
-              <li>退出', logins_path %>
+              <li>退出
               </li>
 
             </ul>
@@ -24,11 +24,9 @@
             H+
           </div>
         </li>
-        <% if session[:stylesession]=='que' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
           <a href="">
             <i class="fa fa-file"></i>
 
@@ -40,6 +38,7 @@
           <ul class="nav nav-second-level">
 
 
+
           </ul>
         </li>
 
@@ -47,11 +46,9 @@
 
 
 
-        <% if session[:stylesession]=='adm' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
         <a href="">
           <i class="fa fa-user"></i>
@@ -63,18 +60,20 @@
           <ul class="nav nav-second-level">
 
             <li>
+
               <%= link_to '商家入驻',businesssettleds_path,'data-no-turbolink'=>true%>
+
+             管理员
+
             </li>
 
           </ul>
         </li>
 
 
-        <% if session[:stylesession]=='user' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
           <a href="">
             <i class="fa fa-users"></i>
@@ -91,11 +90,9 @@
 
 
 
-        <% if session[:stylesession]=='log' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
           <a href=""><i class="fa fa-history"></i> <span class="nav-label">用户记录</span><span class="fa arrow"></span> </a>
           <ul class="nav nav-second-level">
@@ -110,11 +107,9 @@
 
 
 
-        <% if session[:stylesession]=='license' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
           <a href=""><i class="fa fa-ils"></i> <span class="nav-label">序列号</span><span class="fa arrow"></span> </a>
           <ul class="nav nav-second-level">
             <li>
@@ -123,11 +118,9 @@
           </ul>
         </li>
 
-        <% if session[:stylesession]=='err' %>
-            <li class="active">
-        <% else %>
+
             <li>
-        <% end %>
+
 
           <a href=""><i class="fa fa-bug"></i> <span class="nav-label">错题</span><span class="fa arrow"></span> </a>
           <ul class="nav nav-second-level">
