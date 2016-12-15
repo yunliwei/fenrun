@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   end
 
   resources :users
+<<<<<<< HEAD
   resources :classifications
+=======
+  resources :businesssettleds
+
+>>>>>>> 89890ba36b21d91bb5c8f91cb823b589b6df1d66
 
 
 end
