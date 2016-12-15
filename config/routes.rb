@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
-
+  resources :classifications
 
 
 end

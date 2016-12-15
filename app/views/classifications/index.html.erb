@@ -1,0 +1,42 @@
+<%= render 'layerbegin' %>
+<div class="col-lg-12">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+      <h3>分类</h3>
+
+    </div>
+    <div class="ibox-content">
+      <table class="table table-hover table-bordered text-center">
+        <thead>
+        <tr>
+          <th class="text-center">分类名称</th>
+
+          <th class="text-center">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <% @classifications.each do |classification| %>
+            <tr>
+              <td><%= classification.classname %></td>
+              <td>
+                <%= link_to '编辑', edit_classification_path(classification),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= link_to '删除', classification,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                    </table>
+                    <div class="text-center" >
+
+
+                    </div>
+
+
+                    <%= link_to "新增",new_classification_path,class: "btn btn-w-m btn-success mylink pull-right" %>
+                        <br>
+                        </div>
+
+                        </div>
+                        </div>
+<%= render 'layerend' %>
