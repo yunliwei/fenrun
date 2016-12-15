@@ -1,0 +1,74 @@
+<%= render 'layerbegin' %>
+
+<div class="ibox-content form-horizontal m-t">
+
+  <%= form_for(@ware,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">商品名称：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :ware,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">原价：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :price,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">现价：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :discountprice,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">销量：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :salevolume,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">文字描述：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :describe,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">库存：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :stock,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">运费：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :freight,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">折扣：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :discount,class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">基础价：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :baseprice,class:"form-control" %>
+        </div>
+      </div>
+
+      </div>
+      <%= f.submit '确定',class: "btn btn-w-m btn-success mylink pull-right",id:'smt','data-no-turbolink'=>true %>
+      <br>
+  <% end %>
+  </div>
+  <%= render 'layerend' %>
