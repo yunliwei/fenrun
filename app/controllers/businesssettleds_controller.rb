@@ -1,7 +1,9 @@
 class BusinesssettledsController < ApplicationController
+  before_action :set_businesssettled, only: [:show, :edit, :update, :destroy]
   def index
 
-    @businesssettleds = Businesssettled.all.order("updated_at DESC").paginate(page:params[:page],per_page:2)
+    @businesssettleds = Businesssettled.all.order("updated_at DESC").paginate(page:params[:page],per_page:3)
+    @businesssettledcount=@businesssettleds.count
   end
 
   # GET /subjects/1

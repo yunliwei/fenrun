@@ -44,7 +44,11 @@
           </ul>
         </li>
         <li>
-          <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">信箱 </span><span class="label label-warning pull-right">16</span></a>
+          <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">信箱 </span>
+            <span class="label label-warning pull-right">16</span>
+
+
+          </a>
           <ul class="nav nav-second-level">
             <li><a href="mailbox.html">收件箱</a>
             </li>
@@ -91,6 +95,7 @@
           <span class="nav-label">商家入驻</span>
 
           <span class="fa arrow"></span>
+
         </a>
           <ul class="nav nav-second-level">
 
@@ -113,12 +118,12 @@
           <a href="">
             <i class="fa fa-users"></i>
 
-            <span class="nav-label">用户</span>
+            <span class="nav-label">商城基本信息</span>
             <span class="fa arrow"></span>
           </a>
           <ul class="nav nav-second-level">
             <li>
-
+              <%= link_to '基本信息',malls_path,'data-no-turbolink'=>true%>
             </li>
           </ul>
         </li>

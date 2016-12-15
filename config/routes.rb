@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   resources :businesssettleds
 
+  resources :malls
+
+
 
 
 
