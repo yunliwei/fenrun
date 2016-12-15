@@ -1,3 +1,0 @@
-class BusineClassification < ApplicationRecord
-
-end

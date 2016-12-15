@@ -4,14 +4,14 @@
 
 
 
-  <%= form_for(@test,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+  <%= form_for(@classification,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
       <br>
       <br>
 
       <div class="form-group">
         <label class="col-sm-5 control-label">类型：</label>
         <div class="col-sm-3">
-          <%= f.text_field :name,class:"form-control" %>
+          <%= f.text_field :classname,class:"form-control" %>
               </div>
               </div>
 

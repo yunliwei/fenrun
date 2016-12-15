@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class WareClassificationTest < ActiveSupport::TestCase
+class ClassificationsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
