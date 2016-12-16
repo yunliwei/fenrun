@@ -15,7 +15,7 @@
         <thead>
         <tr>
           <th class="text-center">商城名称</th>
-          <th class="text-center">图片</th>
+          <th class="text-center">logo图片</th>
           <th class="text-center">商城简介</th>
           <th class="text-center">联系电话</th>
           <th class="text-center">店招</th>
@@ -25,16 +25,18 @@
         </thead>
         <tbody>
 
-        <% @malls.each do |m| %>
+        <% @malls.each do |malls| %>
             <tr>
-              <td><%= m.mallname %></td>
-              <td><%= m.phonenumber %></td>
-              <td><%= m.descripte %></td>
-              <td><%= m.telephone %></td>
-              <td><%= m.shorerecruit %></td>
-              <td><%= m.custimerservic %></td>
+              <td><%= malls.mallname %></td>
+              <td><%= image_tag malls.malllogo.url%></td>
+
+
+              <td><%= malls.descripte %></td>
+              <td><%= malls.telephone %></td>
+              <td><%= malls.shorerecruit %></td>
+              <td><%= malls.custimerservic %></td>
               <td>
-                <%= link_to '编辑', edit_mall_path(m),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                </td>
             </tr>
         <% end %>
