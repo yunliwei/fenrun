@@ -9,6 +9,7 @@
         <thead>
         <tr>
           <th class="text-center">商家名称</th>
+          <th class="text-center">类型</th>
           <th class="text-center">销量</th>
           <th class="text-center">联系电话</th>
           <th class="text-center">工商执照</th>
@@ -17,27 +18,29 @@
         </tr>
         </thead>
         <tbody>
-        <% @business.each do |business| %>
+        <% @busines.each do |business| %>
             <tr>
               <td ><%= business.name %></td>
+              <td ><%= business.name %></td>
               <td ><%= business.salessum %></td>
-              <td ><%= business.phonemunber %></td>
-              <td ><%= image_tag business.businelicense.url%></td>
-              <td ><%= image_tag business.businelogo.url%></td>
+              <td ><%= business.phonenumber %></td>
+              <td style="max-width :300px;max-height: 100px;overflow:hidden"><%= image_tag business.businelicense.url  style="height:100px"%></td>
+              <td style="max-width :300px;max-height: 100px;overflow:hidden"><%= image_tag business.businelogo.url style="height:300px" %></td>
               <td>
-                <%= link_to '', edit_business_path(busine),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <%= link_to '', question,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to '编辑', edit_busine_path(business),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= link_to '删除', business,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
                         </td>
                         </tr>
                     <% end %>
                     </tbody>
                     </table>
-                    <%= link_to "新增", new_business_path, class: "btn btn-w-m btn-success mylink pull-right" %>
+                    <%= link_to "新增", new_busine_path, class: "btn btn-w-m btn-success mylink pull-right" %>
                         <br>
                         <br>
                         </div>
                         </div>
                         </div>
+                        <%= link_to '返回', busines_path %>
                         <%= render 'layerend' %>
 
 

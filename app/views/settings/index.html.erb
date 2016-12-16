@@ -1,0 +1,50 @@
+
+<%= render 'layerbegin' %>
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h3>平台设置</h3>
+  </div>
+  <div class="ibox-content">
+    <table class="table table-hover table-bordered text-center">
+      <thead>
+      <tr>
+        <th class="text-center">消费基数</th>
+        <th class="text-center">会员可分比</th>
+        <th class="text-center">代理可分比</th>
+        <th class="text-center">推荐人可分比</th>
+        <th class="text-center">用户最低返现额</th>
+        <th class="text-center">用户最高返现额</th>
+        <th class="text-center">用户返现比</th>
+        <th class="text-center">提现最低限额</th>
+        <th class="text-center">提现最高限额</th>
+        <th class="text-center">提现比</th>
+        <th class="text-center">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @settings.each do |setting| %>
+          <tr>
+            <td ><%= setting.consumebase %></td>
+            <td ><%= setting.memberratio %></td>
+            <td ><%= setting.agentratio%></td>
+            <td ><%= setting.refereeratio %></td>
+            <td ><%= setting.consumemin%></td>
+            <td ><%= setting.consumemax%></td>
+            <td ><%= setting.consumecash%></td>
+            <td ><%= setting.withdrawmin %></td>
+            <td ><%= setting.withdrawmax%></td>
+            <td ><%= setting.withdrawratio %></td>
+            <td><%= link_to '编辑', edit_setting_path(setting),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '删除', setting,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </td>
+                    </tr>
+                <% end %>
+                </tbody>
+                </table>
+                <%= link_to "新增", new_setting_path, class: "btn btn-w-m btn-success mylink pull-right" %>
+                    <br>
+                    <br>
+                    </div>
+                    </div>
+
+                    <%= render 'layerend' %>
