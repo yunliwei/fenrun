@@ -5,9 +5,17 @@ def index
 end
 def new
   @ware = Ware.new
+  @class=Classification.all
 end
 def show
 end
+
+
+
+  def createcla
+    @class=Ware.classifications.all
+    @class.create()
+  end
 
 def create
   @ware = Ware.new(ware_params)
@@ -52,4 +60,7 @@ end
 def ware_params
   params.require(:ware).permit(:ware, :price,:discountprice,:salevolume,:describe,:stock,:freight,:discount,:baseprice)
 end
+
+
+
 end
