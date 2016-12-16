@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'busines/index'
+
+  get 'busines/new'
+
+  get 'busines/edit'
+
+  get 'business/index'
+
+  get 'business/new'
+
+  get 'business/edit'
+
   resources :tests
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :mobiles do
@@ -9,16 +21,10 @@ Rails.application.routes.draw do
   end
 
   resources :users
-<<<<<<< HEAD
   resources :wares
-=======
-
   resources :classifications
-
   resources :businesssettleds
-
-
->>>>>>> cfc2e764252908880ce9fa0a99c938b312447c39
+  resources :busines
 
 
 end
