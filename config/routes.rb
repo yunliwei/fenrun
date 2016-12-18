@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   resources :users
 
 
-  resources :wares
+  resources :wares do
+    collection do
+      get 'createcla'
+    end
+  end
 
 
 

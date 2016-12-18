@@ -2,6 +2,14 @@ class WaresController < ApplicationController
   before_action :set_ware, only: [:show, :edit, :update, :destroy]
 def index
   @wares = Ware.all
+
+  #cal =Ware.create(ware:'123')
+  #Classification.create(classname:'111')
+ # cccc=Classification.find(1)
+ # cal.classifications.push(cccc)
+
+
+
 end
 def new
   @ware = Ware.new
@@ -13,15 +21,25 @@ end
 
 
   def createcla
+
+
     @class=Ware.classifications.all
-    @class.create()
+    @class.create(classification: params[:dl_chose2].val())
+
+
   end
 
 def create
-  @ware = Ware.new(ware_params)
+  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe],stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice])
+  id=params[:classifi]
+  arr = Array.new(id.split(','))
+  #debugger
+  cccc=Classification.find(arr)
+  @ware.classifications.push(cccc)
 
   respond_to do |format|
     if @ware.save
+      @ware.classifications
       format.html { redirect_to @ware, notice: 'Test was successfully created.' }
       format.json { render :show, status: :created, location: @ware }
     else
