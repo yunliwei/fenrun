@@ -18,7 +18,13 @@ class BusinesController < ApplicationController
   end
 
   def create
-    @busines = Busine.new(business_params)
+    @busines = Busine.new(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo])
+    id=params[:busines]
+    arr = Array.new(id.split(','))
+    #debugger
+    cccc=Classification.find(arr)
+    @busines.classifications.push(cccc)
+
     respond_to do |format|
       if @busines.save
         format.html { redirect_to busines_path, notice: 'Admin was successfully created.' }
@@ -42,11 +48,20 @@ class BusinesController < ApplicationController
     end
   end
 
+  def destroy
+    @busines.destroy
+    respond_to do |format|
+      format.html { redirect_to busines_url, notice: 'Test was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+
   def set_business
     @busines = Busine.find(params[:id])
   end
 # Never trust parameters from the scary internet, only allow the white list through.
   def business_params
-    params.require(:busine).permit(:name, :region, :salessum, :phonenumber, :businelicense ,:businelogo)
+    params.require(:busine).permit(:name, :salessum, :phonenumber, :businelicense ,:businelogo)
   end
 end

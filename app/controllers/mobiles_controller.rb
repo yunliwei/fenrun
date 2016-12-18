@@ -21,4 +21,15 @@ end
 
   end
 
+  def search
+    ss = params[:sea]
+   # debugger
+    search= Ware.find_by(ware:params[:ss])
+    alert(search)
+    render  json: shangpinlist
+
+    end
+
+    end
+
 end
