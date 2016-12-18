@@ -1,0 +1,149 @@
+<%= render 'layerbegin' %>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img1')
+                        .attr('src', e.target.result)
+//.width(300)
+//.height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+<div class="ibox-content form-horizontal m-t">
+  <h1 class="text-center">商城基本信息</h1>
+
+
+  <div class="form-group">
+    <%= form_for(@mall,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">商城名称：</label>
+          <div class="col-sm-5">
+            <%= f.text_field  :mallname ,class:"form-control"%>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">logo：</label>
+          <div class="col-sm-5">
+            <%= f.file_field :malllogo,class:'form-control',:onchange => "readURL(this)" %>
+          </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">logo预览：</label>
+          <div class="col-sm-5">
+            <img id="img1" width="300">
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">简介：</label>
+          <div class="col-sm-5">
+            <%= f.text_area :descripte,rows:'5',class:"form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">联系电话：</label>
+          <div class="col-sm-5">
+            <%= f.text_field  :telephone ,class:"form-control"%>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">店招：</label>
+          <div class="col-sm-5">
+            <%= f.text_area  :storerecruit ,class:"form-control"%>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">客服：</label>
+          <div class="col-sm-5">
+            <%= f.text_area  :storerecruit ,class:"form-control"%>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div>
+          <%= f.submit'确定',class: "btn btn-w-m btn-success mylink pull-right",'data-no-turbolink'=>true %>
+        </div>
+
+        <br>
+        <br>
+    <% end %>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <%= render 'layerend' %>

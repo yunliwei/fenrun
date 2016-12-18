@@ -1,6 +1,55 @@
 <%= render 'layerbegin' %>
+
+
+<script>
+    $(document).ready(function(){
+
+        $('#create').click(function(){
+
+            var typevalue;
+
+
+
+            location.href='/businesssettleds/createbusinesssettled?&statusvalue='+$('#statusvalue').val();
+
+
+
+        });
+        if($('#statusvalue').val()=="")
+        {
+            $('#statusvalue').val(0);
+        }
+
+        $('#selectstatus').change(function(){
+            $('#statusvalue').val($(this).val());
+        })
+
+
+
+
+    });
+
+
+
+
+
+</script>
+
+
+<style type="text/css">
+    .showerr{
+        display: block;
+    }
+    .hiddenerr{
+        display: none;
+    }
+</style>
+
+
+
+
 <div class="ibox-content form-horizontal m-t">
-  <h1>商家入驻平台申请</h1>
+  <h1 class="text-center">商家入驻平台申请</h1>
 
 
   <div class="form-group">
@@ -36,9 +85,10 @@
           <label class="col-sm-4 control-label">审核状态：</label>
           <div class="col-sm-5">
             <select class="form-control m-b" id="selectstatus">
+              <option  value= 0 >未通过</option>
 
-              <option  value="1">通过</option>
-              <option value="0">未通过</option>
+              <option  value= 1 >通过</option>
+
             </select>
             <%= f.text_field :status,id:'statusvalue' ,type:'hidden'%>
           </div>
