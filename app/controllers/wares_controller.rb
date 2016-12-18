@@ -30,16 +30,29 @@ end
   end
 
 def create
-  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe],stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice])
+  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+  #@ware=Ware.new()
+ #@ware.ware=params[:ware]
+ #@ware.price=params[:price]
+ ##@ware.discountprice=params[:discountprice]
+ #@ware.salevolume=params[:salevolume]
+ #@ware.describe=params[:describe]
+ #@ware.stock=params[:stock]
+ #@ware.freight=params[:freight]
+ #@ware.discount=params[:discount]
+ #@ware.baseprice=params[:baseprice]
+ #@ware.warepicture=params[:warepicture]
+ #@ware.save
   id=params[:classifi]
   arr = Array.new(id.split(','))
+  img=params[:warepicture]
   #debugger
   cccc=Classification.find(arr)
   @ware.classifications.push(cccc)
-
+  #@ware = Ware.new(ware_params)
   respond_to do |format|
     if @ware.save
-      @ware.classifications
+
       format.html { redirect_to @ware, notice: 'Test was successfully created.' }
       format.json { render :show, status: :created, location: @ware }
     else
@@ -51,7 +64,8 @@ end
 
   def update
     respond_to do |format|
-      if @ware.update(ware_params)
+      if @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe],stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice])
+
         format.html { redirect_to @ware, notice: 'Test was successfully updated.' }
         format.json { render :show, status: :ok, location: @ware }
       else
@@ -76,9 +90,18 @@ def set_ware
 end
 
 def ware_params
-  params.require(:ware).permit(:ware, :price,:discountprice,:salevolume,:describe,:stock,:freight,:discount,:baseprice)
+  params.require(:ware).permit(:ware, :price,:discountprice,:salevolume,:describe,:stock,:freight,:discount,:baseprice,:warepicture)
 end
 
+  def avatar
+    @ware = Ware.find params[:id]
+    @ware.avatar.update avatar_params
+  end
 
+  private
+
+  def avatar_params
+    params.permit(:warepicture)
+  end
 
 end

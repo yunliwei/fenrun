@@ -2,73 +2,103 @@
 
 <div class="ibox-content form-horizontal m-t">
 
-  <%= form_for(@ware,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+  <%= form_tag(controller:'wares', action:'create', :html => {:class => 'form-horizontal m-t', :multipart => true}) do  %>
       <div class="form-group">
         <label class="col-sm-2 control-label">商品名称：</label>
         <div class="col-sm-3">
-          <%= f.text_field :ware,class:"form-control" %>
+          <%= text_field_tag :ware,params[:ware], class: "form-control" %>
+        </div>
+      </div>
+      <%= hidden_field_tag :classifi,params[:classification], id:'cla'  %>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">分类：</label>
+        <div class="input-group">
+          <select id="dl_chose2" data-placeholder="选择类型" class="chosen-select" multiple style="width:300px;" tabindex="4">
+            <option value="">请选择类型</option>
+            <% @class.each do |cla| %>
+                <option value=<%= cla.id %> hassubinfo="true"><%= cla.classname %></option>
+            <% end %>
+
+
+          </select>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">原价：</label>
         <div class="col-sm-3">
-          <%= f.text_field :price,class:"form-control" %>
+          <%= text_field_tag :price,params[:price] ,class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">现价：</label>
         <div class="col-sm-3">
-          <%= f.text_field :discountprice,class:"form-control" %>
+          <%= text_field_tag :discountprice,params[:discountprice], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">销量：</label>
         <div class="col-sm-3">
-          <%= f.text_field :salevolume,class:"form-control" %>
+          <%= text_field_tag :salevolume, params[:salevolume], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">文字描述：</label>
         <div class="col-sm-3">
-          <%= f.text_field :describe,class:"form-control" %>
+          <%= text_field_tag :describe,params[:describe], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">库存：</label>
         <div class="col-sm-3">
-          <%= f.text_field :stock,class:"form-control" %>
+          <%= text_field_tag :stock,params[:stock], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">运费：</label>
         <div class="col-sm-3">
-          <%= f.text_field :freight,class:"form-control" %>
+          <%= text_field_tag :freight,params[:freight], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">折扣：</label>
         <div class="col-sm-3">
-          <%= f.text_field :discount,class:"form-control" %>
+          <%= text_field_tag :discount,params[:discount], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">基础价：</label>
         <div class="col-sm-3">
-          <%= f.text_field :baseprice,class:"form-control" %>
+          <%= text_field_tag :baseprice,params[:baseprice], class: "form-control" %>
         </div>
       </div>
 
       </div>
-      <%= f.submit '确定',class: "btn btn-w-m btn-success mylink pull-right",id:'smt','data-no-turbolink'=>true %>
+      <%= submit_tag '确定', class: "btn btn-w-m btn-success mylink pull-right", id: 'smt', 'data-no-turbolink' => true %>
       <br>
   <% end %>
   </div>
   <%= render 'layerend' %>
+  <script language="javascript">
+
+
+    $(document).ready(function () {
+      $(".chosen-select").chosen();
+
+      //change 事件
+      $('#dl_chose2').change(function () {
+        $('#cla').val($('#dl_chose2').val());
+        //alert( $('#dl_chose2').val());
+      });
+
+
+    });
+
+  </script>
