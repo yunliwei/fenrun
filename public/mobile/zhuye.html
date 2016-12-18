@@ -7,8 +7,8 @@
     <script src="js/mui.min.js"></script>
     <script src="js/iconfont.js"></script>   
     <link href="css/mui.min.css" rel="stylesheet"/>
-    <link href="css/iconfont.css" rel="stylesheet" > 
-   
+    <link href="css/iconfont.css" rel="stylesheet" >
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 
   
@@ -42,7 +42,9 @@
 	                <div class="mui-scroll">
 	                    
 	                    	<div class="mui-input-row mui-search">
-	                    	    <input type="search" class="mui-input-clear" placeholder="搜索">
+
+	                    	    <input id="search" type="search" class="mui-input-clear" placeholder="搜索">
+
 	                    	</div>
 	                    	
 	                    <!-- 主界面具体展示内容 -->
@@ -63,6 +65,7 @@
 	                    <div id="slider" class="mui-slider" >
 	                      <div class="mui-slider-group mui-slider-loop">
 	                        <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+
 	                        <div class="mui-slider-item mui-slider-item-duplicate">
 	                          <a href="#">
 	                            <img src="images/1.jpg">
@@ -222,13 +225,14 @@
 	   </nav>        
 	                
 	    </div>
-	    
-	   
-	    
-	  
-	    
-	    
-	    
+
+
+
+
+
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+
 	 <script type="text/javascript" charset="utf-8">
       	mui.init();
       		  //获得slider插件对象
@@ -257,7 +261,29 @@ mui('body').on('tap','a',function(){document.location.href=this.href;});
     }
 	  </style>  
 	    
-	 
+	 <script>
+
+		 $(document).ready(function () {
+
+			 $(document).keyup(function (e) {//捕获文档对象的按键弹起事件
+				 if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
+					 mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
+					 }); //此处编写用户敲回车后的代码
+				 }
+			 });
+
+
+
+
+		 });
+
+
+
+
+
+
+
+	 </script>
 
 	    
 	 <script>

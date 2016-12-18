@@ -21,6 +21,7 @@ end
 
   end
 
+
 def sahngjiaruzhu
 
   businesssettled = Businesssettled.find_by(name:params[:name])
@@ -35,6 +36,16 @@ end
 
 
 
+
+
+  def search
+    ss = params[:sea]
+   # debugger
+    search= Ware.find_by(ware:params[:ss])
+    alert(search)
+    render  json: shangpinlist
+
+    end
 
 
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     collection do
       get 'reg'
       get 'login'
+      get 'search'
     end
   end
 

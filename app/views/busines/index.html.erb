@@ -24,8 +24,8 @@
               <td ><%= business.name %></td>
               <td ><%= business.salessum %></td>
               <td ><%= business.phonenumber %></td>
-              <td style="max-width :300px;max-height: 100px;overflow:hidden"><%= image_tag business.businelicense.url  style="height:100px"%></td>
-              <td style="max-width :300px;max-height: 100px;overflow:hidden"><%= image_tag business.businelogo.url style="height:300px" %></td>
+              <td style="max-width :300px;overflow:hidden"><%= image_tag business.businelicense.url  ,height:100%></td>
+              <td style="max-width :300px;overflow:hidden"><%= image_tag business.businelogo.url, height:100 %></td>
               <td>
                 <%= link_to '编辑', edit_busine_path(business),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <%= link_to '删除', business,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
