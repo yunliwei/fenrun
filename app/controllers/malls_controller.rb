@@ -20,13 +20,13 @@ class MallsController < ApplicationController
   # GET /subjects/1/edit
   def edit
 
-
+    @malls = Mall.all
   end
 
   # POST /subjects
   # POST /subjects.json
   def create
-    @mall = Mall.new(mall_params)
+    @mall = Mall.new(malls_params)
     respond_to do |format|
       if @mall.save
         format.html { redirect_to malls_path, notice: 'Subject was successfully created.' }
