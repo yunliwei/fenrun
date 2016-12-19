@@ -21,6 +21,23 @@ end
 
   end
 
+
+def shangjiaruzhu
+
+  businesssettled = Businesssettled.find_by(name:params[:ruzhuname])
+  if(businesssettled==nil)
+    businesssettled = Businesssettled.create(name:params[:bruzhuname],phonenumber:params[:bruzhuphone])
+    render json:('[{"status":"1"}]')
+  else
+  render json:('[{"status":"0"}]')
+  end
+
+end
+
+
+
+
+
   def search
     ss = params[:sea].to_s
     #debugger
@@ -31,7 +48,6 @@ end
    render json:(@search)
    
 
-    end
 
 
 

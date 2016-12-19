@@ -15,7 +15,7 @@
         <thead>
         <tr>
           <th class="text-center">商城名称</th>
-          <th class="text-center">logo图片</th>
+          <th class="text-center">商城logo</th>
           <th class="text-center">商城简介</th>
           <th class="text-center">联系电话</th>
           <th class="text-center">店招</th>
@@ -28,16 +28,17 @@
         <% @malls.each do |malls| %>
             <tr>
               <td><%= malls.mallname %></td>
-              <td><%= image_tag malls.malllogo.url%></td>
-
-
+              <td><%= image_tag malls.malllogo.url,Height:200%></td>
               <td><%= malls.descripte %></td>
               <td><%= malls.telephone %></td>
-              <td><%= malls.shorerecruit %></td>
-              <td><%= malls.custimerservic %></td>
+              <td><%= malls.storerecruit %></td>
+              <td><%= malls.customerservice %></td>
               <td>
+                <%= link_to '修改', edit_mall_path(malls),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '删除', malls,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
 
-               </td>
+                </td>
+
             </tr>
         <% end %>
         </tbody>
