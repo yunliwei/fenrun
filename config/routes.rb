@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'reg'
       get 'login'
       get 'search'
+      get 'shangjiaruzhu'
     end
   end
 

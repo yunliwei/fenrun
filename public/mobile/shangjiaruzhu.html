@@ -64,7 +64,7 @@
     </div>
 
     <div class="mui-content-padded">
-        <button id='reg' class="mui-btn mui-btn-block mui-btn-primary">提交</button>
+        <button id='shangjiaruzhu' class="mui-btn mui-btn-block mui-btn-primary">提交</button>
     </div>
     <div class="mui-content-padded">
         <p>请正确填写以上信息，等待工作人员联系您说明申请结果。</p>
@@ -136,8 +136,8 @@
     $(document).ready(function () {
 
         $('#shangjiaruzhu').click(function(){
-
-            mui.getJSON('http://localhost:3000/mobiles/shangjiaruzhu',{ruzhuname:$('#ruzhuname').val(),ruzhuphone:$('#ruzhuphone').val(),textarejianjie:$('#textarejianjie').val(),textareabeizhu:$('#textareabeizhu').val()},function(data){
+alert("sss")
+            mui.getJSON('http://localhost:3000/mobiles/shangjiaruzhu',{bruzhuname:$('#ruzhuname').val(),bruzhuphone:$('#ruzhuphone').val()},function(data){
 
 
                         $.each(data, function(i, item) {

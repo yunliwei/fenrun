@@ -22,14 +22,14 @@ end
   end
 
 
-def sahngjiaruzhu
+def shangjiaruzhu
 
-  businesssettled = Businesssettled.find_by(name:params[:name])
+  businesssettled = Businesssettled.find_by(name:params[:ruzhuname])
   if(businesssettled==nil)
-    businesssettled = Businesssettled.create(name:params[:name],phonenumber:params[:phonenumber],summary:params[:summary],remarks:params[:remarks])
+    businesssettled = Businesssettled.create(name:params[:bruzhuname],phonenumber:params[:bruzhuphone])
     render json:('[{"status":"1"}]')
   else
-    render json:('[{"status":"0"}]')
+  render json:('[{"status":"0"}]')
   end
 
 end
