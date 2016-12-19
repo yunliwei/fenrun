@@ -11,13 +11,22 @@ def index
 
 
 end
+
+
 def new
   @ware = Ware.new
   @class=Classification.all
 end
+
+
 def show
 end
 
+
+  def edit
+    @ware = Ware.all
+    @class=Classification.all
+  end
 
 
   def createcla
@@ -31,21 +40,10 @@ end
 
 def create
   @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
-  #@ware=Ware.new()
- #@ware.ware=params[:ware]
- #@ware.price=params[:price]
- ##@ware.discountprice=params[:discountprice]
- #@ware.salevolume=params[:salevolume]
- #@ware.describe=params[:describe]
- #@ware.stock=params[:stock]
- #@ware.freight=params[:freight]
- #@ware.discount=params[:discount]
- #@ware.baseprice=params[:baseprice]
- #@ware.warepicture=params[:warepicture]
- #@ware.save
+
   id=params[:classifi]
   arr = Array.new(id.split(','))
-  img=params[:warepicture]
+
   #debugger
   cccc=Classification.find(arr)
   @ware.classifications.push(cccc)

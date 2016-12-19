@@ -22,14 +22,17 @@ end
   end
 
   def search
-    ss = params[:sea]
-   # debugger
-    search= Ware.find_by(ware:params[:ss])
-    alert(search)
-    render  json: shangpinlist
+    ss = params[:sea].to_s
+    #debugger
+
+  #  @search = Ware.where(:ware =>["ware LIKE 'ss"] )
+    @search = Ware.where(:ware=>ss)
+   #debugger
+   render json:(@search)
+   
 
     end
 
-    end
+
 
 end
