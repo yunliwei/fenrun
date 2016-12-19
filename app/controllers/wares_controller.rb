@@ -1,5 +1,5 @@
 class WaresController < ApplicationController
-  before_action :set_ware, only: [:show, :edit, :update, :destroy]
+  before_action :set_ware, only: [:show, :edit,  :destroy]
 def index
   @wares = Ware.all
 
@@ -18,31 +18,27 @@ end
 def show
 end
 
-
-
-  def createcla
-
-
-    @class=Ware.classifications.all
-    @class.create(classification: params[:dl_chose2].val())
-
+  def edit
+    @class=Classification.all
+    @ware = Ware.find(params[:id])
+    params[:ware]=@ware.ware
+    params[:price]=@ware.price
+    params[:discountprice]=@ware.discountprice
+    params[:salevolume]=@ware.salevolume
+    params[:describe]=@ware.describe
+    params[:stock]=@ware.stock
+    params[:freight]=@ware.freight
+    params[:discount]=@ware.discount
+    params[:baseprice]=@ware.baseprice
+    #debugger
 
   end
 
+
+
 def create
-  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
-  #@ware=Ware.new()
- #@ware.ware=params[:ware]
- #@ware.price=params[:price]
- ##@ware.discountprice=params[:discountprice]
- #@ware.salevolume=params[:salevolume]
- #@ware.describe=params[:describe]
- #@ware.stock=params[:stock]
- #@ware.freight=params[:freight]
- #@ware.discount=params[:discount]
- #@ware.baseprice=params[:baseprice]
- #@ware.warepicture=params[:warepicture]
- #@ware.save
+  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+
   id=params[:classifi]
   arr = Array.new(id.split(','))
   img=params[:warepicture]
@@ -50,29 +46,33 @@ def create
   cccc=Classification.find(arr)
   @ware.classifications.push(cccc)
   #@ware = Ware.new(ware_params)
-  respond_to do |format|
-    if @ware.save
-
-      format.html { redirect_to @ware, notice: 'Test was successfully created.' }
-      format.json { render :show, status: :created, location: @ware }
-    else
-      format.html { render :new }
-      format.json { render json: @ware.errors, status: :unprocessable_entity }
-    end
-  end
+  # respond_to do |format|
+  #   if @ware.save
+  #
+  #    format.html { redirect_to @ware, notice: 'Test was successfully created.' }
+  #     format.json { render :show, status: :created, location: @ware }
+  #   else
+  #     format.html { render :new }
+  #     format.json { render json: @ware.errors, status: :unprocessable_entity }
+  #   end
+  # end
 end
 
   def update
-    respond_to do |format|
-      if @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe],stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice])
-
-        format.html { redirect_to @ware, notice: 'Test was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ware }
-      else
-        format.html { render :edit }
-        format.json { render json: @ware.errors, status: :unprocessable_entity }
-      end
-    end
+    @ware = Ware.find(params[:id])
+    @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+    redirect_to wares_url
+    #
+     # respond_to do |format|
+     #   if @ware.update(ware_params)
+     #
+     #     format.html { redirect_to @ware, notice: 'Test was successfully updated.' }
+     #     format.json { render :show, status: :ok, location: @ware }
+     #   else
+     #     format.html { render :edit }
+     #     format.json { render json: @ware.errors, status: :unprocessable_entity }
+     #   end
+     # end
   end
 
   def destroy
@@ -93,15 +93,5 @@ def ware_params
   params.require(:ware).permit(:ware, :price,:discountprice,:salevolume,:describe,:stock,:freight,:discount,:baseprice,:warepicture)
 end
 
-  def avatar
-    @ware = Ware.find params[:id]
-    @ware.avatar.update avatar_params
-  end
-
-  private
-
-  def avatar_params
-    params.permit(:warepicture)
-  end
 
 end

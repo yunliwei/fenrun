@@ -16,8 +16,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :wares 
-    
+  resources :wares do
+  collection do
+    get 'update'
+  end
+  end
     
     
   

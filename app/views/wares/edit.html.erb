@@ -2,7 +2,7 @@
 
 <div class="ibox-content form-horizontal m-t">
 
-  <%= form_tag(controller:'wares', action:'create', :html => {:class => 'form-horizontal m-t', :multipart => true}) do  %>
+  <%= form_tag({controller:'wares', action:'update'},{ :method => "put",:multipart=>true}) do  %>
       <div class="form-group">
         <label class="col-sm-2 control-label">商品名称：</label>
         <div class="col-sm-3">
@@ -53,6 +53,13 @@
       </div>
 
       <div class="form-group">
+        <label  class="col-sm-2 control-label">图片：</label>
+        <div class="col-sm-3">
+          <%= file_field_tag  "warepicture" %>
+        </div>
+      </div>
+
+      <div class="form-group">
         <label class="col-sm-2 control-label">库存：</label>
         <div class="col-sm-3">
           <%= text_field_tag :stock,params[:stock], class: "form-control" %>
@@ -81,7 +88,8 @@
       </div>
 
       </div>
-      <%= submit_tag '确定', class: "btn btn-w-m btn-success mylink pull-right", id: 'smt', 'data-no-turbolink' => true %>
+      <%= submit_tag '确定', class: "btn btn-w-m btn-success mylink pull-right", id: 'smt' %>
+
       <br>
   <% end %>
   </div>
