@@ -267,6 +267,8 @@ mui('body').on('tap','a',function(){document.location.href=this.href;});
 
 			 $(document).keyup(function (e) {//捕获文档对象的按键弹起事件
 				 if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
+
+					 location.href = "shangpinlist.html?sea="+$('#search')
 					 mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
 					 }); //此处编写用户敲回车后的代码
 				 }
@@ -286,11 +288,7 @@ mui('body').on('tap','a',function(){document.location.href=this.href;});
 	 </script>
 
 	    
-	 <script>
-		 $(document).ready(function(){
 
-		 })
-	 </script>
 	    
 	    
 	    

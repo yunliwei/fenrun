@@ -1,7 +1,7 @@
 <%= render 'layerbegin' %>
 <div class="ibox-content form-horizontal m-t">
   <h3>新增类型</h3>
-  <%= form_tag(controller:'busines', action:'create', :html => {:class => 'form-horizontal m-t', :multipart => true}) do  %>
+  <%= form_tag({controller:'busines', action:'create'}, { :multipart => true}) do  %>
       <br>
       <br>
       <div class="form-group">
