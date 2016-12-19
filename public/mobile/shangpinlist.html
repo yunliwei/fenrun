@@ -5,7 +5,41 @@
     <title>Document</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/mui.css"/>
-    <link rel="stylesheet" href="css/iconfont.css"> 
+    <link rel="stylesheet" href="css/iconfont.css">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				mui.getJSON('http://localhost:3000/mobiles/search',{}, function (data) {
+
+
+
+							 $.each(data, function (i, item) {
+
+
+								 var itemHTML =
+								'<li class="mui-table-view-cell mui-media">' +
+								'<a href="javascript">' ;
+								 if(item.warepicture_content_type !=null ) {
+
+										 itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+									 }
+								 else {
+										 itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
+									 }
+
+
+								 itemHTML+=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
+								'</div>' +
+								'</a>' +
+								'</li>' ;
+								$("#tb").append(itemHTML)
+							});
+				});
+			});
+		</script>
 </head>
 	<body>
 		
@@ -14,255 +48,24 @@
 		    <h1 class="mui-title">商品列表</h1>
 		</header>
 		<div class="mui-content">
-		   
-		<ul class="mui-table-view">
-		    <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">
-		            <div class="mui-media-body">
-		                【0首付分期】蚂蚁摄影单反数码
-		                相机Canon/佳能 EOS 1300D带wifi
-		                <p style="color: red;" class="mui-ellipsis">¥2799</p>
-		                <p>免运费</p>
-		            </div>
-		        </a>
-		    </li>
-		    <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                木屋
-		                <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
-		            </div>
-		        </a>
-		    </li>
-		    <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
-		     <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-		            <div class="mui-media-body">
-		                CBD
-		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-		            </div>
-		        </a>
-		    </li>
+
+
+
+
+		<ul class="mui-table-view" id="tb">
+		    <!--<li class="mui-table-view-cell mui-media">-->
+		        <!--<a href="javascript:;">-->
+		            <!--<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">-->
+		            <!--<div class="mui-media-body">-->
+		                <!--<h4 id='ti'></h4>-->
+		                <!--<p style="color:black;" class="mui-ellipsis" id='price'></p>-->
+		                <!--<p>免运费</p>-->
+		            <!--</div>-->
+		        <!--</a>-->
+		    <!--</li>-->
+
 		</ul>
-		
+		<!-- -->
 	
 		</div>
 		
@@ -271,6 +74,13 @@
     <script type="text/javascript">
     mui.init();
     mui('body').on('tap','a',function(){document.location.href=this.href;});
+
+
+
+
+
+
     </script>
+
 	</body>
 </html>

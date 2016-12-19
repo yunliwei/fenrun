@@ -26,7 +26,7 @@ def shangjiaruzhu
 
   businesssettled = Businesssettled.find_by(name:params[:ruzhuname])
   if(businesssettled==nil)
-    businesssettled = Businesssettled.create(name:params[:bruzhuname],phonenumber:params[:bruzhuphone])
+    businesssettled = Businesssettled.create(name:params[:ruzhuname],phonenumber:params[:ruzhuphone])
     render json:('[{"status":"1"}]')
   else
   render json:('[{"status":"0"}]')
@@ -38,14 +38,34 @@ end
 
 
 
-  def search
-    ss = params[:sea]
-   # debugger
-    search= Ware.find_by(ware:params[:ss])
-    alert(search)
-    render  json: shangpinlist
 
-    end
+def shangjiatype
+
+  busines = Busine.find_by(name:params[:shangjianame])
+  if(busines==nil)
+    busines = Busine.create(name:params[:shangjianame])
+    render json:('[{"status":"1"}]')
+  else
+    render json:('[{"status":"0"}]')
+  end
+
+end
+
+
+
+
+
+  def search
+    ss = params[:sea].to_s
+    #debugger
+
+  #  @search = Ware.where(:ware =>["ware LIKE 'ss"] )
+    @search = Ware.where(:ware=>ss)
+   #debugger
+   render json:(@search)
+   
+
+
 
 
 end

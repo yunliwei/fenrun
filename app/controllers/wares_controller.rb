@@ -11,10 +11,14 @@ def index
 
 
 end
+
+
 def new
   @ware = Ware.new
   @class=Classification.all
 end
+
+
 def show
 end
 
@@ -32,16 +36,19 @@ end
     params[:baseprice]=@ware.baseprice
     #debugger
 
-  end
+ end
+
 
 
 
 def create
-  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+
+  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+
 
   id=params[:classifi]
   arr = Array.new(id.split(','))
-  img=params[:warepicture]
+
   #debugger
   cccc=Classification.find(arr)
   @ware.classifications.push(cccc)
