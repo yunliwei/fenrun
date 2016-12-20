@@ -11,8 +11,6 @@
 			$(document).ready(function() {
 				mui.getJSON('http://localhost:3000/mobiles/search',{}, function (data) {
 
-
-
 							 $.each(data, function (i, item) {
 
 
@@ -38,6 +36,11 @@
 								$("#tb").append(itemHTML)
 							});
 				});
+
+				mui.getJSON('http://localhost:3000/mobiles/selecttype',{},function(data){
+
+				});
+
 			});
 		</script>
 </head>

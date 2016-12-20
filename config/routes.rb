@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get 'login'
       get 'search'
       get 'shangjiaruzhu'
+      get 'warelist'
+      get 'selecttype'
     end
   end
 
