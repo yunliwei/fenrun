@@ -78,20 +78,16 @@ end
 
     def selecttype
     dd=params[:type].to_s
-    if (dd=="lady")
+    # if (dd=="lady")
       a=Classification.where(:classname=>"女装")
-      if (a != nil)
+    #   if (a != nil)
         @ware = Classification.find(a.first.id)
         @lc=@ware.wares
-        render json:(@cl)
-      else
+    # debugger
+        render json:(@lc)
+      # else
 
       end
-
-    else
-      render json:(@cl)
-    end
-    end
 
 
 

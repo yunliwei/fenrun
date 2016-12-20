@@ -33,12 +33,37 @@
 								'</div>' +
 								'</a>' +
 								'</li>' ;
-								$("#tb").append(itemHTML)
+								$("#list").append(itemHTML)
 							});
 				});
 
-				mui.getJSON('http://localhost:3000/mobiles/selecttype',{},function(data){
 
+				mui.getJSON('http://localhost:3000/mobiles/selecttype',{}, function (data) {
+
+					$.each(data, function (i, item) {
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media">' +
+								'<a href="javascript">' ;
+						if(item.warepicture_content_type !=null ) {
+
+							itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
+						}
+
+
+						itemHTML+=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
+								'</div>' +
+								'</a>' +
+								'</li>' ;
+						$("#list").append(itemHTML)
+					});
 				});
 
 			});
@@ -55,7 +80,7 @@
 
 
 
-		<ul class="mui-table-view" id="tb">
+		<ul class="mui-table-view" id="list">
 		    <!--<li class="mui-table-view-cell mui-media">-->
 		        <!--<a href="javascript:;">-->
 		            <!--<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">-->
