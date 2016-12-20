@@ -5,6 +5,9 @@ class ClassificationsController < ApplicationController
     before_action :set_classification, only: [:show, :edit, :update, :destroy]
     def index
       @classifications = Classification.all
+
+
+
     end
     # GET /chapters/1
     # GET /chapters/1.json
@@ -16,6 +19,9 @@ class ClassificationsController < ApplicationController
     end
     # GET /chapters/1/edit
     def edit
+      @ware = Classification.find(params[:id])
+      @cla=@ware.wares
+      debgger
     end
     # POST /chapters
     # POST /chapters.json
