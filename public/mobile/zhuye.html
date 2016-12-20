@@ -5,297 +5,337 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>主页</title>
     <script src="js/mui.min.js"></script>
-    <script src="js/iconfont.js"></script>   
+    <script src="js/iconfont.js"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <link href="css/iconfont.css" rel="stylesheet" >
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+//            mui.init({
+//                gestureConfig:{
+//                    tap: true, //默认为true
+//                    doubletap: true, //默认为false
+////                    longtap: true, //默认为false
+////                    swipe: true, //默认为true
+////                    drag: true, //默认为true
+////                    hold:false,//默认为false，不监听
+////                    release:false//默认为false，不监听
+//                }
+//            });
+
+//            mui.getJSON('http://localhost:3000/mobiles/selecttype',{}, function (data) {
+//                $.each(data, function (i, item) {
+//                    mui.alert(item.id)
+////                mui(".mui-table-view").on('tap', '.mui-grid-view', function () {
+////                    //获取id
+////                    var id = item.id;
+////                    alert(id);
+////                    //传值给详情页面，通知加载新数据
+////                    mui.fire(shangpinlist, 'shangpinlist', {id: id});
+////                    //打开新闻详情
+////                    mui.openWindow({
+////                        id: 'shangpinlist',
+////                        url: 'shangpinlist.html'
+////                    });
+////                });
+//                });
+//            });
+
+            var btn = document.getElementById("lady");
+//监听点击事件
+            btn.addEventListener("tap",function () {
+//                console.log("tap event trigger");
+                mui.getJSON('http://localhost:3000/mobiles/selecttype',{type:$("#lady").text()}, function (data) {
+                    location.href = "shangpinlist.html?type="+$('#lady')
+
+//                    mui.alert($("#lady").text());
+                });
+            });
+
+
+            mui.getJSON('http://localhost:3000/mobiles/warelist',{}, function (data) {
+
+                $.each(data, function (i, item) {
+
+
+                    var itemHTML =
+                            '<li class="mui-table-view-cell mui-media mui-col-xs-4">' +
+                            '<a href="javascript">' ;
+                    if(item.warepicture_content_type !=null ) {
+
+                        itemHTML += '<img class="mui-media-object"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+                    }
+                    else {
+                        itemHTML += '<img class="mui-media-object" src= "images/1.jpg" >';
+                    }
+
+
+                    itemHTML+=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+                            '<div class="mui-media-body">' + item.ware +
+                            '</div>' +
+                            '</a>' +
+                            '</li>' ;
+                    $("#warelist").append(itemHTML)
+                });
+            });
+
+
+
+
+
+        });
+    </script>
 </head>
 
-  
+
 <body>
 
 
-	<!-- 主界面菜单同时移动 -->
-	    <!-- 侧滑导航根容器 -->
-	    <div class="mui-off-canvas-wrap mui-draggable">
-	    	
-	        <!-- 主页面容器 -->
-	        <div class="mui-inner-wrap">
-	            <!-- 菜单容器 -->
-	            <aside class="mui-off-canvas-left" id="offCanvasSide">
-	                <div class="mui-scroll-wrapper">
-	                    <div class="mui-scroll">
-	                        <!-- 菜单具体展示内容 -->
-	                       
-	                    </div>
-	                </div>
-	            </aside>
-	            <!-- 主页面标题 -->
-	            <header class="mui-bar mui-bar-nav">
-	                <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
-	                <h1 class="mui-title">主页</h1>
-	            </header>
+<!-- 主界面菜单同时移动 -->
+<!-- 侧滑导航根容器 -->
+<div class="mui-off-canvas-wrap mui-draggable">
 
-	    		
-	            <!-- 主页面内容容器 -->
-	            <div class="mui-content mui-scroll-wrapper">
-	                <div class="mui-scroll">
-	                    
-	                    	<div class="mui-input-row mui-search">
+    <!-- 主页面容器 -->
+    <div class="mui-inner-wrap">
+        <!-- 菜单容器 -->
+        <aside class="mui-off-canvas-left" id="offCanvasSide">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <!-- 菜单具体展示内容 -->
 
-	                    	    <input id="search" type="search" class="mui-input-clear" placeholder="搜索">
+                </div>
+            </div>
+        </aside>
+        <!-- 主页面标题 -->
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+            <h1  class="mui-title">主页</h1>
+        </header>
 
-	                    	</div>
-	                    	
-	                    <!-- 主界面具体展示内容 -->
-	                    
-	                      <div class="mui-slider-group">
-	                        <!--第一个内容区容器-->
-	                        <div class="mui-slider-item">
-	                          <!-- 具体内容 -->
-	                        </div>
-	                        <!--第二个内容区-->
-	                        <div class="mui-slider-item">
-	                          <!-- 具体内容 -->
-	                        </div>
-	                      </div>
-	                  
-	                    
-	                    
-	                    <div id="slider" class="mui-slider" >
-	                      <div class="mui-slider-group mui-slider-loop">
-	                        <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 
-	                        <div class="mui-slider-item mui-slider-item-duplicate">
-	                          <a href="#">
-	                            <img src="images/1.jpg">
-	                          </a>
-	                        </div>
-	                        <!-- 第一张 -->
-	                        <div class="mui-slider-item">
-	                          <a href="#">
-	                            <img src="images/2.jpg">
-	                          </a>
-	                        </div>
-	                        <!-- 第二张 -->
-	                        <div class="mui-slider-item">
-	                          <a href="#">
-	                            <img src="images/a9.jpg">
-	                          </a>
-	                        </div>
-	                        <!-- 第三张 -->
-	                        <div class="mui-slider-item">
-	                          <a href="#">
-	                            <img src="images/3.jpg">
-	                          </a>
-	                        </div>
-	                        <!-- 第四张 -->
-	                        <div class="mui-slider-item">
-	                          <a href="#">
-	                            <img src="images/a9.jpg">
-	                          </a>
-	                        </div>
-	                        <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-	                        <div class="mui-slider-item mui-slider-item-duplicate">
-	                          <a href="#">
-	                            <img src="images/a9.jpg">
-	                          </a>
-	                        </div>
-	                      </div>
-	                      <div class="mui-slider-indicator">
-	                        <div class="mui-indicator mui-active"></div>
-	                        <div class="mui-indicator"></div>
-	                        <div class="mui-indicator"></div>
-	                        <div class="mui-indicator"></div>
-	                      </div>
-	                    </div>
-	                    
-	                    
-	                    
-	                    <ul class="mui-table-view mui-grid-view mui-grid-9">
-	             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-	                 <a href="shangpinlist.html">
-	                     <svg class="icon" aria-hidden="true">
-                         <use xlink:href="#icon-nvzhuang1"></use>
-                         </svg> 
-	                     <div class="mui-media-body">女装</div>
-	                 </a>
-	             </li>
-	             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-	                 <a href="#">
-	                     <svg class="icon" aria-hidden="true">
-                         <use xlink:href="#icon-nanzhuangpeishizhuanhuan"></use>
-                         </svg> 
-	                     <div class="mui-media-body">男装</div>
-	                 </a>
-	             </li>
-	             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-	                 <a href="#">
-	                     
-	                     <svg class="icon" aria-hidden="true">
-                         <use xlink:href="#icon-shumaxiangji"></use>
-                         </svg> 
-	                     <div class="mui-media-body">数码</div>
-	                 </a>
-	             </li>
-	             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-	                 <a href="#">
-	                     
-	                     <svg class="icon" aria-hidden="true">
-                         <use xlink:href="#icon-iconfonticonfonticonfont27"></use>
-                         </svg> 
-	                     <div class="mui-media-body">家具</div>
-	                 </a>
-	             </li>
-	             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-	                 <a href="#">
-	                    
-	                     <svg class="icon" aria-hidden="true">
-                         <use xlink:href="#icon-iconfontshipinyinliao"></use>
-                         </svg> 
-	                     <div class="mui-media-body">食品</div>
-	                 </a>
-	             </li>
-	             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-	                 <a href="#">
-	                     
-	                     <svg class="icon" aria-hidden="true">
-                         <use xlink:href="#icon-iconfonticon"></use>
-                         </svg>
-	                     <div class="mui-media-body">护肤彩妆</div>
-	                 </a>
-	             </li>
-	                 </ul>
-	             
-	             
-	             
-	             
-	             
-	     
-	             <ul class="mui-table-view mui-grid-view">
+        <!-- 主页面内容容器 -->
+        <div class="mui-content mui-scroll-wrapper">
+            <div class="mui-scroll">
 
-	                 <li class="mui-table-view-cell mui-media mui-col-xs-4">
-	                     <a href="#">
-	                         <img class="mui-media-object" src="images/3.jpg">
-	                         <div class="mui-media-body">商品名称1</div>
-	                     </a>
-	                 </li>
-	                 <li class="mui-table-view-cell mui-media mui-col-xs-4">
-	                     <a href="#">
-	                         <img class="mui-media-object" src="images/a9.jpg">
-	                         <div class="mui-media-body">商品名称2</div>
-	                     </a>
-	                 </li>
-	              
-	               <li class="mui-table-view-cell mui-media mui-col-xs-4">
-	                     <a href="#">
-	                         <img class="mui-media-object" src="images/3.jpg">
-	                         <div class="mui-media-body">商品名称3</div>
-	                     </a>
-	                 </li>
-	                   <li class="mui-table-view-cell mui-media mui-col-xs-4">
-	                     <a href="#">
-	                         <img class="mui-media-object" src="images/a9.jpg">
-	                         <div class="mui-media-body">商品名称4</div>
-	                     </a>
-	                 </li>
-	             </ul>
-	           
-	                </div>
-	              
-	            </div>  
+                <div class="mui-input-row mui-search">
 
-	       	 
-	        </div>
-	      
-	         <nav class="mui-bar mui-bar-tab">
-	       <a class="mui-tab-item mui-active" href="zhuye.html">
-	           <span class="mui-icon mui-icon-home"></span>
-	           <span class="mui-tab-label">首页</span>
-	       </a>
-	       <a class="mui-tab-item" href="shangjiatype.html">
-	           <span class="mui-icon mui-icon-contact"></span>
-	           <span class="mui-tab-label">商家</span>
-	       </a>
-	       <a class="mui-tab-item"href="user.html">
-	           <span class="mui-icon mui-icon-contact"></span>
-	           <span class="mui-tab-label">我的中心</span>
-	       </a>
-	      
-	   </nav>        
-	                
-	    </div>
+                    <input id="search" type="search" class="mui-input-clear" placeholder="搜索">
+
+                </div>
+
+                <!-- 主界面具体展示内容 -->
+
+                <div class="mui-slider-group">
+                    <!--第一个内容区容器-->
+                    <div class="mui-slider-item">
+                        <!-- 具体内容 -->
+                    </div>
+                    <!--第二个内容区-->
+                    <div class="mui-slider-item">
+                        <!-- 具体内容 -->
+                    </div>
+                </div>
+
+
+
+                <div id="slider" class="mui-slider" >
+                    <div class="mui-slider-group mui-slider-loop">
+                        <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+
+                        <div class="mui-slider-item mui-slider-item-duplicate" >
+                            <a href="#">
+                                <img src="images/1.jpg">
+                            </a>
+                        </div>
+                        <!-- 第一张 -->
+                        <div class="mui-slider-item" >
+                            <a href="#">
+                                <img src="images/2.jpg">
+                            </a>
+                        </div>
+                        <!-- 第二张 -->
+                        <div class="mui-slider-item">
+                            <a href="#">
+                                <img src="images/a9.jpg">
+                            </a>
+                        </div>
+                        <!-- 第三张 -->
+                        <div class="mui-slider-item">
+                            <a href="#">
+                                <img src="images/3.jpg">
+                            </a>
+                        </div>
+                        <!-- 第四张 -->
+                        <div class="mui-slider-item">
+                            <a href="#">
+                                <img src="images/a9.jpg">
+                            </a>
+                        </div>
+                        <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+                        <div class="mui-slider-item mui-slider-item-duplicate">
+                            <a href="#">
+                                <img src="images/a9.jpg">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mui-slider-indicator">
+                        <div class="mui-indicator mui-active"></div>
+                        <div class="mui-indicator"></div>
+                        <div class="mui-indicator"></div>
+                        <div class="mui-indicator"></div>
+                    </div>
+                </div>
+
+
+
+                <ul class="mui-table-view mui-grid-view mui-grid-9">
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" >
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-nvzhuang1"></use>
+                            </svg>
+                            <div  class="mui-media-body" id="lady" >女装</div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-nanzhuangpeishizhuanhuan"></use>
+                            </svg>
+                            <div class="mui-media-body">男装</div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="#">
+
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-shumaxiangji"></use>
+                            </svg>
+                            <div class="mui-media-body">数码</div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="#">
+
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-iconfonticonfonticonfont27"></use>
+                            </svg>
+                            <div class="mui-media-body">家具</div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="#">
+
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-iconfontshipinyinliao"></use>
+                            </svg>
+                            <div class="mui-media-body">食品</div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="#">
+
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-iconfonticon"></use>
+                            </svg>
+                            <div class="mui-media-body">护肤彩妆</div>
+                        </a>
+                    </li>
+                </ul>
 
 
 
 
 
-	<script src="js/mui.min.js"></script>
-	<script src="js/app.js"></script>
 
-	 <script type="text/javascript" charset="utf-8">
-      	mui.init();
-      		  //获得slider插件对象
-var gallery = mui('.mui-slider');
-gallery.slider({
-  interval:1000//自动轮播周期，若为0则不自动播放，默认为0；
-});
-mui('body').on('tap','a',function(){document.location.href=this.href;});
+                <ul class="mui-table-view mui-grid-view" id="warelist">
 
-    </script>   
-	    
-	
-	    <style type="text/css">
-	  	.mui-input-row {
-	  		height: 39px;
-	  	}
-	  	.mui-search {
-	  		height: 39px;
-	  
-	  	}
-	  	.mui-slider {
-	  		height: 200px;
-	  	}
-	  /*	#slider img{
-        height: 100px;*/
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item mui-active" href="zhuye.html">
+            <span class="mui-icon mui-icon-home"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+        <a class="mui-tab-item" href="shangjiatype.html">
+            <span class="mui-icon mui-icon-contact"></span>
+            <span class="mui-tab-label">商家</span>
+        </a>
+        <a class="mui-tab-item"href="user.html">
+            <span class="mui-icon mui-icon-contact"></span>
+            <span class="mui-tab-label">我的中心</span>
+        </a>
+
+    </nav>
+
+</div>
+
+
+
+
+
+<script src="js/mui.min.js"></script>
+<script src="js/app.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    mui.init();
+    //获得slider插件对象
+    var gallery = mui('.mui-slider');
+    gallery.slider({
+        interval:1000//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+    mui('body').on('tap','a',function(){document.location.href=this.href;});
+</script>
+
+
+<style type="text/css">
+    .mui-input-row {
+        height: 39px;
     }
-	  </style>  
-	    
-	 <script>
+    .mui-search {
+        height: 39px;
 
-		 $(document).ready(function () {
+    }
+    .mui-slider {
+        height: 200px;
+    }
+    /*	#slider img{
+      height: 100px;*/
+    }
+</style>
 
+<script>
+    $(document).ready(function () {
+        $('#search').keyup(function (e) {//捕获文档对象的按键弹起事件
+            if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
+                location.href = "shangpinlist.html?sea="+$('#search')
+                mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
+                }); //此处编写用户敲回车后的代码
+            }
+        });
 
-
-			 $(document).keyup(function (e) {//捕获文档对象的按键弹起事件
-				 if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
-
-					 location.href = "shangpinlist.html?sea="+$('#search')
-					 mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
-					 }); //此处编写用户敲回车后的代码
-				 }
-			 });
-
-
-
-
-		 });
-
-
-
-
-
+    });
+</script>
 
 
-	 </script>
 
-	    
 
-	    
-	    
-	    
-	    
-	    
-	    
+
+
+
+
+
 </body>
 </html>
+>>>>>>> ac6d6610b0e10b9701ce6e7061cbc074a9369516

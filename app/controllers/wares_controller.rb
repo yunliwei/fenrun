@@ -79,13 +79,14 @@ end
   def update
     @ware = Ware.find(params[:id])
     @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+
     id=params[:classifi]
     arr = Array.new(id.split(','))
 
     #debugger
     cccc=Classification.find(arr)
     @ware.classifications.replace(cccc)
-    #redirect_to wares_url
+
     #
      # respond_to do |format|
      #   if @ware.update(ware_params)

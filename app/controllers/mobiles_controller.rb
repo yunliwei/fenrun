@@ -63,7 +63,31 @@ end
     @search = Ware.where(:ware=>ss)
    #debugger
    render json:(@search)
-   
+ end
+
+
+  def warelist
+    @ware = Ware.all
+    render json:(@ware)
+
+      # a=Classification.where(:classname=>"服饰")
+      # @ware = Classification.find(a.first.id)
+      # @lc=@ware.wares
+  end
+
+
+    def selecttype
+    dd=params[:type].to_s
+    # if (dd=="lady")
+      a=Classification.where(:classname=>"女装")
+    #   if (a != nil)
+        @ware = Classification.find(a.first.id)
+        @lc=@ware.wares
+    # debugger
+        render json:(@lc)
+      # else
+
+      end
 
 
 
