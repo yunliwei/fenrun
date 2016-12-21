@@ -15,10 +15,27 @@ class BusinesController < ApplicationController
 
   def edit
     @class=Classification.all
+    @busine= Busine.find(params[:id])
+    @cla=@busines.classifications
+    @claid=''
+    @cla.each do |i|
+      @claid=@claid+i.id.to_s+','
+    end
+    @claid= @claid[0..@claid.length-2]
+    params[:claid]=@claid
+    #debugger
+
+    params[:name]=@busine.name
+    params[:salessum]=@busine.salessum
+    params[:phonenumber]=@busine.phonenumber
+    params[:businelicense]=@busine.businelicense
+    params[:businelogo]=@busine.businelogo
+    params[:jianjie]=@busine.jianjie
+
   end
 
   def create
-    @busines = Busine.new(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo])
+    @busines = Busine.new(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo],jianjie:params[:jianjie])
     id=params[:busines]
     arr = Array.new(id.split(','))
     #debugger
@@ -37,15 +54,14 @@ class BusinesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @busines.update(business_params)
-        format.html { redirect_to busines_path, notice: 'Test was successfully updated.' }
-        format.json { render :index, status: :ok, location: @busines }
-      else
-        format.html { render :edit }
-        format.json { render json: @busines.errors, status: :unprocessable_entity }
-      end
-    end
+    @busines = Busine.find(params[:id])
+    @busines .update(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo],jianjie:params[:jianjie])
+    id=params[:busines]
+    arr = Array.new(id.split(','))
+
+    #debugger
+    cccc=Classification.find(arr)
+    @busines.classifications.replace(cccc)
   end
 
   def destroy
@@ -62,6 +78,6 @@ class BusinesController < ApplicationController
   end
 # Never trust parameters from the scary internet, only allow the white list through.
   def business_params
-    params.require(:busine).permit(:name, :salessum, :phonenumber, :businelicense ,:businelogo)
+    params.require(:busine).permit(:name, :salessum, :phonenumber, :businelicense ,:businelogo,:jianjie)
   end
 end

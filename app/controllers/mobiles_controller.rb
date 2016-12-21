@@ -60,7 +60,7 @@ end
     #debugger
 
   #  @search = Ware.where(:ware =>["ware LIKE 'ss"] )
-    @search = Ware.where(:ware=>ss)
+    @search = Ware.where(:ware=>'22')
    #debugger
    render json:(@search)
  end
@@ -77,16 +77,16 @@ end
 
 
     def selecttype
-    dd=params[:type].to_s
+    # dd=params[:type].to_s
     # if (dd=="lady")
-      a=Classification.where(:classname=>"女装")
-    #   if (a != nil)
+      a=Classification.where(:classname=>"衣服")
+       if (a != nil)
         @ware = Classification.find(a.first.id)
         @lc=@ware.wares
     # debugger
         render json:(@lc)
       # else
-
+end
       end
 
 

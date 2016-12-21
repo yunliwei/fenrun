@@ -1,3 +1,4 @@
+
 <%= render 'layerbegin' %>
 <div class="col-lg-12">
   <div class="ibox float-e-margins">
@@ -14,6 +15,7 @@
           <th class="text-center">联系电话</th>
           <th class="text-center">工商执照</th>
           <th class="text-center">商家logo</th>
+          <th class="text-center">简介</th>
           <th class="text-center">操作</th>
         </tr>
         </thead>
@@ -26,21 +28,22 @@
               <td ><%= business.phonenumber %></td>
               <td style="max-width :300px;overflow:hidden"><%= image_tag business.businelicense.url  ,height:100%></td>
               <td style="max-width :300px;overflow:hidden"><%= image_tag business.businelogo.url, height:100 %></td>
+              <td ><%= business.jianjie %></td>
               <td>
                 <%= link_to '编辑', edit_busine_path(business),class:'fa fa-edit' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <%= link_to '删除', business,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </td>
-                        </tr>
-                    <% end %>
-                    </tbody>
-                    </table>
-                    <%= link_to "新增", new_busine_path, class: "btn btn-w-m btn-success mylink pull-right" %>
-                        <br>
-                        <br>
-                        </div>
-                        </div>
-                        </div>
-                        <%= link_to '返回', busines_path %>
-                        <%= render 'layerend' %>
+                <%= link_to '删除', business,class:'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= link_to "新增", new_busine_path, class: "btn btn-w-m btn-success mylink pull-right" %>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+<%= link_to '返回', busines_path %>
+<%= render 'layerend' %>
 
 

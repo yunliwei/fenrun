@@ -311,17 +311,39 @@
         height: 200px;
     }
     /*	#slider img{
-      height: 100px;*/
-    }
+      height: 100px;
+    }*/
 </style>
 
 <script>
     $(document).ready(function () {
+        mui.init({
+                gestureConfig:{
+                    tap: true, //默认为true
+                    doubletap: true, //默认为false
+                    longtap: true, //默认为false
+                    swipe: true, //默认为true
+                    drag: true, //默认为true
+                    hold:false,//默认为false，不监听
+                    release:false//默认为false，不监听
+                }
+            });
+
         $('#search').keyup(function (e) {//捕获文档对象的按键弹起事件
             if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
-                location.href = "shangpinlist.html?sea="+$('#search')
-                mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
-                }); //此处编写用户敲回车后的代码
+            //    location.href = "shangpinlist.html?sea="+$('#search').val()
+//                mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
+//                }); //此处编写用户敲回车后的代码
+
+                mui.openWindow({//目标页面
+                    url: 'shangpinlist.html',
+                    id: 'shangpinlist.html',
+                    extras:{
+                        sea:$('#search').val()
+                    }
+                });
+
+
             }
         });
 
@@ -338,4 +360,4 @@
 
 </body>
 </html>
->>>>>>> ac6d6610b0e10b9701ce6e7061cbc074a9369516
+

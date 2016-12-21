@@ -5,7 +5,7 @@ class CreateBusines < ActiveRecord::Migration[5.0]
       t.float :salessum
       t.string :phonenumber
       t.datetime :registertime
-
+      t.string :jianjie
       t.timestamps
     end
   end
