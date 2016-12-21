@@ -5,7 +5,60 @@
     <title>商家分类</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/mui.css"/>
-    <link rel="stylesheet" href="css/iconfont.css"> 
+    <link rel="stylesheet" href="css/iconfont.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#searchshangjia').keyup(function (e) {//捕获文档对象的按键弹起事件
+				if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
+					location.href = "shangjialist.html?sea=" + $('#searchshangjia').val()
+//                mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
+//                }); //此处编写用户敲回车后的代码
+				}
+			});
+
+//			var getQueryString = function(key) {
+//				var search = decodeURIComponent(location.search);
+//				var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
+//				return search.replace(reg, "$1");
+//			}
+//			var ss=getQueryString("sea");
+
+
+
+			var btn = document.getElementById("station");
+			btn.addEventListener("tap",function () {
+alert("122112")
+				mui.getJSON('http://localhost:3000/mobiles/selecttype', {type: $('#station').text()}, function (data) {
+					$.each(data, function (i, item) {
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
+								'<a href="javascript">';
+						if (item.businelogo_content_type != null) {
+
+							itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/2.jpg" >';
+						}
+
+
+						itemHTML +=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.name  +'销量：'+ item.salessum +
+								'</div>' +
+								'</a>' +
+								'</li>';
+						$("#businelist").append(itemHTML)
+					});
+				});
+			});
+
+		});
+	</script>
 </head>
 <body>
 
@@ -35,7 +88,7 @@
 	
     <div class="mui-content">
         <div class="mui-input-row mui-search">
-	    <input type="search" class="mui-input-clear" placeholder="">
+	    <input type="search" class="mui-input-clear" placeholder="" id="searchshangjia">
 	</div>
 
 
@@ -51,9 +104,12 @@
    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
        <a href="#">
            <span class="mui-icon iconfont icon-iconfonticon"></span>
-           <div class="mui-media-body">文具</div>
+           <div class="mui-media-body" id="station">文具</div>
        </a>
    </li>
+
+
+
        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
            <a href="#">
                <span class="mui-icon iconfont icon-iconfonticon"></span>
@@ -80,44 +136,10 @@
 
 
 
-	<ul class="mui-table-view mui-grid-view">
-	        	    <li class="mui-table-view-cell mui-media mui-col-xs-6">
-	        	        <a href="#">
-	        	            <img class="mui-media-object" src="images/4.jpg">
-	        	            <div class="mui-media-body">商家</div>
-	        	        </a>
-	        	    </li>
-	        	    <li class="mui-table-view-cell mui-media mui-col-xs-6">
-	        	        <a href="#">
-	        	            <img class="mui-media-object" src="images/1.jpg">
-	        	            <div class="mui-media-body">商品</div>
-	        	        </a>
-	        	    </li>
-	        	    <li class="mui-table-view-cell mui-media mui-col-xs-6">
-	        	        <a href="#">
-	        	            <img class="mui-media-object" src="images/3.jpg">
-	        	            <div class="mui-media-body">商家</div>
-	        	        </a>
-	        	    </li>
-	        	    <li class="mui-table-view-cell mui-media mui-col-xs-6">
-	        	        <a href="#">
-	        	            <img class="mui-media-object" src="images/6.jpg">
-	        	            <div class="mui-media-body">商品</div>
-	        	        </a>
-	        	    </li>
-	        	    <li class="mui-table-view-cell mui-media mui-col-xs-6">
-	        	        <a href="#">
-	        	            <img class="mui-media-object" src="images/3.jpg">
-	        	            <div class="mui-media-body">商家</div>
-	        	        </a>
-	        	    </li>
-	        	    <li class="mui-table-view-cell mui-media mui-col-xs-6">
-	        	        <a href="#">
-	        	            <img class="mui-media-object" src="images/6.jpg">
-	        	            <div class="mui-media-body">商品</div>
-	        	        </a>
-	        	    </li>
-	        	</ul>
+	<ul class="mui-table-view mui-grid-view" id="businelist">
+
+
+	</ul>
 	
     </div>
     
