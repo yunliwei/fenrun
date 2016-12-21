@@ -56,38 +56,61 @@ end
 
 
   def search
-    ss = params[:sea].to_s
-    #debugger
+    searchware = params[:sea].to_s
+    waretype = params[:type].to_s
 
+     # debugger
+    # ss=nil
+    # dd="女装"
   #  @search = Ware.where(:ware =>["ware LIKE 'ss"] )
-    @search = Ware.where(:ware=>'22')
-   #debugger
-   render json:(@search)
- end
+
+    if(ss !="")
+    @search = Ware.where(:ware=>searchware)
+    render json:(@search)
+
+    else if(dd!="")
+      a=Classification.where(:classname=>waretype)
+      @ware = Classification.find(a.first.id)
+      @search=@ware.wares
+    #  debugger
+      render json:(@search)
+         end
+    end
+
+
+  end
+
+
 
 
   def warelist
     @ware = Ware.all
     render json:(@ware)
-
-      # a=Classification.where(:classname=>"服饰")
-      # @ware = Classification.find(a.first.id)
-      # @lc=@ware.wares
   end
 
 
     def selecttype
-    # dd=params[:type].to_s
-    # if (dd=="lady")
-      a=Classification.where(:classname=>"衣服")
-       if (a != nil)
-        @ware = Classification.find(a.first.id)
-        @lc=@ware.wares
-    # debugger
-        render json:(@lc)
-      # else
-end
+
+      searchname = params[:sea].to_s
+      searchtype= params[:type].to_s
+      debugger
+      if ( searchname !="")
+        @busines = Busine.where(:name=>searchname)
+        render json:(@busines)
+        debugger
+        else if(searchtype !="")
+        a=Classification.where(:classname=>searchtype)
+
+        @busines = Classification.find(a.first.id)
+        @bus=@busines.names
+        render json:(@bus)
+
+
+             end
+
       end
+
+    end
 
 
 

@@ -7,79 +7,93 @@
     <link rel="stylesheet" type="text/css" href="css/mui.css"/>
     <link rel="stylesheet" href="css/iconfont.css">
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/app.js"></script>
 		<script type="text/javascript">
 
-//mui.init();
-//mui.plusReady(function(){
-//	// 在这里调用plus api
-//	var ss=plus.webview.currentWebview();
-//	var sea=ss.sea;
-//	mui.alert("sea");
-//});
 
-//		$(document).ready(function() {
-//
-//
-//			mui.getJSON('http://localhost:3000/mobiles/search',{}, function (data) {
-//
-//							 $.each(data, function (i, item) {
-//
-//
-//								 var itemHTML =
-//								'<li class="mui-table-view-cell mui-media">' +
-//								'<a href="javascript">' ;
-//								 if(item.warepicture_content_type !=null ) {
-//
-//										 itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
-//
-//									 }
-//								 else {
-//										 itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
-//									 }
-//
-//
-//								 itemHTML+=
-////										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
-//								'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
-//								'</div>' +
-//								'</a>' +
-//								'</li>' ;
-//								$("#list").append(itemHTML)
-//							});
-//				});
-//
-//
-//				mui.getJSON('http://localhost:3000/mobiles/selecttype',{}, function (data) {
-//
-//					$.each(data, function (i, item) {
-//
-//
-//						var itemHTML =
-//								'<li class="mui-table-view-cell mui-media">' +
-//								'<a href="javascript">' ;
-//						if(item.warepicture_content_type !=null ) {
-//
-//							itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
-//
-//						}
-//						else {
-//							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
-//						}
-//
-//
-//						itemHTML+=
-////										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
-//								'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
-//								'</div>' +
-//								'</a>' +
-//								'</li>' ;
-//						$("#list").append(itemHTML)
-//					});
-//				});
-//
-//			});
+		<script >
+			$(document).ready(function() {
+//				var ss = $.getUrlParam('sea')
+				var getQueryString = function(key) {
+					var search = decodeURIComponent(location.search);
+					var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
+					return search.replace(reg, "$1");
+				}
+				var ss=getQueryString("sea");
+				var dd=getQueryString("type")
+				//alert(ss)
+				if(ss !=null)
+ {
+					mui.getJSON('http://localhost:3000/mobiles/search', {sea: (ss)}, function (data) {
+
+						$.each(data, function (i, item) {
+
+
+							var itemHTML =
+									'<li class="mui-table-view-cell mui-media">' +
+									'<a href="javascript">';
+							if (item.warepicture_content_type != null) {
+
+								itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+							}
+							else {
+								itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
+							}
+
+
+							itemHTML +=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+									'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
+									'</div>' +
+									'</a>' +
+									'</li>';
+							$("#list").append(itemHTML)
+						});
+					})
+				}
+				if(dd!=null)
+				{
+
+					mui.getJSON('http://localhost:3000/mobiles/search',{type:(dd)}, function (data) {
+
+						$.each(data, function (i, item) {
+
+
+							var itemHTML =
+									'<li class="mui-table-view-cell mui-media">' +
+									'<a href="javascript">' ;
+							if(item.warepicture_content_type !=null ) {
+
+								itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+							}
+							else {
+								itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
+							}
+
+
+							itemHTML+=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+									'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
+									'</div>' +
+									'</a>' +
+									'</li>' ;
+							$("#list").append(itemHTML)
+						});
+					});
+
+				}
+
+//				else
+//				{
+//					mui.alert('没有该商品存在!!');
+//				}
+
+			});
+
 		</script>
 </head>
 	<body>
