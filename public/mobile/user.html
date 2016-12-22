@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="css/mui.css"/>
      <link rel="stylesheet" href="css/iconfont.css"> 
      <link href="css/iconfont.css" rel="stylesheet" > 
-      <script src="js/iconfont.js"></script> 
+      <script src="js/iconfont.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/juqerysession.js"></script>
 </head>
 <body>
 	<!-- 主界面不动、菜单移动 -->
@@ -50,7 +52,7 @@
 	      <div class="mui-scroll">
 	        <!-- 主界面具体展示内容 -->
 	        <div class="user-top">
-        	<div class="user-image"><a href="#offCanvasSide"><img src="images/u=21385237,1665284751&fm=21&gp=0.jpg" height="50px" width="50px"/></a> </div>
+        	<div class="user-image"><a href="#offCanvasSide"><img src="images/u=21385237,1665284751&fm=21&gp=0.jpg" height="50px" width="50px"/> <p id="name"></p></a> </div>
         </div>
         
         <div class="user-tool">
@@ -97,6 +99,14 @@
     <script type="text/javascript">
     mui.init();
     mui('body').on('tap','a',function(){document.location.href=this.href;});
+
+		$(document).ready(function(){
+
+			//alert($.session.get('UserName'))
+		 $('#name').text(   $.session.get('UserName'))
+
+		})
+
     </script>
 </body>
 <style>

@@ -62,18 +62,18 @@ def create
   #debugger
   cccc=Classification.find(arr)
   @ware.classifications.push(cccc)
-  #redirect_to wares_path
+  redirect_to(:action => "index" )
   #@ware = Ware.new(ware_params)
-  respond_to do |format|
-    if @ware.save
-
-     format.html { redirect_to @ware, notice: 'Test was successfully created.' }
-      format.json { render :index, status: :created, location: @ware }
-    else
-      format.html { render :new }
-      format.json { render json: @ware.errors, status: :unprocessable_entity }
-    end
-  end
+  # respond_to do |format|
+  #   if @ware.save
+  #
+  #    format.html { redirect_to @ware, notice: 'Test was successfully created.' }
+  #     format.json { render :index, status: :created, location: @ware }
+  #   else
+  #     format.html { render :new }
+  #     format.json { render json: @ware.errors, status: :unprocessable_entity }
+  #   end
+  # end
 end
 
   def update
@@ -86,7 +86,7 @@ end
     #debugger
     cccc=Classification.find(arr)
     @ware.classifications.replace(cccc)
-
+    redirect_to(:action => "index" )
     #
      # respond_to do |format|
      #   if @ware.update(ware_params)

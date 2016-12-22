@@ -129,7 +129,7 @@
 
             $('#reg').click(function(){
 
-                mui.getJSON('http://localhost:3000/mobiles/reg',{acount:$('#account').val(),password:$('#password').val()},function(data){
+                mui.getJSON('http://localhost:3000/mobiles/reg',{acount:$('#account').val(),password:$('#password').val(),email:$('#email').val()},function(data){
 
 
                             $.each(data, function(i, item) {
@@ -151,6 +151,17 @@
 
 
             });
+			//mui.alert("name")
+			mui.ready(function(){
+				mui.plusReady(function() {
+					var self = plus.webview.currentWebview();
+					var name = self.account;
+					mui.alert("name")
+					//var version = self.version;
+				})
+
+			})
+
 
 
         });

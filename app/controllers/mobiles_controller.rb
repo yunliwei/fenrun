@@ -4,7 +4,7 @@ def reg
 
   user=User.find_by(name:params[:acount])
   if(user==nil)
-    user = User.create(name:params[:acount],password_digest:params[:password])
+    user = User.create(name:params[:acount],password_digest:params[:password],email:params[:email])
     render json:('[{"status":"1"}]')
   else
     render json:('[{"status":"0"}]')
@@ -14,9 +14,19 @@ end
 
   def login
     user=User.find_by(name:params[:acount],password_digest:params[:password])
-    orders=User.find_by(name:'22').orders
+    # debugger
+    if(user!=nil)
+      # session[:name]="123"
+      #       session[:password]="321"
+     # debugger
+      render json:('[{"status":"1"}]')
+    else
+      render json:('[{"status":"0"}]')
 
-    qu=role.find_by(user_id:'1').powers
+    end
+    # orders=User.find_by(name:'22').orders
+
+    # qu=role.find_by(user_id:'1').powers
 
 
   end
