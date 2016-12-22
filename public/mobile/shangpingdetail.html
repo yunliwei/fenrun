@@ -25,9 +25,14 @@
                     var name = item.ware;
                     var price = item.price;
                     var discountprice = item.discountprice;
+                    var freight = item.freight;
+                    var sale = item.salevolume;
+                    
                     $("#namex").text(name);
-                    $("#price").text(price)
+                    $("#price").text('￥'+price)
                     $("#discount").text('原价'+'：'+discountprice);
+                    $("#freight").text('运费'+':'+freight);
+                    $("#sale").text('销量'+':'+sale);
 //                    var itemHTML =
 //                            '<div class="mui-slider-group mui-slider-loop">' +
 //                            '<a href="#">';
@@ -128,8 +133,8 @@
             </div>
             <!--页脚，放置补充信息或支持的操作-->
             <div class="mui-card-footer">
-                <div style="float: left;" class="mui-left">快递：0.00</div>
-                <div>月销量：1007件</div>
+                <div style="float: left;" class="mui-left"id="freight" ></div>
+                <div id="sale"></div>
                 <div>山东烟台</div>
             </div>
 
