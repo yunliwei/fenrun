@@ -94,7 +94,6 @@ end
       if ( searchname !="")
         @busines = Busine.where(:name=>searchname)
         render json:(@busines)
-        debugger
         else if(searchtype !="")
         a=Classification.where(:classname=>searchtype)
 
