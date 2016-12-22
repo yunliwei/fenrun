@@ -30,18 +30,12 @@ ActiveRecord::Schema.define(version: 20161218025155) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "busine_classifications", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "busines_id"
-    t.integer  "classifications_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
   create_table "busines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.float    "salessum",                   limit: 24
     t.string   "phonenumber"
     t.datetime "registertime"
+    t.string   "jianjie"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "businelicense_file_name"
@@ -178,16 +172,8 @@ ActiveRecord::Schema.define(version: 20161218025155) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "role_powers", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "role_id"
-    t.integer  "power_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "admin_id"
-    t.integer  "power_id"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -251,13 +237,6 @@ ActiveRecord::Schema.define(version: 20161218025155) do
     t.string   "headpicture_content_type"
     t.integer  "headpicture_file_size"
     t.datetime "headpicture_updated_at"
-  end
-
-  create_table "ware_classifications", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "wares_id"
-    t.integer  "classifications_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
   end
 
   create_table "warelabels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

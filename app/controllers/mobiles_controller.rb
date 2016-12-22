@@ -63,6 +63,7 @@ end
     # ss=nil
     # dd="女装"
   #  @search = Ware.where(:ware =>["ware LIKE 'ss"] )
+
     if(ss !="")
     @search = Ware.where(:ware=>searchware)
     render json:(@search)
@@ -81,6 +82,7 @@ end
 
 
 
+
   def warelist
     @ware = Ware.all
     render json:(@ware)
@@ -88,6 +90,7 @@ end
 
 
     def selecttype
+
       searchname = params[:sea].to_s
       searchtype= params[:type].to_s
       debugger
@@ -103,6 +106,7 @@ end
 
 
              end
+
       end
 
     end

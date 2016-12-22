@@ -1,98 +1,110 @@
 <%= render 'layerbegin' %>
 <div class="ibox-content form-horizontal m-t">
-  <h3>编辑</h3>
-  <%= form_for(@busines,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+  <h3>新增类型</h3>
+  <%= form_tag({controller:'busines', action:'update'}, {:method => "put",:multipart => true}) do  %>
       <br>
       <br>
       <div class="form-group">
         <label class="col-sm-5 control-label">名称：</label>
         <div class="col-sm-3">
-          <%= f.text_field :name %>
+          <%= text_field_tag :name, params[:name] %>
         </div>
       </div>
+
+      <%= hidden_field_tag :busines,params[:busines], id:'cla'  %>
+      <%= text_field_tag :claid,params[:claid], id:'claid'  %>
       <div class="form-group">
-        <label class="col-sm-5 control-label">分类： </label>
+        <label class="col-sm-5 control-label">分类：</label>
         <div class="input-group">
           <div class="col-sm-3">
-          <select id="select" data-placeholder="选择类型" class="chosen-select" multiple style="width:300px;" tabindex="4">
-            <option value="">请选择类型</option>
-            <% @class.each do |cla| %>
-                <option value=<%=cla.id %> hassubinfo="true"><%= cla.classname %></option>
-            <% end %>
-
-
-
-          </select>
+            <select id="dl_chose2" data-placeholder="选择类型" class="chosen-select" multiple style="width:300px;" tabindex="4">
+              <option value="">请选择类型</option>
+              <% @class.each do |cla| %>
+                  <option value=<%=cla.id %> hassubinfo="true"><%= cla.classname %></option>
+              <% end %>
+            </select>
           </div>
         </div>
       </div>
+
+
       <div class="form-group">
         <label class="col-sm-5 control-label">销量：</label>
         <div class="col-sm-3">
-          <%= f.text_field :salessum,class:"form-control" %>
-              </div>
-              </div>
+          <%= text_field_tag :salessum ,params[:salessum] %>
+        </div>
+      </div>
 
-              <div class="form-group">
-                <label class="col-sm-5 control-label">联系电话：</label>
-                <div class="col-sm-3">
-                  <%= f.text_field :phonenumber,class:"form-control" %>
-                      </div>
-                      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">联系电话：</label>
+        <div class="col-sm-3">
+          <%= text_field_tag :phonenumber ,params[:phonenumber] %>
+        </div>
+      </div>
 
-                      <div class="form-group">
-                        <label class="col-sm-5 control-label">工商执照：</label>
-                        <div class="col-sm-3">
-                          <%= f.file_field  :businelicense,class:"form-control" %>
-                              </div>
-                              </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">工商执照：</label>
+        <div class="col-sm-3">
+          <%=  file_field_tag "businelicense" %>
+        </div>
+      </div>
 
-                              <div class="form-group">
-                                <label class="col-sm-5 control-label">商家logo：</label>
-                                <div class="col-sm-3">
-                                  <%= f.file_field  :businelogo,class:"form-control" %>
-                                      </div>
-                                      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">商家logo：</label>
+        <div class="col-sm-3">
+          <%=  file_field_tag  "businelogo"  %>
+        </div>
+      </div>
 
-                                      <%= f.submit '确定',class: "btn btn-w-m btn-success mylink pull-right",id:'smt' %>
-                                      <% end %>
-                                      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">简介：</label>
+        <div class="col-sm-3">
+          <%=  text_field_tag  :jianjie,params[:jianjie]  %>
+        </div>
+      </div>
 
-                                      <%= link_to '返回', busines_path %>
-                                      <%= render 'layerend' %>
-
-
-                                      <script>
-
-
-                                          var config = {
-                                              '.chosen-select': {},
-                                              '.chosen-select-deselect': {
-                                                  allow_single_deselect: true
-                                              },
-                                              '.chosen-select-no-single': {
-                                                  disable_search_threshold: 10
-                                              },
-                                              '.chosen-select-no-results': {
-                                                  no_results_text: 'Oops, nothing found!'
-                                              },
-                                              '.chosen-select-width': {
-                                                  width: "95%"
-                                              }
-                                          }
-                                          for (var selector in config) {
-                                              $(selector).chosen(config[selector]);
-                                          }
-                                          $(document).ready(function () {
-                                              $('#smt').click(function(){
+      <%=submit_tag '确定',class: "btn btn-w-m btn-success mylink pull-right",id:'smt' %>
+  <% end %>
+</div>
+<%= link_to '返回', busines_path %>
+<%= render 'layerend' %>
 
 
 
 
-                                              });
 
-                                          });
-                                      </script>
+
+
+
+<script>
+
+
+
+  $(document).ready(function () {
+    var a=$("#claid").val().split(',');
+//alert($("#claid").val())
+
+    $.each(a,function( i ,item){
+
+      $("#dl_chose2 ").get(0).options[item].selected = true;
+      $('#cla').val($('#dl_chose2').val());
+    })
+
+//      }
+
+    $(".chosen-select").chosen();
+
+    //change 事件
+    $('#dl_chose2').change(function () {
+      $('#cla').val($('#dl_chose2').val());
+      //alert( $('#dl_chose2').val());
+    });
+
+
+
+
+  });
+</script>
 
 
 
