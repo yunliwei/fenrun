@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       get 'shangjiaruzhu'
       get 'warelist'
       get 'selecttype'
+      get 'businelist'
+      get 'detail'
     end
   end
 
