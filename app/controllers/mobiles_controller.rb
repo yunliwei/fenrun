@@ -18,8 +18,10 @@ end
     if(user!=nil)
       # session[:name]="123"
       #       session[:password]="321"
-     # debugger
-      render json:('[{"status":"1"}]')
+      id=user.id.to_s
+     #debugger
+      render json:('[{"status":"1","id":"'+id+'"}]')
+      #debugger
     else
       render json:('[{"status":"0"}]')
 
