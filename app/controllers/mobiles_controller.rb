@@ -16,19 +16,12 @@ end
     user=User.find_by(name:params[:acount],password_digest:params[:password])
     # debugger
     if(user!=nil)
-      # session[:name]="123"
-      #       session[:password]="321"
      # debugger
       render json:('[{"status":"1"}]')
     else
       render json:('[{"status":"0"}]')
 
     end
-    # orders=User.find_by(name:'22').orders
-
-    # qu=role.find_by(user_id:'1').powers
-
-
   end
 
 
@@ -44,11 +37,6 @@ def shangjiaruzhu
 
 end
 
-
-
-
-
-
 def shangjiatype
 
   busines = Busine.find_by(name:params[:shangjianame])
@@ -60,10 +48,6 @@ def shangjiatype
   end
 
 end
-
-
-
-
 
   def search
     searchware = params[:sea].to_s
@@ -97,9 +81,6 @@ end
     render json:(@busines)
   end
 
-
-
-
    def selecttype
 
       searchname = params[:sea].to_s
@@ -126,6 +107,20 @@ end
     @goods = Ware.where(:id =>goods)
     # debugger
     render json:(@goods)
+  end
+
+  def collect
+    collect = params[:code]
+# debugger
+
+
+    @collect = Favorite.create(ware_id:params[:code],user_id:params[:user_id],link:params[:link])
+    # ss = Favorite.find(ware_i)
+    # @collect.save
+    render json:(@collect)
+    # cccc=Favorite.find(collect)
+    # @ware.favorite.push(cccc)
+    # debugger
   end
 
 

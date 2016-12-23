@@ -5,6 +5,62 @@
     <title>Document</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var getQueryString = function (key) {
+				var search = decodeURIComponent(location.search);
+				var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
+				return search.replace(reg, "$1");
+			}
+			var code = getQueryString("collect");
+
+			mui.getJSON('http://localhost:3000/mobiles/collect', {collect: (collect)}, function (data) {
+
+				$.each(data, function (i, item) {
+
+					var name = item.ware;
+					var price = item.price;
+					var discountprice = item.discountprice;
+					var freight = item.freight;
+					var sale = item.salevolume;
+					var id = item.id;
+					var picture = '/warepicture/' + item.id + '/' + item.warepicture_file_name;
+
+
+					var itemHTML =
+							'<ul class="mui-table-view" style="height: auto">' +
+							'<li class="mui-table-view-cell" >' +
+							'<a href="#">';
+					if (item.warepicture_content_type != null) {
+
+						itemHTML += '<img  class="mui-media-item mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+					}
+					else {
+						itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" >';
+					}
+
+
+					itemHTML +=
+							'<img class="mui-media-item mui-pull-left" src="images/xiangji.jpg">' +
+							'</a>' +
+							'</li>' +
+							'</ul>';
+					$("#item2mobile").append(itemHTML)
+
+					$("#namex").text(name);
+					$("#price").text('￥' + price)
+					$("#discount").text('原价' + '：' + discountprice);
+					$("#freight").text('运费' + ':' + freight);
+					$("#sale").text('销量' + ':' + sale);
+					$("#first").src('"' + picture + '"');
+
+
+				});
+			});
+		});
+	</script>
 </head>
 <body>
     <header class="mui-bar mui-bar-nav">

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'selecttype'
       get 'businelist'
       get 'detail'
+      get 'collect'
     end
   end
 
