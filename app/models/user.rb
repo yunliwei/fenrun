@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  has_attached_file :headpicture, :url => "/:attachment/:id/:basename.:extension",  :path => ":rails_root/public/:attachment/:id/:basename.:extension"
+  do_not_validate_attachment_file_type :headpicture
+
 
   has_many :examines
   has_many :favorites
