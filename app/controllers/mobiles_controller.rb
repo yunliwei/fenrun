@@ -2,9 +2,9 @@ class MobilesController < ApplicationController
 
 def reg
 
-  user=User.find_by(name:params[:acount])
+  user=User.find_by(username:params[:acount])
   if(user==nil)
-    user = User.create(name:params[:acount],password_digest:params[:password],email:params[:email])
+    user = User.create(username:params[:acount],password_digest:params[:password],email:params[:email])
     render json:('[{"status":"1"}]')
   else
     render json:('[{"status":"0"}]')

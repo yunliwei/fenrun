@@ -1,3 +1,88 @@
-<% @users.each do|user|%>
-<%= user.name%><br>
-<% end %>
+<%= render 'layerbegin' %>
+
+
+<div class="col-lg-12">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+      <h2 class="text-center">用户信息</h2>
+
+    </div>
+    <div class="ibox-content">
+      <table class="table table-hover table-bordered text-center">
+        <thead>
+        <tr>
+          <th class="text-center">姓名</th>
+          <th class="text-center">用户名</th>
+          <th class="text-center">手机号</th>
+          <th class="text-center">推荐人ID</th>
+          <th class="text-center">推荐人手机号</th>
+          <th class="text-center">性别</th>
+          <th class="text-center">生日</th>
+          <th class="text-center">年龄</th>
+          <th class="text-center">邮箱</th>
+          <th class="text-center">微信号</th>
+          <th class="text-center">会员号</th>
+          <th class="text-center">注册时间</th>
+          <th class="text-center">所在地区</th>
+          <th class="text-center">账号状态</th>
+          <th class="text-center">可用积分</th>
+          <th class="text-center">验证码时间</th>
+          <th class="text-center">验证码</th>
+          <th class="text-center">头像</th>
+          <th class="text-center">须返积分</th>
+          <th class="text-center">累计消费金额</th>
+          <th class="text-center">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.username %></td>
+              <td><%= user.phonenumber %></td>
+              <td><%= user.referee_id %></td>
+              <td><%= user.phonenumber %></td>
+              <td><%= user.sex %></td>
+              <td><%= user.birthday %></td>
+              <td><%= user.age %></td>
+              <td><%= user.email %></td>
+              <td><%= user.wecharnumber %></td>
+              <td><%= user.menber %></td>
+              <td>
+                <%= user.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+              </td>
+              <td><%= user.localarea %></td>
+              <td><%= user.state %></td>
+              <td><%= user.canuserebate %></td>
+              <td><%= user.codetime %></td>
+              <td><%= user.code %></td>
+              <td><%= image_tag user.headpicture.url,Height:100%></td>
+              <td><%= user.rebate %></td>
+              <td><%= user.summationamount %></td>
+              <td>
+                <%= link_to '编辑', edit_user_path(user),class:'fa fa-edit' %>
+                <%= link_to '删除', user,class:'fa fa-trash', method: :delete, data: { confirm: '您确定要删除吗?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <div class="text-center">
+        总记录：<%= @usercount %>
+      </div>
+      <div class="text-center">
+        <%= will_paginate @user, previous_label:'上一页', next_label: '下一页' %>
+
+      </div>
+
+
+      <%= link_to "新增", new_user_path,class: "btn btn-w-m btn-success mylink pull-right" %>
+      <br>
+    </div>
+
+  </div>
+</div>
+
+
+<%= render 'layerend' %>
+
+
