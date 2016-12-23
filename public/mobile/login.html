@@ -143,6 +143,7 @@
 								$.each(data, function(i, item) {
 									if(item.status=='1') {
 										mui.alert('登录成功！');
+										$.session.set("userid",item.id)
 										$.session.set('UserName', $('#account').val())
 										location.href="zhuye.html"
 									}else
