@@ -12,6 +12,7 @@ class CreateWares < ActiveRecord::Migration[5.0]
       t.float :discount
       t.float :baseprice
 
+
       t.timestamps
     end
   end

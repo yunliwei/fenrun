@@ -14,6 +14,8 @@ end
 
 
 def new
+
+  @ware=Ware.create(ware_params)
   @ware = Ware.new
   @class=Classification.all
 end
@@ -49,7 +51,14 @@ end
 
  end
 
+  def createtype
 
+    @waretype=Waretype.new(ware_id:'1',typename:params[:typename])
+    @waretype.save
+    #debugger
+    redirect_to(:action => "new" )
+
+  end
 
 
 def create
@@ -62,6 +71,7 @@ def create
   #debugger
   cccc=Classification.find(arr)
   @ware.classifications.push(cccc)
+  @ware.save
   redirect_to(:action => "index" )
   #@ware = Ware.new(ware_params)
   # respond_to do |format|
@@ -75,6 +85,9 @@ def create
   #   end
   # end
 end
+
+
+
 
   def update
     @ware = Ware.find(params[:id])
