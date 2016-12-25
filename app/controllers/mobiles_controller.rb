@@ -118,18 +118,10 @@ end
   def collect
     collect = params[:code]
     user = params[:userid]
-# debugger
-
-
     @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
-
     #debugger
-
     # @favorites=User.find(params[:userid]).favorites
     # @favorites.create(link:params[:link])
-
-    # ss = Favorite.find(ware_i)
-    # @collect.save
     render json:(@collect)
     # cccc=Favorite.find(collect)
     # @ware.favorite.push(cccc)

@@ -31,10 +31,11 @@
 
 						$.each(data, function (i, item) {
 
+							var id = item.id.toString();
 
 							var itemHTML =
 									'<li class="mui-table-view-cell mui-media">' +
-									'<a href="javascript">';
+									'<a>';
 							if (item.warepicture_content_type != null) {
 
 								itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
@@ -52,6 +53,11 @@
 									'</a>' +
 									'</li>';
 							$("#list").append(itemHTML)
+
+							var btn = document.getElementById(id);
+							btn.addEventListener("tap",function () {
+								location.href = "shangpingdetail.html?code="+id
+							});
 						});
 					})
 				}
@@ -61,11 +67,12 @@
 					mui.getJSON('http://localhost:3000/mobiles/search',{type:(dd)}, function (data) {
 
 						$.each(data, function (i, item) {
+							var id = item.id.toString();
 
 
 							var itemHTML =
 									'<li class="mui-table-view-cell mui-media">' +
-									'<a href="javascript">' ;
+									'<a>' ;
 							if(item.warepicture_content_type !=null ) {
 
 								itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
@@ -83,6 +90,10 @@
 									'</a>' +
 									'</li>' ;
 							$("#list").append(itemHTML)
+							var btn = document.getElementById(id);
+							btn.addEventListener("tap",function () {
+								location.href = "shangpingdetail.html?code="+id
+							});
 						});
 					});
 
