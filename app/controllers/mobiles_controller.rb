@@ -131,8 +131,8 @@ end
 def buy
   wareid = params[:wareid]
   userid = params[:userid]
-  debugger
-  @address = Receiptadd.where(:user_id =>userid)
+  #debugger
+  @address = Receiptadd.where(:user_id =>2)
   @waress = Ware.where(:id =>wareid)
   render json:(@address,@waress)
 
