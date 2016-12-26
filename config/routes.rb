@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   collection do
     get 'update'
     get 'createtype'
+    get 'edit'
   end
   end
     

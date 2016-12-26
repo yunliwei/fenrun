@@ -1,23 +1,19 @@
 class WaresController < ApplicationController
-  before_action :set_ware, only: [:show, :edit,  :destroy]
+  before_action :set_ware, only: [ :edit,:update,  :destroy]
 def index
   @wares = Ware.all
-
-  #cal =Ware.create(ware:'123')
-  #Classification.create(classname:'111')
- # cccc=Classification.find(1)
- # cal.classifications.push(cccc)
-
-
 
 end
 
 
 def new
 
-  @ware=Ware.create(ware_params)
-  @ware = Ware.new
-  @class=Classification.all
+  @ware=Ware.create(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture],isnew:0)
+  #@class=Classification.all
+  redirect_to edit_ware_path(@ware)
+
+
+  #render :edit
 end
 
 
@@ -26,6 +22,7 @@ end
 
   def edit
     @class=Classification.all
+    #debugger
     @ware = Ware.find(params[:id])
     @cla=@ware.classifications
     @claid=''
@@ -52,8 +49,9 @@ end
  end
 
   def createtype
-
-    @waretype=Waretype.new(ware_id:'1',typename:params[:typename])
+#id=params[:wareid]
+#debugger
+    @waretype=Waretype.new(ware_id:params[:wareid],typename:params[:typename])
     @waretype.save
     #debugger
     redirect_to(:action => "new" )
@@ -63,7 +61,7 @@ end
 
 def create
 
-  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture],isnew:1)
 
   id=params[:classifi]
   arr = Array.new(id.split(','))
@@ -91,7 +89,7 @@ end
 
   def update
     @ware = Ware.find(params[:id])
-    @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+    @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture],isnew:1)
 
     id=params[:classifi]
     arr = Array.new(id.split(','))
