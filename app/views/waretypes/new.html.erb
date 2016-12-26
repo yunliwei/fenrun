@@ -1,0 +1,26 @@
+<%= render 'layerbegin' %>
+<div class="ibox-content form-horizontal m-t">
+  <h3>新增属性</h3>
+
+
+
+  <%= form_for(@waretype,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+      <br>
+      <br>
+
+      <div class="form-group">
+        <label class="col-sm-5 control-label">属性：</label>
+        <div class="col-sm-3">
+          <%= f.text_field :typename,class:"form-control" %>
+        </div>
+      </div>
+
+      <%= f.submit '确定',class: "btn btn-w-m btn-success mylink pull-right",id:'smt' %>
+
+
+
+
+  <% end %>
+
+</div>
+<%= render 'layerend' %>

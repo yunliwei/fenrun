@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :wares do
   collection do
     get 'update'
+    get 'createtype'
   end
   end
     
@@ -40,7 +41,7 @@ Rails.application.routes.draw do
   resources :businesssettleds
   resources :malls
   resources :busines
-
+  resources :waretypes
 
 
 end
