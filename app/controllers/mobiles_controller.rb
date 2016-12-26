@@ -13,8 +13,8 @@ def reg
 end
 
   def login
-    user=User.find_by(name:params[:acount],password_digest:params[:password])
-     debugger
+    user=User.find_by(username:params[:acount],password_digest:params[:password])
+     #debugger
     if(user!=nil)
 
       # session[:name]="123"
@@ -132,9 +132,16 @@ def buy
   wareid = params[:wareid]
   userid = params[:userid]
   #debugger
-  @address = Receiptadd.where(:user_id =>2)
+  @address = Receiptadd.where(:user_id =>userid,:isselect =>1)
+  #debugger
+  # @add = @address.where(params[:isselect]=1)
+  #debugger
   @waress = Ware.where(:id =>wareid)
-  render json:(@address,@waress)
+
+  #debugger
+  #debugger
+  render json:('"[{"'+@address.shouhuoname+@address.address+@address.phonenumber+@waress.ware+@waress.price+@ware.freight+'"}]"')
+  #render json:(@all)
 
 end
 

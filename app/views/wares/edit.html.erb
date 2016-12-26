@@ -44,7 +44,7 @@
           </select>
         </div>
         <!--<button type="button" class="btn btn-outline btn-primary">+</button>-->
-        <a data-toggle="modal" class="btn btn-primary" href="#modal-form">+</a>
+        <!--<a data-toggle="modal" class="btn btn-primary" href="#modal-form">+</a>-->
 
       </div>
 
@@ -120,32 +120,32 @@
 
 
 
-  <div id="modal-form" class="modal fade" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="row">
+  <!--<div id="modal-form" class="modal fade" aria-hidden="true">-->
+    <!--<div class="modal-dialog">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-body">-->
+          <!--<div class="row">-->
 
-            <h3 class="m-t-none m-b">属性</h3>
+            <!--<h3 class="m-t-none m-b">属性</h3>-->
 
 
-            <%= form_tag({controller:'wares', action:'createtype'},{:method=>'get', :multipart=>true}) do |f| %>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">属性：</label>
-                  <div class="col-sm-3">
-                    <%= text_field_tag :typename,params[:typename] %>
-                  </div>
-                </div>
-                <%= hidden_field_tag :wareid,params[:wareid], value:@ware.id  %>
+            <!--<%= form_tag({controller:'wares', action:'createtype'},{:method=>'get', :multipart=>true}) do |f| %>-->
+                <!--<div class="form-group">-->
+                  <!--<label class="col-sm-2 control-label">属性：</label>-->
+                  <!--<div class="col-sm-3">-->
+                    <!--<%= text_field_tag :typename,params[:typename] %>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<%= hidden_field_tag :wareid,params[:wareid], value:@ware.id  %>-->
 
-                <%= submit_tag '确定' , style:"float:right;" , id:'biaoqian'  %>
+                <!--<%= submit_tag '确定' , style:"float:right;" , id:'biaoqian'  %>-->
 
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            <!--<% end %>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
 
 
