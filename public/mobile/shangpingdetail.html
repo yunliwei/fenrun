@@ -53,6 +53,7 @@
                     $("#discount").text('原价'+'：'+discountprice);
                     $("#freight").text('运费'+':'+freight);
                     $("#sale").text('销量'+':'+sale);
+                    $("#getid").val(id);
 //                    $("#first").src('"'+picture+'"');
 //                    $(ww).data("ddd",id)
 //                    alert($(ww).data("ddd"));
@@ -64,7 +65,7 @@
 //                alert(code);
 //                location.href = "collect.html?collect="+$("#collect").text()
 //                mui.alert($.session.get('userid'))
-                mui.getJSON('/mobiles/collect', {code: (code),userid:($.session.get('userid'))}, function (data) {
+                mui.getJSON('http://localhost:3000//mobiles/collect', {code: (code),userid:($.session.get('userid'))}, function (data) {
                 })
             });
 
@@ -72,6 +73,7 @@
             var shopbtn = document.getElementById("shop");
             shopbtn.addEventListener("tap",function(){
 
+                location.href = "order.html?wareid="+$("#getid").val()
             });
         });
     </script>
@@ -144,7 +146,7 @@
                 </div>
             </ul>
         </div>
-
+<input type="hidden" id="getid">
         <div class="mui-card" style="width: 100%; float: left; margin-left: 0px">
             <!--页眉，放置标题-->
             <div class="mui-card-header"style="height: 20px;" id="namex"></div>

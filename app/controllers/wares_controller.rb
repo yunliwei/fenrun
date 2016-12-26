@@ -65,7 +65,7 @@ def create
   redirect_to(:action => "index" )
   #@ware = Ware.new(ware_params)
   # respond_to do |format|
-  #   if @ware.save
+  @ware.save
   #
   #    format.html { redirect_to @ware, notice: 'Test was successfully created.' }
   #     format.json { render :index, status: :created, location: @ware }

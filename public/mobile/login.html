@@ -142,8 +142,8 @@
 //监听点击事件
 				btn.addEventListener("tap",function () {
 
-					mui.getJSON('http://localhost:3000/mobiles/login',{acount:$('#account').val(),password:$('#password').val()},function(data){
-
+					mui.getJSON('http://localhost:3000/mobiles/login',{acount:($('#account').val()),password:($('#password').val())},function(data){
+alert("22222")
 
 								$.each(data, function(i, item) {
 									if(item.status=='1') {
