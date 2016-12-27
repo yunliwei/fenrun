@@ -66,6 +66,7 @@
 //                location.href = "collect.html?collect="+$("#collect").text()
 //                mui.alert($.session.get('userid'))
                 mui.getJSON('http://localhost:3000//mobiles/collect', {code: (code),userid:($.session.get('userid'))}, function (data) {
+                    mui.alert("加入收藏成功")
                 })
             });
 
@@ -79,7 +80,7 @@
             var shopcar = document.getElementById("shopcar");
             shopcar.addEventListener("tap",function(){
                 mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code),userid:($.session.get('userid'))}, function (data) {
-
+                mui.alert("加入购物车成功")
                 });
 
             });
