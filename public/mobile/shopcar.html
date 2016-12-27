@@ -6,6 +6,28 @@
 		<title>购物车</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="css/mui.css" />
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="js/juqerysession.js"></script>
+		<script>
+			$(document).ready(function() {
+				var getQueryString = function (key) {
+					var search = decodeURIComponent(location.search);
+					var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
+					return search.replace(reg, "$1");
+				}
+				var wareid = getQueryString("wareid")
+
+				
+
+
+
+
+
+
+			});
+
+
+		</script>
 	</head>
 
 	<body>
