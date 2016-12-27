@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       get 'businelist'
       get 'detail'
       get 'collect'
+      get 'buy'
+      get 'createorder'
+      get 'createshopcar'
+      get 'shopcar'
     end
   end
 

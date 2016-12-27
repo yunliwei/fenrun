@@ -13,13 +13,16 @@ def reg
 end
 
   def login
+
     user=User.find_by(name:params[:acount],password_digest:params[:password])
      #debugger
+
     if(user!=nil)
 
       # session[:name]="123"
       #       session[:password]="321"
       id=user.id.to_s
+      aa='[{"status":"1","id":"'+id+'"}]'
      #debugger
       render json:('[{"status":"1","id":"'+id+'"}]')
       #debugger
@@ -131,12 +134,44 @@ end
 def buy
   wareid = params[:wareid]
   userid = params[:userid]
-  debugger
-  @address = Receiptadd.where(:user_id =>userid)
-  @waress = Ware.where(:id =>wareid)
-  render json:(@address)
 
+  @address = Receiptadd.where(:user_id =>userid,:isselect =>1)
+
+  @waress = Ware.where(:id =>wareid)
+
+   bc= @waress[0].price.to_s
+
+
+@all='[{"shouhuoname":"'+@address[0].shouhuoname.to_s+'","address":"'+@address[0].address.to_s+'","phonenumber":"'+@address[0].phonenumber.to_s+'","ware":"'+@waress[0].ware.to_s+'","price":"'+@waress[0].price.to_s+'","freight":"'+@waress[0].freight.to_s+'"}]'
+
+  render json:(@all)
 end
 
+  def createorder
+   # userid = params[:userid]
+    #debugger
+    @order = Order.create(ware_id:params[:wareid],user_id:params[:userid],number:params[:number],sum:params[:sum],userintegral:params[:user],state:params[:states],fare:params[:fare],ramarks:params[:ramark])
+    #debugger
+    render json:(@order)
 
+  end
+
+  def createshopcar
+
+    #debugger
+    @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
+    render json:(@shopcar)
+  end
+
+  def shopcar
+    userid = params[:userid]
+    @shopcars = Shoppingcar.where(:user_id =>userid)
+   #@ware=@shopcars.
+
+ #  @wares = Shoppingcar.wares.find(ware_id:'23')
+
+    render json:(@shopcars)
+
+    debugger
+  end
 end

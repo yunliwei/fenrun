@@ -75,6 +75,14 @@
 
                 location.href = "order.html?wareid="+$("#getid").val()
             });
+
+            var shopcar = document.getElementById("shopcar");
+            shopcar.addEventListener("tap",function(){
+                mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code),userid:($.session.get('userid'))}, function (data) {
+
+                });
+
+            });
         });
     </script>
 </head>
