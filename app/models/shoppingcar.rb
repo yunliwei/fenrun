@@ -1,4 +1,4 @@
 class Shoppingcar < ApplicationRecord
-  belongs_to :ware
+  has_many :ware
   belongs_to :user
 end

@@ -150,11 +150,25 @@ end
     @order = Order.create(ware_id:params[:wareid],user_id:params[:userid],number:params[:number],sum:params[:sum],userintegral:params[:user],state:params[:states],fare:params[:fare],ramarks:params[:ramark])
     #debugger
     render json:(@order)
-debugger
+
   end
 
   def createshopcar
 
+    #debugger
+    @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
+    render json:(@shopcar)
   end
 
+  def shopcar
+    userid = params[:userid]
+    @shopcars = Shoppingcar.where(:user_id =>userid)
+   #@ware=@shopcars.
+
+ #  @wares = Shoppingcar.wares.find(ware_id:'23')
+
+    render json:(@shopcars)
+
+    debugger
+  end
 end
