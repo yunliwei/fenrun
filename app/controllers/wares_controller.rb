@@ -8,7 +8,7 @@ end
 
 def new
 
-  @ware=Ware.create(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture],isnew:0)
+  @ware=Ware.create(isnew:0)
   #@class=Classification.all
   redirect_to edit_ware_path(@ware)
 
@@ -49,12 +49,17 @@ end
  end
 
   def createtype
-#id=params[:wareid]
+id=params[:typename]
 #debugger
-    @waretype=Waretype.new(ware_id:params[:wareid],typename:params[:typename])
+    @waretype=Waretype.new(ware_id:205,typename:params[:typename])
+   # debugger
     @waretype.save
     #debugger
-    redirect_to(:action => "new" )
+   # redirect_to(:action => "new" )
+
+  end
+  def createwarelabel
+
 
   end
 
