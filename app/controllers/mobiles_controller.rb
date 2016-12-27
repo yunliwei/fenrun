@@ -14,7 +14,7 @@ end
 
   def login
     user=User.find_by(name:params[:acount],password_digest:params[:password])
-     debugger
+     #debugger
     if(user!=nil)
 
       # session[:name]="123"
@@ -134,7 +134,7 @@ def buy
   debugger
   @address = Receiptadd.where(:user_id =>userid)
   @waress = Ware.where(:id =>wareid)
-  render json:(@address,@waress)
+  render json:(@address)
 
 end
 

@@ -1,13 +1,13 @@
 <%= render 'layerbegin' %>
 
-<div class="ibox-content form-horizontal m-t">
-
+<div class="ibox-content form-horizontal m-t" style="height: 1000px;">
+<div class="col-md-8">
 
   <%= form_tag({controller:'wares', action:'update'},{ :method => "put",:multipart=>true}) do  %>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">商品名称：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :ware,params[:ware], class: "form-control" %>
 
         </div>
@@ -16,9 +16,9 @@
       <%= hidden_field_tag :claid,params[:claid], id:'claid'  %>
       <div class="form-group">
         <label class="col-sm-2 control-label">分类：</label>
-        <div class="input-group">
+        <div class="col-sm-7">
 
-          <select id="dl_chose2" data-placeholder="选择类型" class="chosen-select form-control" multiple style="width:300px;" tabindex="4">
+          <select id="dl_chose2" data-placeholder="选择类型" class="chosen-select form-control" multiple  tabindex="4">
             <option value="">请选择类型</option>
             <% @class.each do |cla| %>
                 <option value=<%= cla.id %> hassubinfo="true"><%= cla.classname %></option>
@@ -31,154 +31,144 @@
 
 
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label">商品规格：</label>
-        <div class="col-sm-3">
-          <select id="dl_chose3" data-placeholder="选择规格" class="chosen-select form-control" multiple  tabindex="4">
-            <option value="">请选择规格</option>
-            <!--<% @class.each do |cla| %>-->
-                <!--<option value=<%= cla.id %> hassubinfo="true"><%= cla.classname %></option>-->
-                <!--<% end %>-->
-
-
-          </select>
-        </div>
-        <!--<button type="button" class="btn btn-outline btn-primary">+</button>-->
-        <a data-toggle="modal" class="btn btn-primary" href="#modal-form">+</a>
-
-      </div>
 
 
       <div class="form-group">
         <label class="col-sm-2 control-label">原价：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :price,params[:price] ,class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">现价：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :discountprice,params[:discountprice], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">销量：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :salevolume, params[:salevolume], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">文字描述：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :describe,params[:describe], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label  class="col-sm-2 control-label">图片：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= file_field_tag  "warepicture" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">库存：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :stock,params[:stock], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">运费：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :freight,params[:freight], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">折扣：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :discount,params[:discount], class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">基础价：</label>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
           <%= text_field_tag :baseprice,params[:baseprice], class: "form-control" %>
         </div>
       </div>
 
-      </div>
+
       <%= submit_tag '确定', class: "btn btn-w-m btn-success mylink pull-right", id: 'smt' %>
 
       <br>
   <% end %>
 
+</div>
+
+  <h4>图片预览</h4>
+  <div class="  form-horizontal col-sm-4" >
 
 
-  <div id="modal-form" class="modal fade" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="row">
+    <div class="form-group ">
+      <label class=" control-label pull-left">商品规格：</label>
+      <div class="col-sm-7  ">
+        <select id="dl_chose3" data-placeholder="选择规格" class="chosen-select form-control " multiple  tabindex="4">
+          <option value="">请选择规格</option>
+          <!--<% @class.each do |cla| %>-->
+              <!--<option value=<%= cla.id %> hassubinfo="true"><%= cla.classname %></option>-->
+              <!--<% end %>-->
 
-            <h3 class="m-t-none m-b">属性</h3>
 
-
-            <%= form_tag({controller:'wares', action:'createtype'},{:method=>'get', :multipart=>true}) do |f| %>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">属性：</label>
-                  <div class="col-sm-3">
-                    <%= text_field_tag :typename,params[:typename] %>
-                  </div>
-                </div>
-                <%= hidden_field_tag :wareid,params[:wareid], value:@ware.id  %>
-
-                <%= submit_tag '确定' , style:"float:right;" , id:'biaoqian'  %>
-
-            <% end %>
-          </div>
-        </div>
+        </select>
       </div>
+      <!--<button type="button" class="btn btn-outline btn-primary">+</button>-->
+      <button type="button"   class="btn btn-primary"  id="showguige" >新增</button>
+      <!--<button type="button"   class="btn btn-primary"  id="showguige" >保存</button>-->
+
     </div>
+
+
+        <div class="form-group" id="hideguige"  >
+          <label class=" control-label pull-left">商品规格：</label>
+          <div class="col-sm-7">
+            <input id="shangpinguige" , class= "form-control" %>
+          </div>
+          <button type="button" class="btn btn-outline btn-primary" id="saveguige">保存</button>
+
+        </div>
+
+
+
+
   </div>
 
+<div id="hideguigedetail">
+  <h4>规格详情</h4>
+  <div class="  form-horizontal col-sm-4" >
+    <%= form_tag({controller:'wares', action:'update'},{ :method => "put",:multipart=>true}) do  %>
+    <div class="form-group"  >
+      <label class=" control-label pull-left">标签名称：</label>
+      <div class="col-sm-7">
+        <%= text_field_tag :labelname,params[:labelname], class: "form-control" %>
+      </div>
+    </div>
 
 
-
-  <!--<div id="modal-form1" class="modal fade" aria-hidden="true">-->
-    <!--<div class="modal-dialog">-->
-      <!--<div class="modal-content">-->
-        <!--<div class="modal-body">-->
-          <!--<div class="row">-->
-
-            <!--<h3 class="m-t-none m-b">deng</h3>-->
+        <div class="form-group"  >
+          <label class=" control-label pull-left">标签增价：</label>
+          <div class="col-sm-7">
+            <%= text_field_tag :increaseprice,params[:increaseprice], class: "form-control" %>
+          </div>
+        </div>
 
 
-            <!--<%= form_tag({controller:'wares', action:'createtype'},{:method=>'get', :multipart=>true}) do |f| %>-->
-                <!--<div class="form-group">-->
-                  <!--<label class="col-sm-2 control-label">属性：</label>-->
-                  <!--<div class="col-sm-3">-->
-                    <!--<%= text_field_tag :typename,params[:typename] %>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <!--<%= hidden_field_tag :wareid,params[:wareid], value:@ware.id  %>-->
-
-                <!--<%= submit_tag '确定' , style:"float:right;" %>-->
-
-            <!--<% end %>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-
-
+        <div class="icheckbox i-checks text-center">
+          <label>
+            <input type="checkbox" id="isselect"  class="tixing"> <i></i> 是否默认</label>
+        </div>
+        <%= submit_tag '确定', class: "btn btn-w-m btn-success mylink pull-right" %>
+    <% end %>
+</div>
+</div>
 
 
   </div>
@@ -206,8 +196,27 @@ if (a!="") {
       });
 
 
-$('#biaoqian').click()
+$('#showguige').click(function(){
+  $('#hideguige').show()
+})
 
+        $("#hideguige").hide();
+      $("#hideguigedetail").hide();
+     $('#saveguige').click(function(){
+
+       $.ajax({
+         type: 'get',
+         url: '/wares/createtype?typename='+$("#shangpinguige").val()
+       });
+       $('#hideguigedetail').show()
+
+     })
+
+
+      $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green'
+      });
 
     });
 
