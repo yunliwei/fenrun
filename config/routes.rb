@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get 'createorder'
       get 'createshopcar'
       get 'shopcar'
+      get 'busineselect'
     end
   end
 
