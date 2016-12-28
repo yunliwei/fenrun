@@ -23,13 +23,13 @@
 
 				$.each(data, function (i, item) {
 
-
+					var id = item.id.toString()
 					var itemHTML =
 							'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
-							'<a href="javascript">' ;
+							'<a href="#">' ;
 					if(item.businelogo_content_type !=null ) {
 
-						itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+						itemHTML += '<img class="mui-media-object" '+'id='+item.id+' src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
 
 					}
 					else {
@@ -43,7 +43,12 @@
 							'</div>' +
 							'</a>' +
 							'</li>' ;
-					$("#businelist").append(itemHTML)
+					$("#businelist").append(itemHTML);
+
+					var btn = document.getElementById(id);
+					btn.addEventListener("tap",function () {
+						location.href = "shangjia.html?code="+id
+					});
 				});
 			});
 
@@ -56,10 +61,10 @@
 
 						var itemHTML =
 								'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
-								'<a href="javascript">';
+								'<a>';
 						if (item.businelogo_content_type != null) {
 
-							itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+							itemHTML += '<img class="mui-media-object" src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
 
 						}
 						else {
@@ -74,6 +79,12 @@
 								'</a>' +
 								'</li>';
 						$("#businelist").append(itemHTML)
+
+
+						var btn = document.getElementById(id);
+						btn.addEventListener("tap",function () {
+							location.href = "shangjia.html?code="+id
+						});
 					});
 				});
 			});
@@ -267,7 +278,7 @@
 	
     <div class="mui-content">
         <div class="mui-input-row mui-search">
-	    <input type="search" class="mui-input-clear" placeholder="" id="searchshangjia">
+	    <input type="search" class="mui-input-clear" placeholder="搜索" id="searchshangjia">
 	</div>
 
 

@@ -13,7 +13,7 @@
     <script>
 
         $(document).ready(function() {
-
+//显示商品列表
             mui.getJSON('http://localhost:3000/mobiles/warelist',{}, function (data) {
 
                 $.each(data, function (i, item) {
@@ -51,9 +51,9 @@
                 });
             });
 //
-
+//点击分类图标
             var btn = document.getElementById("lady");
-//监听点击事件
+
             btn.addEventListener("tap",function () {
 //                console.log("tap event trigger");
                     location.href = "shangpinlist.html?type="+$('#lady').text()
@@ -63,7 +63,7 @@
 
 
             var btn = document.getElementById("man");
-//监听点击事件
+
             btn.addEventListener("tap",function () {
 //                console.log("tap event trigger");
                     location.href = "shangpinlist.html?type="+$('#man').text()
@@ -73,7 +73,6 @@
 
 
             var btn = document.getElementById("digitl");
-//监听点击事件
             btn.addEventListener("tap",function () {
 //                console.log("tap event trigger");
                     location.href = "shangpinlist.html?type="+$('#digitl').text()
@@ -82,7 +81,6 @@
             });
 
             var btn = document.getElementById("furn");
-//监听点击事件
             btn.addEventListener("tap",function () {
 //                console.log("tap event trigger");
                 location.href = "shangpinlist.html?type="+$('#digitl').text()
@@ -91,7 +89,6 @@
             });
 
             var btn = document.getElementById("food");
-//监听点击事件
             btn.addEventListener("tap",function () {
 //                console.log("tap event trigger");
                 location.href = "shangpinlist.html?type="+$('#digitl').text()
@@ -100,7 +97,6 @@
             });
 
             var btn = document.getElementById("cosme");
-//监听点击事件
             btn.addEventListener("tap",function () {
 //                console.log("tap event trigger");
                 location.href = "shangpinlist.html?type="+$('#digitl').text()
@@ -110,14 +106,13 @@
 
 
 
-
+//搜索框查询
             $(document).ready(function () {
                 $('#search').keyup(function (e) {//捕获文档对象的按键弹起事件
                     if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
                         location.href = "shangpinlist.html?sea="+$('#search').val()
                         $("#search").val("");
-//                mui.getJSON('http://localhost:3000/mobiles/search',{sea:$('#search').val()},function(data) {
-//                }); //此处编写用户敲回车后的代码
+
                     }
                 });
 
@@ -252,7 +247,6 @@
                     </li>
                     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                         <a href="#">
-
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-shumaxiangji"></use>
                             </svg>

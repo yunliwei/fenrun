@@ -143,7 +143,7 @@ def buy
 
 
 @all='[{"shouhuoname":"'+@address[0].shouhuoname.to_s+'","address":"'+@address[0].address.to_s+'","phonenumber":"'+@address[0].phonenumber.to_s+'","ware":"'+@waress[0].ware.to_s+'","price":"'+@waress[0].price.to_s+'","freight":"'+@waress[0].freight.to_s+'"}]'
-
+  debugger
   render json:(@all)
 end
 
@@ -173,5 +173,14 @@ end
     render json:(@shopcars)
 
     #debugger
+  end
+
+
+  def busineselect
+    busineid = params[:code]
+    @business = Busine.where(:id =>busineid)
+    #debugger
+    render json:(@business)
+
   end
 end
