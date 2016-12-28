@@ -172,6 +172,6 @@ end
 
     render json:(@shopcars)
 
-    debugger
+    #debugger
   end
 end
