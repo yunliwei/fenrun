@@ -78,6 +78,164 @@
 				});
 			});
 
+
+			var btn = document.getElementById("station");
+			btn.addEventListener("tap",function () {
+				mui.getJSON('http://localhost:3000/mobiles/selecttype', {type: $('#man').text()}, function (data) {
+					$("#businelist").html("");
+					$.each(data, function (i, item) {
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
+								'<a href="javascript">';
+						if (item.businelogo_content_type != null) {
+
+							itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/2.jpg" >';
+						}
+
+
+						itemHTML +=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.name  +'销量：'+ item.salessum +
+								'</div>' +
+								'</a>' +
+								'</li>';
+						$("#businelist").append(itemHTML)
+					});
+				});
+			});
+
+			var btn = document.getElementById("station");
+			btn.addEventListener("tap",function () {
+				mui.getJSON('http://localhost:3000/mobiles/selecttype', {type: $('#digital').text()}, function (data) {
+					$("#businelist").html("");
+					$.each(data, function (i, item) {
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
+								'<a href="javascript">';
+						if (item.businelogo_content_type != null) {
+
+							itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/2.jpg" >';
+						}
+
+
+						itemHTML +=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.name  +'销量：'+ item.salessum +
+								'</div>' +
+								'</a>' +
+								'</li>';
+						$("#businelist").append(itemHTML)
+					});
+				});
+			});
+
+			var btn = document.getElementById("station");
+			btn.addEventListener("tap",function () {
+				mui.getJSON('http://localhost:3000/mobiles/selecttype', {type: $('#furn').text()}, function (data) {
+					$("#businelist").html("");
+					$.each(data, function (i, item) {
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
+								'<a href="javascript">';
+						if (item.businelogo_content_type != null) {
+
+							itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/2.jpg" >';
+						}
+
+
+						itemHTML +=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.name  +'销量：'+ item.salessum +
+								'</div>' +
+								'</a>' +
+								'</li>';
+						$("#businelist").append(itemHTML)
+					});
+				});
+			});
+
+
+			var btn = document.getElementById("station");
+			btn.addEventListener("tap",function () {
+				mui.getJSON('http://localhost:3000/mobiles/selecttype', {type: $('#food').text()}, function (data) {
+					$("#businelist").html("");
+					$.each(data, function (i, item) {
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
+								'<a href="javascript">';
+						if (item.businelogo_content_type != null) {
+
+							itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/2.jpg" >';
+						}
+
+
+						itemHTML +=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.name  +'销量：'+ item.salessum +
+								'</div>' +
+								'</a>' +
+								'</li>';
+						$("#businelist").append(itemHTML)
+					});
+				});
+			});
+
+
+			var btn = document.getElementById("station");
+			btn.addEventListener("tap",function () {
+				mui.getJSON('http://localhost:3000/mobiles/selecttype', {type: $('#cosme').text()}, function (data) {
+					$("#businelist").html("");
+					$.each(data, function (i, item) {
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media mui-col-xs-6">' +
+								'<a href="javascript">';
+						if (item.businelogo_content_type != null) {
+
+							itemHTML += '<img class="mui-media-object"  src= "/businelogos/' + item.id + '/' + item.businelogo_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/2.jpg" >';
+						}
+
+
+						itemHTML +=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.name  +'销量：'+ item.salessum +
+								'</div>' +
+								'</a>' +
+								'</li>';
+						$("#businelist").append(itemHTML)
+					});
+				});
+			});
+
 		});
 	</script>
 </head>
@@ -130,29 +288,50 @@
 			   <div  class="mui-media-body" id="station" >服装</div>
 		   </a>
 	   </li>
+	   <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		   <a href="#">
+			   <svg class="icon" aria-hidden="true">
+				   <use xlink:href="#icon-nanzhuangpeishizhuanhuan"></use>
+			   </svg>
+			   <div class="mui-media-body" id="man">男装</div>
+		   </a>
+	   </li>
+	   <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		   <a href="#">
 
+			   <svg class="icon" aria-hidden="true">
+				   <use xlink:href="#icon-shumaxiangji"></use>
+			   </svg>
+			   <div class="mui-media-body" id="digitl">数码</div>
+		   </a>
+	   </li>
+	   <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		   <a href="#">
 
-       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-           <a href="#">
-               <span class="mui-icon iconfont icon-iconfonticon"></span>
-               <div class="mui-media-body">手机</div>
-           </a>
-       </li>
+			   <svg class="icon" aria-hidden="true">
+				   <use xlink:href="#icon-iconfonticonfonticonfont27"></use>
+			   </svg>
+			   <div class="mui-media-body" id="furn">家具</div>
+		   </a>
+	   </li>
+	   <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		   <a href="#">
 
-       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-           <a href="#">
-               <span class="mui-icon iconfont icon-iconfonticon"></span>
-               <div class="mui-media-body">服饰</div>
-           </a>
-       </li>
+			   <svg class="icon" aria-hidden="true">
+				   <use xlink:href="#icon-iconfontshipinyinliao"></use>
+			   </svg>
+			   <div class="mui-media-body" id="food">食品</div>
+		   </a>
+	   </li>
+	   <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		   <a href="#">
 
-
-       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-           <a href="#">
-               <span class="mui-icon iconfont icon-iconfonticon"></span>
-               <div class="mui-media-body">食品</div>
-           </a>
-       </li>
+			   <svg class="icon" aria-hidden="true">
+				   <use xlink:href="#icon-iconfonticon"></use>
+			   </svg>
+			   <div class="mui-media-body" id="cosme">护肤彩妆</div>
+		   </a>
+	   </li>
        </ul>
 
 

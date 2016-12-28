@@ -81,6 +81,33 @@
 //                    mui.alert($("#lady").text());
             });
 
+            var btn = document.getElementById("furn");
+//监听点击事件
+            btn.addEventListener("tap",function () {
+//                console.log("tap event trigger");
+                location.href = "shangpinlist.html?type="+$('#digitl').text()
+
+//                    mui.alert($("#lady").text());
+            });
+
+            var btn = document.getElementById("food");
+//监听点击事件
+            btn.addEventListener("tap",function () {
+//                console.log("tap event trigger");
+                location.href = "shangpinlist.html?type="+$('#digitl').text()
+
+//                    mui.alert($("#lady").text());
+            });
+
+            var btn = document.getElementById("cosme");
+//监听点击事件
+            btn.addEventListener("tap",function () {
+//                console.log("tap event trigger");
+                location.href = "shangpinlist.html?type="+$('#digitl').text()
+
+//                    mui.alert($("#lady").text());
+            });
+
 
 
 
@@ -238,7 +265,7 @@
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-iconfonticonfonticonfont27"></use>
                             </svg>
-                            <div class="mui-media-body">家具</div>
+                            <div class="mui-media-body" id="furn">家具</div>
                         </a>
                     </li>
                     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -247,7 +274,7 @@
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-iconfontshipinyinliao"></use>
                             </svg>
-                            <div class="mui-media-body">食品</div>
+                            <div class="mui-media-body" id="food">食品</div>
                         </a>
                     </li>
                     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -256,7 +283,7 @@
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-iconfonticon"></use>
                             </svg>
-                            <div class="mui-media-body">护肤彩妆</div>
+                            <div class="mui-media-body" id="cosme">护肤彩妆</div>
                         </a>
                     </li>
                 </ul>
