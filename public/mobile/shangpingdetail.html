@@ -1,11 +1,21 @@
-
-
-
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+    <link rel="stylesheet" href="css/iconfont.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script>
+    <script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js"></script>
+    <!--<script src="js/mui.min.js"></script>-->
+    <script src="js/iconfont.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/iconfont.css" rel="stylesheet" >
+    <script src="js/juqerysession.js"></script>
 
+    <script>
         $(document).ready(function() {
             var getQueryString = function(key) {
                 var search = decodeURIComponent(location.search);
@@ -13,52 +23,76 @@
                 return search.replace(reg, "$1");
             }
             var code=getQueryString("code");
-
             mui.getJSON('http://localhost:3000/mobiles/detail', {code: (code)}, function (data) {
-
                 $.each(data, function (i, item) {
-
                     var name = item.ware;
                     var price = item.price;
                     var discountprice = item.discountprice;
                     var freight = item.freight;
                     var sale = item.salevolume;
-                    
+                    var id = item.id;
+                    var picture = '/warepicture/'+item.id+'/'+item.warepicture_file_name;
+                    var itemHTML =
+                            '<ul class="mui-table-view" style="height: auto">'+
+                            '<li class="mui-table-view-cell" >' +
+                            '<a href="#">';
+                    if (item.warepicture_content_type != null) {
+                        itemHTML += '<img  class="mui-media-item mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+                    }
+                    else {
+                        itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" >';
+                    }
+                    itemHTML +=
+                            '<img class="mui-media-item mui-pull-left" src="images/xiangji.jpg">' +
+                            '</a>' +
+                            '</li>'+
+                            '</ul>';
+                    $("#item2mobile").append(itemHTML)
                     $("#namex").text(name);
                     $("#price").text('￥'+price)
                     $("#discount").text('原价'+'：'+discountprice);
                     $("#freight").text('运费'+':'+freight);
                     $("#sale").text('销量'+':'+sale);
-//                    var itemHTML =
-//                            '<div class="mui-slider-group mui-slider-loop">' +
-//                            '<a href="#">';
-//                    if (item.warepicture_content_type != null) {
-//
-//                        itemHTML += '<img class="mui-media-object mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
-//
-//                    }
-//                    else {
-//                        itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
-//                    }
-//
-//
-//                    itemHTML +=
-////										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
-//                            '<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
-//                            '</div>' +
-//                            '</a>' +
-//                            '</div>';
-//                    $("#name").append(itemHTML)
+                    $("#getid").val(id);
+//                    $("#first").src('"'+picture+'"');
+//                    $(ww).data("ddd",id)
+//                    alert($(ww).data("ddd"));
                 });
             });
+            var btn = document.getElementById("collect");
+//监听点击事件
+            btn.addEventListener("tap",function () {
+//                alert(code);
+//                location.href = "collect.html?collect="+$("#collect").text()
+//                mui.alert($.session.get('userid'))
+                mui.getJSON('http://localhost:3000//mobiles/collect', {code: (code),userid:($.session.get('userid'))}, function (data) {
+                    mui.alert("加入收藏成功")
+                })
+            });
 
+
+            var shopbtn = document.getElementById("shop");
+            shopbtn.addEventListener("tap",function(){
+
+                location.href = "order.html?wareid="+$("#getid").val()
+            });
+
+            var shopcar = document.getElementById("shopcar");
+            shopcar.addEventListener("tap",function(){
+                mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code),userid:($.session.get('userid'))}, function (data) {
+                mui.alert("加入购物车成功")
+                });
+
+            });
         });
-
-
     </script>
 </head>
 <body>
-<div id=slider >
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back  mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">商品信息</h1>
+</header>
+<div id=slider  style="margin-top: 50px">
     <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
         <a class="mui-control-item mui-active" href="#item1mobile">基本信息</a>
         <a class="mui-control-item" href="#item2mobile">商品详情</a>
@@ -75,25 +109,28 @@
                         <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
                         <div class="mui-slider-item mui-slider-item-duplicate">
                             <a href="#">
-                                <img src="images/xiangji1.jpg">
+                                <img src="?" id="first">
                             </a>
                         </div>
                         <!-- 第一张 -->
                         <div class="mui-slider-item">
                             <a href="#">
-                                <img src="images/xiangji2.jpg">
+                                <!--<img src="images/xiangji2.jpg">-->
+                                <img src="?" id="first">
                             </a>
                         </div>
                         <!-- 第二张 -->
                         <div class="mui-slider-item">
                             <a href="#">
-                                <img src="images/xiangji3.jpg">
+                                <!--<img src="images/xiangji3.jpg">-->
+                                <img src="?" id="first">
                             </a>
                         </div>
                         <!-- 第三张 -->
                         <div class="mui-slider-item">
                             <a href="#">
-                                <img src="images/xiangji4.jpg">
+                                <!--<img src="images/xiangji4.jpg">-->
+                                <img src="?" id="first">
                             </a>
                         </div>
                         <!-- 第四张 -->
@@ -118,8 +155,8 @@
                 </div>
             </ul>
         </div>
-
-        <div class="mui-card" style="width: 100%; float: left;">
+<input type="hidden" id="getid">
+        <div class="mui-card" style="width: 100%; float: left; margin-left: 0px">
             <!--页眉，放置标题-->
             <div class="mui-card-header"style="height: 20px;" id="namex"></div>
             <!--内容区-->
@@ -135,11 +172,8 @@
             </div>
 
         </div>
-        <div id="item2mobile" class="mui-slider-item mui-control-content">
-            <ul class="mui-table-view">
-                <li class="mui-table-view-cell">第2个选项卡子项</li>
-                <li class="mui-table-view-cell">第2个选项卡子项</li>
-            </ul>
+        <div id="item2mobile" class="mui-slider-item mui-control-content " >
+
         </div>
         <div id="item3mobile" class="mui-slider-item mui-control-content">
             <ul class="mui-table-view">
@@ -150,19 +184,19 @@
     </div>
 
     <nav class="mui-bar mui-bar-tab">
-        <a class="mui-tab-item mui-active">
-            <span class="mui-icon mui-icon-home"></span>
-            <span class="mui-tab-label">客服</span>
-        </a>
         <a class="mui-tab-item">
             <span class="mui-icon mui-icon-phone"></span>
-            <span class="mui-tab-label">进店</span>
+            <span class="mui-tab-label">客服</span>
         </a>
-        <a class="mui-tab-item">
+        <a class="mui-tab-item" id="collect">
             <span class="mui-icon mui-icon-email"></span>
-            <span class="mui-tab-label">收藏</span>
+            <span class="mui-tab-label" >收藏</span>
         </a>
-        <a class="mui-tab-item" style="width: 5px;">
+        <a class="mui-tab-item" id="shop">
+
+            <span>购买</span>
+        </a>
+        <a class="mui-tab-item" style="width: 5px;" id="shopcar">
 
             <span>加入购物车</span>
         </a>

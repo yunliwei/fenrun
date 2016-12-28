@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       get 'selecttype'
       get 'businelist'
       get 'detail'
+      get 'collect'
+      get 'buy'
+      get 'createorder'
+      get 'createshopcar'
+      get 'shopcar'
     end
   end
 
@@ -23,6 +28,8 @@ Rails.application.routes.draw do
   resources :wares do
   collection do
     get 'update'
+    get 'createtype'
+    get 'edit'
   end
   end
     
@@ -39,7 +46,7 @@ Rails.application.routes.draw do
   resources :businesssettleds
   resources :malls
   resources :busines
-
+  resources :waretypes
 
 
 end

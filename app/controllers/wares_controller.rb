@@ -1,21 +1,19 @@
 class WaresController < ApplicationController
-  before_action :set_ware, only: [:show, :edit,  :destroy]
+  before_action :set_ware, only: [ :edit,:update,  :destroy]
 def index
   @wares = Ware.all
-
-  #cal =Ware.create(ware:'123')
-  #Classification.create(classname:'111')
- # cccc=Classification.find(1)
- # cal.classifications.push(cccc)
-
-
 
 end
 
 
 def new
-  @ware = Ware.new
-  @class=Classification.all
+
+  @ware=Ware.create(isnew:0)
+  #@class=Classification.all
+  redirect_to edit_ware_path(@ware)
+
+
+  #render :edit
 end
 
 
@@ -24,6 +22,7 @@ end
 
   def edit
     @class=Classification.all
+    #debugger
     @ware = Ware.find(params[:id])
     @cla=@ware.classifications
     @claid=''
@@ -49,12 +48,25 @@ end
 
  end
 
+  def createtype
+id=params[:typename]
+#debugger
+    @waretype=Waretype.new(ware_id:205,typename:params[:typename])
+   # debugger
+    @waretype.save
+    #debugger
+   # redirect_to(:action => "new" )
 
+  end
+  def createwarelabel
+
+
+  end
 
 
 def create
 
-  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+  @ware = Ware.new(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume],describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture],isnew:1)
 
   id=params[:classifi]
   arr = Array.new(id.split(','))
@@ -62,10 +74,11 @@ def create
   #debugger
   cccc=Classification.find(arr)
   @ware.classifications.push(cccc)
+  @ware.save
   redirect_to(:action => "index" )
   #@ware = Ware.new(ware_params)
   # respond_to do |format|
-  #   if @ware.save
+  @ware.save
   #
   #    format.html { redirect_to @ware, notice: 'Test was successfully created.' }
   #     format.json { render :index, status: :created, location: @ware }
@@ -76,9 +89,12 @@ def create
   # end
 end
 
+
+
+
   def update
     @ware = Ware.find(params[:id])
-    @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture])
+    @ware.update(ware:params[:ware],price:params[:price],discountprice:params[:discountprice],salevolume:params[:salevolume], describe:params[:describe], stock:params[:stock],freight:params[:freight],discount:params[:discount],baseprice:params[:baseprice],warepicture:params[:warepicture],isnew:1)
 
     id=params[:classifi]
     arr = Array.new(id.split(','))
