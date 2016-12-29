@@ -19,6 +19,10 @@ Rails.application.routes.draw do
       get 'createshopcar'
       get 'shopcar'
       get 'busineselect'
+      get 'orderdetail'
+      get 'collectlist'
+      get 'destroycollect'
+      get 'searchcollect'
     end
   end
 
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
     get 'update'
     get 'createtype'
     get 'edit'
+    get 'createwarelabel'
   end
   end
     

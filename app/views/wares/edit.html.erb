@@ -5,6 +5,8 @@
 
   <%= form_tag({controller:'wares', action:'update'},{ :method => "put",:multipart=>true}) do  %>
 
+      <%= hidden_field_tag :wareid,params[:wareid], id:'wareid'  %>
+
       <div class="form-group">
         <label class="col-sm-2 control-label">商品名称：</label>
         <div class="col-sm-7">
@@ -145,11 +147,11 @@
 <div id="hideguigedetail">
   <h4>规格详情</h4>
   <div class="  form-horizontal col-sm-4" >
-    <%= form_tag({controller:'wares', action:'update'},{ :method => "put",:multipart=>true}) do  %>
+
     <div class="form-group"  >
       <label class=" control-label pull-left">标签名称：</label>
       <div class="col-sm-7">
-        <%= text_field_tag :labelname,params[:labelname], class: "form-control" %>
+        <input id="labelname" , class="form-control" %>
       </div>
     </div>
 
@@ -157,17 +159,18 @@
         <div class="form-group"  >
           <label class=" control-label pull-left">标签增价：</label>
           <div class="col-sm-7">
-            <%= text_field_tag :increaseprice,params[:increaseprice], class: "form-control" %>
+            <input id="increaseprice" , class="form-control" %>
+
           </div>
         </div>
-
+    <input id="isselect" , class="form-control" %>
 
         <div class="icheckbox i-checks text-center">
           <label>
-            <input type="checkbox" id="isselect"  class="tixing"> <i></i> 是否默认</label>
+            <input type="checkbox" id="isselectinput" value=0 class="tixing"> <i></i> 是否默认</label>
         </div>
-        <%= submit_tag '确定', class: "btn btn-w-m btn-success mylink pull-right" %>
-    <% end %>
+    <button type="button" class="btn btn-outline btn-primary" id="savedetail">保存</button>
+
 </div>
 </div>
 
@@ -205,19 +208,53 @@ $('#showguige').click(function(){
       $("#hideguigedetail").hide();
      $('#saveguige').click(function(){
 
-       $.ajax({
-         type: 'get',
-         url: '/wares/createtype?typename='+$("#shangpinguige").val()
+//       $.ajax({
+//         type: 'get',
+//         url: '/wares/createtype?typename='+$("#shangpinguige").val()+'&ware_id='+$('#wareid').val()
+//       });
+      // alert('543')
+       $.getJSON('/wares/createtype', {typename:$("#shangpinguige").val(),ware_id:$('#wareid').val()}, function (data) {
+//alert('213')
+         $.each(data, function (i, item) {
+           alert(item.waretypeid)
+         })
        });
+
        $('#hideguigedetail').show()
 
-     })
+     });
+      $('#savedetail').click(function(){
+
+        $.ajax({
+          type: 'get',
+          url: '/wares/createwarelabel?labelname='+$("#labelname").val()+'&increaseprice='+$('#increaseprice').val()+'&isselect='+$('#isselect').val()
+        });
+
+
+      });
+
 
 
       $('.i-checks').iCheck({
         checkboxClass: 'icheckbox_square-green',
         radioClass: 'iradio_square-green'
       });
+
+      $('#isselect').val(0)
+
+ $('#isselectinput').on('ifChecked', function(event) {
+   {
+//alert("asd")
+   $('#isselect').val('1')
+   }
+ });
+      $('#isselectinput').on('ifUnchecked', function(event) {
+        {
+
+          $('#isselect').val(0)
+        }
+      });
+
 
     });
 

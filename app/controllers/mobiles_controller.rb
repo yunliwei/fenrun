@@ -14,8 +14,8 @@ end
 
   def login
 
-    user=User.find_by(name:params[:acount],password_digest:params[:password])
-     #debugger
+    user=User.find_by(username:params[:acount],password_digest:params[:password])
+     debugger
 
     if(user!=nil)
 
@@ -134,17 +134,17 @@ end
 def buy
   wareid = params[:wareid]
   userid = params[:userid]
+  #debugger
 
-  @address = Receiptadd.where(:user_id =>userid,:isselect =>1)
+    @address = Receiptadd.where(:user_id =>userid,:isselect =>1)
 
-  @waress = Ware.where(:id =>wareid)
+    @waress = Ware.where(:id =>wareid)
 
-   bc= @waress[0].price.to_s
+    bc= @waress[0].price.to_s
 
-
-@all='[{"shouhuoname":"'+@address[0].shouhuoname.to_s+'","address":"'+@address[0].address.to_s+'","phonenumber":"'+@address[0].phonenumber.to_s+'","ware":"'+@waress[0].ware.to_s+'","price":"'+@waress[0].price.to_s+'","freight":"'+@waress[0].freight.to_s+'"}]'
-  debugger
-  render json:(@all)
+    @all='[{"shouhuoname":"'+@address[0].shouhuoname.to_s+'","address":"'+@address[0].address.to_s+'","phonenumber":"'+@address[0].phonenumber.to_s+'","ware":"'+@waress[0].ware.to_s+'","price":"'+@waress[0].price.to_s+'","freight":"'+@waress[0].freight.to_s+'"}]'
+    #debugger
+    render json:(@all)
 end
 
   def createorder
@@ -165,14 +165,18 @@ end
 
   def shopcar
     userid = params[:userid]
-    @shopcars = Shoppingcar.where(:user_id =>userid)
-   #@ware=@shopcars.
+    @user = User.find( params[:userid])
+    @shopcars=@user.shoppingcars
+    @shop = ""
 
- #  @wares = Shoppingcar.wares.find(ware_id:'23')
+    @shopcars.each do |i|
+      @shop =@shop+i.ware_id.to_s+','
+    end
 
-    render json:(@shopcars)
+    arry = Array.new(@shop.split(','))
+    @shopss = Ware.find(arry)
+    render json:(@shopss)
 
-    #debugger
   end
 
 
@@ -183,4 +187,86 @@ end
     render json:(@business)
 
   end
+
+  def orderdetail
+
+    @user=User.find(params[:userid])
+
+    @order=@user.orders
+    #debugger
+    @wareid=''
+    @order.each do|i|
+      @wareid=@wareid+i.ware_id.to_s+','
+    end
+    arr = Array.new(@wareid.split(','))
+
+    @waresss=Ware.find(arr)
+    #debugger
+    render json:@waresss
+   # debugger
+  end
+
+
+
+def collectlist
+  #debugger
+  userid = params[:userid]
+
+  @user = User.find( params[:userid])
+  @collects=@user.favorites
+ # debugger
+  @collect = ""
+
+  @collects.each do |i|
+    @collect =@collect+i.ware_id.to_s+','
+  end
+
+  arry = Array.new(@collect.split(','))
+  @collectlist = Ware.find(arry)
+  render json:(@collectlist)
+  #debugger
+
+end
+
+  def destroycollect
+    wareid = params[:ware]
+
+    @user=User.find(params[:userid])
+#debugger
+    @destroy=@user.favorites.where(:ware_id=>params[:ware])
+    # @destroycollect = Favorite.where(:ware_id=>params[:ware])
+    # debugger
+    @destroy[0].destroy
+
+  end
+
+  def searchcollect
+
+ #
+ # @wares=Ware.all
+ #  @wareid=''
+ #  @wares.each do |f|
+ #    @wareid=@wareid+f.ware_id.to_s+','
+ #  end
+ #  warearry = Array.new(@wareid.split(','))
+
+searchname = "e"
+    @user = User.find(params[:userid])
+    @seacollect = @user.favorites
+    @userid=''
+ @seacollect.each do |f|
+   @userid=@userid+f.ware_id.to_s+','
+ end
+ collarry = Array.new(@userid.split(','))
+    @ware = Ware.find(collarry)
+
+debugger
+    # @waresearch = @ware.where("ware like '%"+searchname+"%'")
+
+
+
+
+
+  end
+
 end
