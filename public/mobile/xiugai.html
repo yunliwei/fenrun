@@ -33,8 +33,21 @@
         .mui-btn {
             padding: 10px;
         }
+        .mui-btn {
+            display: block;
+            width: 120px;
+            margin: 10px auto;
+        }
+        #info {
+            padding: 20px 10px;
+        }
 
     </style>
+
+
+
+
+
 </head>
 
 <body>
@@ -51,20 +64,28 @@
     <br>
 
     <ul class="mui-table-view">
+
+
         <li class="mui-table-view-cell">
 
             <a id="head" class="mui-navigate-right">头像
 
 								<span class="mui-pull-right head">
-
 									<img class="head-img mui-action-preview" id="head-img1" src="images/a8.jpg" height="40px" width="40px">
 								</span>
+
+
             </a>
+
+
         </li>
 
+       
 
         <li class="mui-table-view-cell">
-            <a>姓名<span class="mui-pull-right">aaa</span></a>
+            <a id="promptBtn" type="a">姓名
+                <span class="mui-pull-right">aaa</span>
+            </a>
         </li>
 
 
@@ -72,9 +93,9 @@
         <li class="mui-table-view-cell">
             <a>用户名<span class="mui-pull-right">admin</span></a>
         </li>
-    </ul>
 
-    <ul class="mui-table-view">
+
+
         <li class="mui-table-view-cell">
             <a>性别<span class="mui-pull-right">男</span></a>
         </li>
@@ -136,6 +157,28 @@
 <script src="js/mui.min.js"></script>
 <script src="js/app.js"></script>
 
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+    document.getElementById("promptBtn").addEventListener('tap', function(e) {
+        e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+        var btnArray = ['确定', '取消'];
+        mui.prompt('请输入你的姓名：', '姓名', '', btnArray, function(e) {
+            if (e.index == 0) {
+                info.innerText = '谢谢你的评语：' + e.value;
+            } else {
+                info.innerText = '你点了取消按钮';
+            }
+        })
+
+    });
+
+</script>
+
+
+
 <script>
     mui.init();
     //初始化单页view
@@ -147,18 +190,6 @@
     //分享操作
     var shares = {};
 
-    mui.plusReady(function() {
-        plus.share.getServices(function(s) {
-            if (s && s.length > 0) {
-                for (var i = 0; i < s.length; i++) {
-                    var t = s[i];
-                    shares[t.id] = t;
-                }
-            }
-        }, function() {
-            console.log("获取分享服务列表失败");
-        });
-    });
 
     setTimeout(function () {
         defaultImg();
@@ -167,88 +198,10 @@
         }, 300);
     },500);
 
-    //分享链接点击事件
-    document.getElementById("share").addEventListener('tap', function() {
-        var ids = [{
-                    id: "weixin",
-                    ex: "WXSceneSession"
-                }, {
-                    id: "weixin",
-                    ex: "WXSceneTimeline"
-                }, {
-                    id: "sinaweibo"
-                }, {
-                    id: "tencentweibo"
-                }, {
-                    id: "qq"
-                }],
-                bts = [{
-                    title: "发送给微信好友"
-                }, {
-                    title: "分享到微信朋友圈"
-                }, {
-                    title: "分享到新浪微博"
-                }, {
-                    title: "分享到腾讯微博"
-                }, {
-                    title: "分享到QQ"
-                }];
-        plus.nativeUI.actionSheet({
-            cancel: "取消",
-            buttons: bts
-        }, function(e) {
-            var i = e.index;
-            if (i > 0) {
-                var s_id = ids[i - 1].id;
-                var share = shares[s_id];
-                if (share) {
-                    if (share.authenticated) {
-                        shareMessage(share, ids[i - 1].ex);
-                    } else {
-                        share.authorize(function() {
-                            shareMessage(share, ids[i - 1].ex);
-                        }, function(e) {
-                            console.log("认证授权失败：" + e.code + " - " + e.message);
-                        });
-                    }
-                } else {
-                    mui.toast("无法获取分享服务，请检查manifest.json中分享插件参数配置，并重新打包")
-                }
-            }
-        });
-    });
 
-    function shareMessage(share, ex) {
-        var msg = {
-            extra: {
-                scene: ex
-            }
-        };
-        msg.href = "http://www.dcloud.io/hellomui/";
-        msg.title = "最接近原生APP体验的高性能前端框架";
-        msg.content = "我正在体验HelloMUI，果然很流畅，基本看不出和原生App的差距";
-        if (~share.id.indexOf('weibo')) {
-            msg.content += "；体验地址：http://www.dcloud.io/hellomui/";
-        }
-        msg.thumbs = ["_www/images/logo.png"];
-        share.send(msg, function() {
-            console.log("分享到\"" + share.description + "\"成功！ ");
-        }, function(e) {
-            console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
-        });
-    }
-    //去评分
-    document.getElementById("rate").addEventListener('tap', function() {
-        if (mui.os.ios) {
-            location.href = 'https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=682211190&pageNumber=0&sortOrdering=2&type=&mt=8';
-        } else if (mui.os.android) {
-            plus.runtime.openURL("market://details?id=io.dcloud.HelloMUI", function(e) {
-                plus.runtime.openURL("market://details?id=io.dcloud.HelloMUI", function(e) {
-                    mui.alert("360手机助手和应用宝，你一个都没装，暂时无法评分，感谢支持");
-                }, "com.qihoo.appstore");
-            }, "com.tencent.android.qqdownloader");
-        }
-    });
+
+
+
     //客服电话
     document.getElementById("tel").addEventListener('tap', function() {
         if(mui.os.plus){
@@ -258,30 +211,7 @@
         }
 
     });
-    //		//意见反馈
-    //		document.getElementById("quest").addEventListener('tap', function() {
-    //
-    //		});
-    //
-    //检查更新
-    document.getElementById("update").addEventListener('tap', function() {
-        var server = "http://www.dcloud.io/check/update"; //获取升级描述文件服务器地址
-        mui.getJSON(server, {
-            "appid": plus.runtime.appid,
-            "version": plus.runtime.version,
-            "imei": plus.device.imei
-        }, function(data) {
-            if (data.status) {
-                plus.ui.confirm(data.note, function(i) {
-                    if (0 == i) {
-                        plus.runtime.openURL(data.url);
-                    }
-                }, data.title, ["立即更新", "取　　消"]);
-            } else {
-                mui.toast('Hello MUI 已是最新版本~')
-            }
-        });
-    });
+
     var view = viewApi.view;
     (function($) {
         //处理view的后退与webview后退
@@ -478,8 +408,47 @@
             document.body.appendChild(slider);
             var _slider = mui(slider).slider();
         }
+
+        //mui初始化
+        mui.init({
+            swipeBack: true //启用右滑关闭功能
+        });
+        var info = document.getElementById("info");
+        document.getElementById("alertBtn").addEventListener('tap', function() {
+            mui.alert('欢迎使用Hello MUI', 'Hello MUI', function() {
+                info.innerText = '你刚关闭了警告框';
+            });
+        });
+        document.getElementById("confirmBtn").addEventListener('tap', function() {
+            var btnArray = ['是', '否'];
+            mui.confirm('MUI是个好框架，确认？', 'Hello MUI', btnArray, function(e) {
+                if (e.index == 0) {
+                    info.innerText = '你刚确认MUI是个好框架';
+                } else {
+                    info.innerText = 'MUI没有得到你的认可，继续加油'
+                }
+            })
+        });
+        document.getElementById("promptBtn").addEventListener('tap', function(e) {
+            e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+            var btnArray = ['确定', '取消'];
+            mui.prompt('请输入你对MUI的评语：', '性能好', 'Hello MUI', btnArray, function(e) {
+                if (e.index == 0) {
+                    info.innerText = '谢谢你的评语：' + e.value;
+                } else {
+                    info.innerText = '你点了取消按钮';
+                }
+            })
+        });
+        document.getElementById("toastBtn").addEventListener('tap', function() {
+            mui.toast('欢迎体验Hello MUI');
+        });
+
+
+
     }
 </script>
+
 
 </body>
 
