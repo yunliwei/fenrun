@@ -19,43 +19,43 @@
 
 				$.each(data, function (i, item) {
 
-					var name = item.ware;
-					var price = item.price;
-					var discountprice = item.discountprice;
-					var freight = item.freight;
-					var sale = item.salevolume;
-					var id = item.id;
-					var picture = '/warepicture/' + item.id + '/' + item.warepicture_file_name;
-
 
 					var itemHTML =
-							'<ul class="mui-table-view" style="height: auto">' +
-							'<li class="mui-table-view-cell" >' +
-							'<a href="#">';
+					'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">'+
+							'<div class="mui-checkbox mui-left" >'+
+							'<div class="mui-card-header mui-card-media">'+
+							'<img src="images/2.jpg" style="width: 20px;height: 20px">'+
+							'<div class="mui-media-body" style="margin-left: 10px">'+
+							'华为旗舰店'+
+							'</div>'+
+							'</div>'+
+							'</div>'+
+							'<div class="mui-card-content">'+
+							'<ul class="mui-table-view" >'+
+							'<li class="mui-table-view-cell mui-media">'+
+							'<a>';
 					if (item.warepicture_content_type != null) {
 
-						itemHTML += '<img  class="mui-media-item mui-pull-left"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+						itemHTML += '<img  class="mui-media-item mui-pull-left" style="height: 80px; width: 120px;"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
 
 					}
 					else {
 						itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" >';
 					}
-
-
 					itemHTML +=
-							'<img class="mui-media-item mui-pull-left" src="images/xiangji.jpg">' +
-							'</a>' +
-							'</li>' +
-							'</ul>';
-					$("#item2mobile").append(itemHTML)
-
-					$("#namex").text(name);
-					$("#price").text('￥' + price)
-					$("#discount").text('原价' + '：' + discountprice);
-					$("#freight").text('运费' + ':' + freight);
-					$("#sale").text('销量' + ':' + sale);
-					$("#first").src('"' + picture + '"');
-
+							'<div class="mui-media-body">'+
+							'幸福'+
+							'<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>'+
+					'</div>'+
+					'</a>'+
+					'</li>'+
+					'</ul>'+
+					'</div>'+
+					'<div class="mui-card-footer">'+
+							'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" >删除</button>'+
+							'</div>'+
+							'</div>';
+					$("#collectlist").append(itemHTML)
 
 				});
 			});
@@ -71,39 +71,41 @@
    
     <div class="mui-content">
         <div class="mui-input-row mui-search">
-        <input type="search" class="mui-input-clear" placeholder="">
+        <input type="search" class="mui-input-clear" placeholder="搜索">
     </div>
     
     </div>
-    
-    
-    
-    <div class="mui-card">
-	   <div class="mui-card-header mui-card-media">
-	<img src="images/u=21385237,1665284751&fm=21&gp=0.jpg" />
-	<div class="mui-media-body">
-		华为旗舰店
-	</div>
-</div>
-	<div class="mui-card-content">
-		<ul class="mui-table-view" style="height: 100px;">
-		    <li class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class=" mui-pull-left" src="images/2.jpg" style="height: 80px; width: 120px;">
-		            <div class="mui-media-body" >
-		                幸福
-		                <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-		            </div>
-		        </a>
-		    </li>
-		   
-		</ul>
-	</div>
-	<!--页脚，放置补充信息或支持的操作-->
-	<div class="mui-card-footer">
-	<button type="button" class="mui-btn" style="margin-left: 340px;" >删除</button>
-	</div>
 
+<ul id="collectlist"  style="padding:0; margin:0;">
+	<li style="list-style:none; ">
+		<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">
+			<div class="mui-checkbox mui-left" >
+				<div class="mui-card-header mui-card-media">
+                <img src="images/2.jpg" style="width: 20px;height: 20px">
+					<div class="mui-media-body" style="margin-left: 10px">
+						华为旗舰店
+					</div>
+				</div>
+			</div>
+			<div class="mui-card-content">
+				<ul class="mui-table-view" >
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class=" mui-pull-left" src="images/2.jpg" style="height: 80px; width: 120px;">
+							<div class="mui-media-body">
+								幸福
+								<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="mui-card-footer">
+				<button type="button" class="mui-btn" style="float: right;margin-right: 15px" >删除</button>
+			</div>
+		</div>
+	</li>
+</ul>
     <script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
     mui.init()

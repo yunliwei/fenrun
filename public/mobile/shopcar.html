@@ -38,19 +38,19 @@
 
 		<div class="mui-content">
 			<div class="mui-input-row mui-search">
-				<input type="search" class="mui-input-clear" placeholder="">
+				<input type="search" class="mui-input-clear" placeholder="搜索">
 			</div>
 
-			<ul class="mui-table-view">
-				<li>
-					<div class="mui-card" style="width: 100%;">
-						<div class="mui-checkbox mui-left" style="padding-left: 20px;">
+			<ul style="padding:0; margin:0;" >
+				<li style="list-style:none; padding:0; margin:0;">
+					<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">
+						<div class="mui-checkbox mui-left" >
 						 
 						  <input name="checkbox1" type="checkbox">
 						
 						
 						
-						<div class="mui-card-header mui-card-media" style="width: 80%; margin-left: 30px;">
+						<div class="mui-card-header mui-card-media">
 
 							<div class="mui-media-body">
 								华为旗舰店
@@ -58,7 +58,7 @@
 						</div>
 						</div>
 						<div class="mui-card-content">
-							<ul class="mui-table-view" style="height: 100px;">
+							<ul class="mui-table-view" >
 								<li class="mui-table-view-cell mui-media">
 									<a href="javascript:;">
 										<img class=" mui-pull-left" src="images/2.jpg" style="height: 80px; width: 120px;">
@@ -68,11 +68,10 @@
 										</div>
 									</a>
 								</li>
-
 							</ul>
 						</div>
 						<div class="mui-card-footer">
-							<button type="button" class="mui-btn" style="margin-left: 340px;">删除</button>
+							<button type="button" class="mui-btn" style="float: right;margin-right: 15px" >删除</button>
 						</div>
 						</div>
 				</li>
@@ -80,13 +79,14 @@
 
 			</ul>
 
-<div class="mui-bottom" style="height: 40px;">
-	<div class="mui-input-row mui-checkbox mui-left" >
-	    <label>全选 <button style="height: 34px; float: right;">结算</button></label>
-	    <input name="Checkbox" type="checkbox" checked>
-	    
+<div class="mui-bottom" style="position:fixed; bottom:10px;">
+	<div class="mui-input-row mui-checkbox mui-left" style="height: 40px ;width: 200px ;float: left" >
+	    <label> 全选 </label>
+	    <input name="Checkbox" type="checkbox" >
 	</div>
-	
+	<div style="float: left">
+		<button type="button" class="mui-btn-danger  mui-btn-primary" style="margin-left: 90px; line-height:20px" >结算</button>
+	</div>
 </div>
 
 			</div>

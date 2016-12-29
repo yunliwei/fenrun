@@ -141,15 +141,10 @@ mui.init()
 				var btn = document.getElementById("login");
 //监听点击事件
 				btn.addEventListener("tap",function () {
-<<<<<<< HEAD
-					//alert("sss")
-					mui.getJSON('http://localhost:3000/mobiles/login',{acount:$('#account').val(),password:$('#password').val()},function(data){
-alert("22222")
-=======
+
 
 					mui.getJSON('http://localhost:3000/mobiles/login',{acount:($('#account').val()),password:($('#password').val())},function(data){
-//alert("22222")
->>>>>>> 4581b0dba62f6a34266620c264096e50cc4cd21c
+
 
 								$.each(data, function(i, item) {
 									alert(item.status)
