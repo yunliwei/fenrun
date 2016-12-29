@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery-2.1.1.min.js
+
 //= require bootstrap.min.js
 //= require plugins/metisMenu/jquery.metisMenu.js
 //= require plugins/slimscroll/jquery.slimscroll.min.js

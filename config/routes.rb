@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get 'update'
     get 'createtype'
     get 'edit'
+    get 'createwarelabel'
   end
   end
     

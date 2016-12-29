@@ -44,22 +44,26 @@ end
     params[:freight]=@ware.freight
     params[:discount]=@ware.discount
     params[:baseprice]=@ware.baseprice
+    params[:wareid]=@ware.id
     #debugger
 
  end
 
   def createtype
-id=params[:typename]
+#id=params[:typename]
 #debugger
-    @waretype=Waretype.new(ware_id:205,typename:params[:typename])
+    @waretype=Waretype.new(ware_id:params[:ware_id],typename:params[:typename])
    # debugger
     @waretype.save
-    #debugger
+    id= @waretype.id
+    #render json:('[{"waretypeid":"'+id+'"}]')
+    render json:('[{"waretypeid":"'+id.to_s+'"}]')
+    # debugger
    # redirect_to(:action => "new" )
 
   end
   def createwarelabel
-
+@warelabel=Warelabel.create(waretype_id:1,labelname:params[:labelname],increaseprice:params[:increaseprice],isselect:params[:isselect])
 
   end
 
@@ -78,7 +82,7 @@ def create
   redirect_to(:action => "index" )
   #@ware = Ware.new(ware_params)
   # respond_to do |format|
-  @ware.save
+
   #
   #    format.html { redirect_to @ware, notice: 'Test was successfully created.' }
   #     format.json { render :index, status: :created, location: @ware }
@@ -103,7 +107,7 @@ end
     cccc=Classification.find(arr)
     @ware.classifications.replace(cccc)
     redirect_to(:action => "index" )
-    #
+    @ware.save
      # respond_to do |format|
      #   if @ware.update(ware_params)
      #
