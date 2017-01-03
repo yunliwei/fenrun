@@ -1,6 +1,6 @@
 class Ware < ApplicationRecord
   has_many :favorites
-  has_many :shoppingcars
+  belongs_to :shoppingcar
   has_many :orders
   has_many :waretypes
   has_and_belongs_to_many :classifications

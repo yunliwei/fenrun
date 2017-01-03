@@ -15,7 +15,7 @@ end
   def login
 
     user=User.find_by(username:params[:acount],password_digest:params[:password])
-     debugger
+     #debugger
 
     if(user!=nil)
 
@@ -134,9 +134,10 @@ end
 def buy
   wareid = params[:wareid]
   userid = params[:userid]
-  #debugger
 
+  # if session[:userid]
     @address = Receiptadd.where(:user_id =>userid,:isselect =>1)
+
 
     @waress = Ware.where(:id =>wareid)
 
@@ -145,6 +146,10 @@ def buy
     @all='[{"shouhuoname":"'+@address[0].shouhuoname.to_s+'","address":"'+@address[0].address.to_s+'","phonenumber":"'+@address[0].phonenumber.to_s+'","ware":"'+@waress[0].ware.to_s+'","price":"'+@waress[0].price.to_s+'","freight":"'+@waress[0].freight.to_s+'"}]'
     #debugger
     render json:(@all)
+#   else
+#     render json:('[{"status":"0"}]')
+#     debugger
+# end
 end
 
   def createorder
@@ -157,10 +162,10 @@ end
   end
 
   def createshopcar
-
-    #debugger
+ee = params[:code]
+    debugger
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
-    render json:(@shopcar)
+
   end
 
   def shopcar
@@ -260,11 +265,17 @@ searchname = "e"
  collarry = Array.new(@userid.split(','))
     @ware = Ware.find(collarry)
 
-debugger
+#debugger
     # @waresearch = @ware.where("ware like '%"+searchname+"%'")
+  end
 
 
+  def destroyshopcar
+    @user=User.find(params[:userid])
 
+    @destroy=@user.shoppingcars.where(:ware_id=>params[:ware])
+    #debugger
+    @destroy[0].destroy
 
 
   end

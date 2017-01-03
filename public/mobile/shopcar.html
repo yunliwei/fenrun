@@ -11,7 +11,7 @@
 		<script>
 			$(document).ready(function() {
 
-
+mui.init()
 				mui.getJSON('http://localhost:3000//mobiles/shopcar', {userid:($.session.get('userid'))}, function (data) {
 
 					$.each(data, function (i, item) {
@@ -52,11 +52,23 @@
 						'</ul>'+
 						'</div>'+
 						'<div class="mui-card-footer">'+
-								'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" >删除</button>'+
+								'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" id="'+item.id+'" >删除</button>'+
 								'</div>'+
 								'</div>'+
 								'</li>';
 						$("#shoplist").append(itemHTML)
+
+						var shop = document.getElementById(item.id);
+
+						shop.addEventListener("tap",function(){
+
+							mui.getJSON('http://localhost:3000/mobiles/destroyshopcar', {ware:item.id,userid:($.session.get('userid'))}, function (data) {
+
+									mui.alert("删除成功")
+
+								window.location.reload();
+							})
+						});
 					});
 
 				});

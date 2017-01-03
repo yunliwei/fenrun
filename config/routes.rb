@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'collectlist'
       get 'destroycollect'
       get 'searchcollect'
+      get 'destroyshopcar'
     end
   end
 
