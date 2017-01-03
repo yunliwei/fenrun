@@ -165,13 +165,14 @@ end
 ee = params[:code]
     debugger
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
-
+render json:(@shopcar)
   end
 
   def shopcar
     userid = params[:userid]
     @user = User.find( params[:userid])
     @shopcars=@user.shoppingcars
+    debugger
     @shop = ""
 
     @shopcars.each do |i|

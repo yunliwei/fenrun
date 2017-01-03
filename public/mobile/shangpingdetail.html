@@ -84,7 +84,7 @@
                     location.href = "login.html"
                 }
                 else {
-                    mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code), serid: ($.session.get('userid'))}, function (data) {
+                    mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code), userid: ($.session.get('userid'))}, function (data) {
 
                             mui.alert("加入购物车成功")
 
