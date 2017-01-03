@@ -14,7 +14,50 @@
 
 				mui.getJSON('http://localhost:3000//mobiles/shopcar', {userid:($.session.get('userid'))}, function (data) {
 
+					$.each(data, function (i, item) {
 
+						var itemHTML=
+						'<li style="list-style:none; padding:0; margin:0;">'+
+								'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">'+
+								'<div class="mui-checkbox mui-left" >'+
+
+								'<input name="checkbox1" type="checkbox">'+
+
+
+
+								'<div class="mui-card-header mui-card-media">'+
+
+								'<div class="mui-media-body">'+ item.ware+
+								'</div>'+
+								'</div>'+
+								'</div>'+
+								'<div class="mui-card-content">'+
+								'<ul class="mui-table-view" >'+
+								'<li class="mui-table-view-cell mui-media">'+
+								'<a>';
+						if (item.warepicture_content_type != "") {
+
+							itemHTML += '<img  c class=" mui-pull-left"  style="height: 80px; width: 120px;"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" style="height: 80px; width: 120px"  >';
+						}
+						itemHTML +=
+								'<div class="mui-media-body">'+ item.parice+
+								'<p class="mui-ellipsis">'+item.descript+'</p>'+
+						'</div>'+
+						'</a>'+
+						'</li>'+
+						'</ul>'+
+						'</div>'+
+						'<div class="mui-card-footer">'+
+								'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" >删除</button>'+
+								'</div>'+
+								'</div>'+
+								'</li>';
+						$("#shoplist").append(itemHTML)
+					});
 
 				});
 
@@ -41,45 +84,13 @@
 				<input type="search" class="mui-input-clear" placeholder="搜索">
 			</div>
 
-			<ul style="padding:0; margin:0;" >
-				<li style="list-style:none; padding:0; margin:0;">
-					<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">
-						<div class="mui-checkbox mui-left" >
-						 
-						  <input name="checkbox1" type="checkbox">
-						
-						
-						
-						<div class="mui-card-header mui-card-media">
+			<ul style="padding:0; margin:0;"  id="shoplist">
 
-							<div class="mui-media-body">
-								华为旗舰店
-							</div>
-						</div>
-						</div>
-						<div class="mui-card-content">
-							<ul class="mui-table-view" >
-								<li class="mui-table-view-cell mui-media">
-									<a href="javascript:;">
-										<img class=" mui-pull-left" src="images/2.jpg" style="height: 80px; width: 120px;">
-										<div class="mui-media-body">
-											幸福
-											<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="mui-card-footer">
-							<button type="button" class="mui-btn" style="float: right;margin-right: 15px" >删除</button>
-						</div>
-						</div>
-				</li>
 
 
 			</ul>
 
-<div class="mui-bottom" style="position:fixed; bottom:10px;">
+<div class="mui-bottom" style="position:fixed; bottom:10px; background: white">
 	<div class="mui-input-row mui-checkbox mui-left" style="height: 40px ;width: 200px ;float: left" >
 	    <label> 全选 </label>
 	    <input name="Checkbox" type="checkbox" >
