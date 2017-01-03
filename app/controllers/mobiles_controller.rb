@@ -162,8 +162,7 @@ end
   end
 
   def createshopcar
-ee = params[:code]
-    debugger
+
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
 render json:(@shopcar)
   end
@@ -172,7 +171,7 @@ render json:(@shopcar)
     userid = params[:userid]
     @user = User.find( params[:userid])
     @shopcars=@user.shoppingcars
-    debugger
+
     @shop = ""
 
     @shopcars.each do |i|
@@ -181,6 +180,7 @@ render json:(@shopcar)
 
     arry = Array.new(@shop.split(','))
     @shopss = Ware.find(arry)
+
     render json:(@shopss)
 
   end
