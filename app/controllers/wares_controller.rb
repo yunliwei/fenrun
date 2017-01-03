@@ -46,6 +46,19 @@ end
     params[:baseprice]=@ware.baseprice
     params[:wareid]=@ware.id
     #debugger
+   @waretype =Waretype.where(:ware_id=>@ware.id)
+
+
+   if @waretype !=nil
+
+     # @warelabel =@waretype.warelabels
+# debugger
+
+     # render json: @waretype
+
+   end
+
+
 
  end
 
@@ -63,7 +76,7 @@ end
 
   end
   def createwarelabel
-@warelabel=Warelabel.create(waretype_id:1,labelname:params[:labelname],increaseprice:params[:increaseprice],isselect:params[:isselect])
+@warelabel=Warelabel.create(waretype_id:params[:waretypeid],labelname:params[:labelname],increaseprice:params[:increaseprice],isselect:params[:isselect])
 
   end
 
@@ -122,10 +135,11 @@ end
 
   def destroy
     @ware.destroy
-    respond_to do |format|
-      format.html { redirect_to wares_url, notice: 'Test was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to(:action => "index" )
+    # respond_to do |format|
+    #   format.html { redirect_to wares_url, notice: 'Test was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
 private
