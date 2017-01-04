@@ -11,74 +11,76 @@
 		<script>
 			$(document).ready(function() {
 
-mui.init()
-				mui.getJSON('http://localhost:3000//mobiles/shopcar', {userid:($.session.get('userid'))}, function (data) {
+				if ($.session.get('userid') == undefined) {
 
-					$.each(data, function (i, item) {
+					location.href = "login.html"
+				}
+				else {
 
-						var itemHTML=
-						'<li style="list-style:none; padding:0; margin:0;">'+
-								'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">'+
-								'<div class="mui-checkbox mui-left" >'+
+					mui.init()
+					mui.getJSON('http://localhost:3000//mobiles/shopcar', {userid: ($.session.get('userid'))}, function (data) {
 
-								'<input name="checkbox1" type="checkbox">'+
+						$.each(data, function (i, item) {
+
+							var itemHTML =
+									'<li style="list-style:none; padding:0; margin:0;">' +
+									'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">' +
+									'<div class="mui-checkbox mui-left" >' +
+
+									'<input name="checkbox1" type="checkbox">' +
 
 
+									'<div class="mui-card-header mui-card-media">' +
 
-								'<div class="mui-card-header mui-card-media">'+
+									'<div class="mui-media-body">' + item.ware +
+									'</div>' +
+									'</div>' +
+									'</div>' +
+									'<div class="mui-card-content">' +
+									'<ul class="mui-table-view" >' +
+									'<li class="mui-table-view-cell mui-media">' +
+									'<a>';
+							if (item.warepicture_content_type != "") {
 
-								'<div class="mui-media-body">'+ item.ware+
-								'</div>'+
-								'</div>'+
-								'</div>'+
-								'<div class="mui-card-content">'+
-								'<ul class="mui-table-view" >'+
-								'<li class="mui-table-view-cell mui-media">'+
-								'<a>';
-						if (item.warepicture_content_type != "") {
+								itemHTML += '<img  c class=" mui-pull-left"  style="height: 80px; width: 120px;"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
 
-							itemHTML += '<img  c class=" mui-pull-left"  style="height: 80px; width: 120px;"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+							}
+							else {
+								itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" style="height: 80px; width: 120px"  >';
+							}
+							itemHTML +=
+									'<div class="mui-media-body">' + item.price +
+									'<p class="mui-ellipsis">' + item.describe + '</p>' +
+									'</div>' +
+									'</a>' +
+									'</li>' +
+									'</ul>' +
+									'</div>' +
+									'<div class="mui-card-footer">' +
+									'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" id="' + item.id + '" >删除</button>' +
+									'</div>' +
+									'</div>' +
+									'</li>';
+							$("#shoplist").append(itemHTML)
 
-						}
-						else {
-							itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" style="height: 80px; width: 120px"  >';
-						}
-						itemHTML +=
-								'<div class="mui-media-body">'+ item.price+
-								'<p class="mui-ellipsis">'+item.describe+'</p>'+
-						'</div>'+
-						'</a>'+
-						'</li>'+
-						'</ul>'+
-						'</div>'+
-						'<div class="mui-card-footer">'+
-								'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" id="'+item.id+'" >删除</button>'+
-								'</div>'+
-								'</div>'+
-								'</li>';
-						$("#shoplist").append(itemHTML)
+							var shop = document.getElementById(item.id);
 
-						var shop = document.getElementById(item.id);
+							shop.addEventListener("tap", function () {
 
-						shop.addEventListener("tap",function(){
-
-							mui.getJSON('http://localhost:3000/mobiles/destroyshopcar', {ware:item.id,userid:($.session.get('userid'))}, function (data) {
+								mui.getJSON('http://localhost:3000/mobiles/destroyshopcar', {
+									ware: item.id,
+									userid: ($.session.get('userid'))
+								}, function (data) {
 
 									mui.alert("删除成功")
 
-								window.location.reload();
-							})
+									window.location.reload();
+								})
+							});
 						});
+
 					});
-
-				});
-
-
-
-
-
-
-
+				}
 			});
 
 

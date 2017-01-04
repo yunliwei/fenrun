@@ -80,6 +80,7 @@ class MobilesController < ApplicationController
 
 
   def warelist
+
     @ware = Ware.all
     render json:(@ware)
   end
@@ -121,7 +122,13 @@ class MobilesController < ApplicationController
   def collect
     collect = params[:code]
     user = params[:userid]
-# debugger
+ # debugger
+ #    if user ==""
+ #      render json:('[{"login":"1"}]')
+ #      debugger
+ #    else
+
+
     @user = User.find( params[:userid])
     @collects=@user.favorites
 
@@ -139,10 +146,11 @@ class MobilesController < ApplicationController
         render json:('[{"status":"1"}]')
       else
         render json:('[{"status":"0"}]')
-      end
-    end
 
     end
+    end
+    end
+
 
     #debugger
     # ss = @collects[0].ware_id.to_s
@@ -232,11 +240,11 @@ class MobilesController < ApplicationController
 
   def orderdetail
 # ss= params[:status]
-    id = params[:userid]
-   rr= params[:status]
-    debugger
- if params[:status]==1
-   debugger
+#     id = params[:userid]
+#    rr= params[:status]
+#     # debugger
+#  if params[:status]==1
+#    # debugger
     @user=User.find(params[:userid])
 
     @order=@user.orders
@@ -254,7 +262,7 @@ class MobilesController < ApplicationController
    render json:('[{"status":"0"}]')
   end
     # debugger
-  end
+
 
 
 

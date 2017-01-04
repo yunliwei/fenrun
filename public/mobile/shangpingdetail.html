@@ -67,7 +67,11 @@
 //                mui.alert($.session.get('userid'))
                 mui.getJSON('http://localhost:3000//mobiles/collect', {code: (code),userid:($.session.get('userid'))}, function (data) {
                     $.each(data, function (i, item) {
-                        if(item.status == 0)
+                        if (item.login == 1)
+                        {
+                            location.href = "login.html"
+                        }
+                        else if(item.status == 0)
                         {
                             mui.alert("已经存在")
                         }
