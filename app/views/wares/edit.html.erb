@@ -261,6 +261,24 @@ $('#showguige').click(function(){
       });
 
 
+//返回商品标签
+      $.getJSON('/wares/renderwarebiaoqian', {ware_id:$('#wareid').val()}, function (data) {
+
+        $.each(data.waretype, function (i, itemware) {
+
+          $.each(data.data, function (i, itemdata) {
+            //alert(itemdata.waretype_id)
+if(itemware.id==2)
+{
+  alert(itemdata.labelname)
+}
+
+          })
+
+        })
+      });
+
+
     });
 
   </script>

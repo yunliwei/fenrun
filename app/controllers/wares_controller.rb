@@ -46,29 +46,21 @@ end
     params[:baseprice]=@ware.baseprice
     params[:wareid]=@ware.id
     #debugger
-   @waretype =Waretype.where(:ware_id=>@ware.id)
 
-@warelabel=@ware.warelabels
-
-    @aa={"waretype"=>@waretype,"data"=>@warelabel}.to_json
-    # render json:
-    # @waretype =Waretype.find(1)
-    #
-    # @warelabel =@waretype.warelabels
-
-     debugger
-  # if @waretype !=nil
+  end
 
 
+  def renderwarebiaoqian
+    @ware = Ware.find(params[:ware_id])
+    # debugger
+    @waretype =Waretype.where(:ware_id=>@ware.id)
 
+    @warelabel=@ware.warelabels
 
-     # render json: @waretype
-
- #  end
-
-
-
- end
+    @aa={"waretype"=>@waretype,"data"=>@warelabel}
+     # debugger
+render json: @aa
+  end
 
   def createtype
 #id=params[:typename]

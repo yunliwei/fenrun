@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get 'createtype'
     get 'edit'
     get 'createwarelabel'
+    get 'renderwarebiaoqian'
   end
   end
     
