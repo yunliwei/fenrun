@@ -122,6 +122,7 @@ end
     collect = params[:code]
     user = params[:userid]
     @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+
     #debugger
     # @favorites=User.find(params[:userid]).favorites
     # @favorites.create(link:params[:link])
