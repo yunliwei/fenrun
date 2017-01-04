@@ -57,8 +57,19 @@ end
 
     @warelabel=@ware.warelabels
 
-    @aa={"waretype"=>@waretype,"data"=>@warelabel}
-     # debugger
+    @waretypes=''
+
+    @waretype.each do |waretype|
+      @json=Warelabel.where(:waretype_id=>waretype.id)
+      debugger
+       #@waretypes=@waretypes+@json
+      end
+
+    debugger
+
+
+    @aa={"waretype"=>@waretype,"data"=>@warelabel}.to_json
+
 render json: @aa
   end
 

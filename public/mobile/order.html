@@ -27,6 +27,7 @@
             var userid = ($.session.get('userid'))
 
             mui.getJSON('http://localhost:3000//mobiles/buy', {wareid: (wareid), userid: ($.session.get('userid'))}, function (data) {
+                alert("5555")
                 $.each(data, function (i, item) {
 
                 var fare = item.freight

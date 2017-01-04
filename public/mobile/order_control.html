@@ -18,7 +18,7 @@
 					location.href = "login.html"
 				}
 				else {
-					mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid: ($.session.get('userid'))}, function (data) {
+					mui.getJSON('http://localhost:3000//mobiles/orderdetail', {}, function (data) {
 
 						$.each(data, function (i, item) {
 //						varstate status = item.
@@ -71,7 +71,7 @@
 
 						$.ajax({
 							type: 'get',
-							url: '/mobiles/orderdetail?status=1'
+							url: '/mobiles/orderdetail?status=1&userid='+ ($.session.get('userid'))+''
 
 						});
 
