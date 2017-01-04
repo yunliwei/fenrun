@@ -16,6 +16,7 @@
 //显示商品列表
             mui.getJSON('http://localhost:3000/mobiles/warelist',{}, function (data) {
 
+
                 $.each(data, function (i, item) {
 
                     var id = item.id.toString()

@@ -9,89 +9,72 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/juqerysession.js"></script>
     <script>
-
         $(document).ready(function() {
 //            alert($.session.get('userid'))
             if ($.session.get('userid') == undefined) {
-
                 location.href = "login.html"
             }
             else {
 
-            var getQueryString = function (key) {
-                var search = decodeURIComponent(location.search);
-                var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
-                return search.replace(reg, "$1");
-            }
-            var wareid = getQueryString("wareid");
-            var userid = ($.session.get('userid'))
+                var getQueryString = function (key) {
+                    var search = decodeURIComponent(location.search);
+                    var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
+                    return search.replace(reg, "$1");
+                }
+                var wareid = getQueryString("wareid");
+                var userid = ($.session.get('userid'))
+                mui.getJSON('http://localhost:3000//mobiles/buy', {wareid: (wareid), userid: ($.session.get('userid'))}, function (data) {
+                    $.each(data, function (i, item) {
+                        var fare = item.freight
+                        var price = item.price
+                        var summ = parseFloat(price) + parseFloat(fare)
+                        var itemHTML =
+                                '<a>' +
+                                '<div style="background-color:white; width: 100%; float: left; margin-left: 0px">' +
+                                    <!--页眉，放置标题-->
+                                '<div class="mui-card-header"style="height: 20px; color: black">' + "收货人：" + item.shouhuoname + '</div>' +
+                                    <!--内容区-->
+                                '<div class="mui-card-header"style="height: 20px; color:black;">联系电话：' + item.phonenumber +
+                                '</div>' +
+                                    <!--页脚，放置补充信息或支持的操作-->
+                                '<div class="mui-card-footer">' +
+                                '<div style="float: left; color: black"" class="mui-left" >收货地址：' + item.address + '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</a>' +
+                                '<a>' +
+                                '<div  style="background-color:white; width: 100%; float: left; margin-left: 0px; margin-top: 10px;">' +
+                                    <!--页眉，放置标题-->
+                                    <!--内容区-->
+                                '<div class="mui-card-header"style="height: 20px; color: black"">' +
+                                '商品：' + item.ware +
+                                '</div>' +
+                                '</div>' +
+                                '</a>' +
+                                '<div style="background-color: white" class="mui-card-header" style="height: 20px;">' + '规格：' + '</div>' +
+                                '<div style="background-color: white" class="mui-card-header" style="height: 20px;">' + '运费：' + item.freight + '</div>' +
+                                '<div style="background-color: white ;height: 34px ;line-height: 34px;text-indent: 18px ;">数量：<input  style="background-color: white; height: 34px; width: 80%;float: right" id="num"></div>' +
+                                '<div style="background-color: white ;height: 34px ;line-height: 34px;text-indent: 18px">备注：<input  style="background-color: white; height: 34px; width: 80%;float: right" id="remark"></div>' +
+                                '<div style="background-color: white" class="mui-card-header" style="height: 20px" id="sum">' + '合计：' + summ + '</div>';
+                        $("#orderdetail").append(itemHTML)
 
-            mui.getJSON('http://localhost:3000//mobiles/buy', {wareid: (wareid), userid: ($.session.get('userid'))}, function (data) {
-                alert("5555")
-                $.each(data, function (i, item) {
-
-                var fare = item.freight
-                var price = item.price
-                var summ = parseFloat(price) + parseFloat(fare)
-
-                var itemHTML =
-                        '<a>' +
-                        '<div style="background-color:white; width: 100%; float: left; margin-left: 0px">' +
-                            <!--页眉，放置标题-->
-                        '<div class="mui-card-header"style="height: 20px; color: black">' + "收货人：" + item.shouhuoname + '</div>' +
-                            <!--内容区-->
-                        '<div class="mui-card-header"style="height: 20px; color:black;">联系电话：' + item.phonenumber +
-                        '</div>' +
-                            <!--页脚，放置补充信息或支持的操作-->
-                        '<div class="mui-card-footer">' +
-                        '<div style="float: left; color: black"" class="mui-left" >收货地址：' + item.address + '</div>' +
-
-                        '</div>' +
-
-                        '</div>' +
-
-                        '</a>' +
-
-                        '<a>' +
-                        '<div  style="background-color:white; width: 100%; float: left; margin-left: 0px; margin-top: 10px;">' +
-                            <!--页眉，放置标题-->
-
-                            <!--内容区-->
-                        '<div class="mui-card-header"style="height: 20px; color: black"">' +
-                        '商品：' + item.ware +
-                        '</div>' +
-
-                        '</div>' +
-                        '</a>' +
-                        '<div style="background-color: white" class="mui-card-header" style="height: 20px;">' + '规格：' + '</div>' +
-                        '<div style="background-color: white" class="mui-card-header" style="height: 20px;">' + '运费：' + item.freight + '</div>' +
-                        '<div style="background-color: white ;height: 34px ;line-height: 34px;text-indent: 18px ;">数量：<input  style="background-color: white; height: 34px; width: 80%;float: right" id="num"></div>' +
-
-                        '<div style="background-color: white ;height: 34px ;line-height: 34px;text-indent: 18px">备注：<input  style="background-color: white; height: 34px; width: 80%;float: right" id="remark"></div>' +
-                        '<div style="background-color: white" class="mui-card-header" style="height: 20px" id="sum">' + '合计：' + summ + '</div>';
-
-                $("#orderdetail").append(itemHTML)
 //点击提交订单
-                $("#num").keyup(function () {
-                    var summ = parseFloat(price) * parseFloat($('#num').val()) + parseFloat(fare)
-
-                    $("#sum").text('合计：' + summ);
-                });
-
-                $("#createorder").click(function () {
-                    alert("9999")
-                    mui.getJSON('http://localhost:3000//mobiles/createorder', {
-                        wareid: (wareid),
-                        userid: $.session.get('userid'),
-                        fare: (fare),
-                        number: $('#num').val(),
-                        sum: (summ),
-                        remark: $('#remark').val()
-                    }, function (data) {
-
-                    });
-                });
-
+                        $("#num").keyup(function () {
+                             summ = parseFloat(price) * parseFloat($('#num').val()) + parseFloat(fare)
+                            $("#sum").text('合计:'+summ);
+                        });
+                        $("#createorder").click(function () {
+                            alert("9999")
+                            mui.getJSON('http://localhost:3000//mobiles/createorder', {
+                                wareid: (wareid),
+                                userid: $.session.get('userid'),
+                                fare: (fare),
+                                number: $('#num').val(),
+                                sum:  (summ),
+                                remark: $('#remark').val()
+                            }, function (data) {
+                            });
+                        });
 //                var btn = document.getElementById("createorder");
 ////监听点击事件
 //                btn.addEventListener("tap",function () {
@@ -101,14 +84,9 @@
 //                    mui.getJSON('http://localhost:3000//mobiles/createorder', {wareid: (wareid),userid:$.session.get('userid'),fare:(fare),number:$('#num').val(),sum:(summ),remark:$('#remark').val()},function(data){
 //                    })
 //                });
-
-
-            });
-
-
-            });
+                    });
+                });
             }
-
         });
     </script>
 </head>
@@ -123,7 +101,7 @@
 
 </div>
 
-    <button type="button" class="mui-btn-danger  mui-btn-primary" style="float: right;margin-right: 15px" id="createorder">提交订单</button>
+<button type="button" class="mui-btn-danger  mui-btn-primary" style="float: right;margin-right: 15px" id="createorder">提交订单</button>
 
 
 <script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
@@ -136,11 +114,9 @@
         width: 240px;
         padding-left: 20px;
     }
-
     .mui-input-row {
         height: 34px;
     }
-
     .mui-search {
         height: 34px;
     }

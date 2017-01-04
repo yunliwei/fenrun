@@ -11,111 +11,118 @@
 		$(document).ready(function() {
 
 
-			mui.getJSON('http://localhost:3000/mobiles/collectlist', {userid:($.session.get('userid'))}, function (data) {
+				mui.getJSON('http://localhost:3000/mobiles/collectlist', {userid: ($.session.get('userid'))}, function (data) {
 
-				$.each(data, function (i, item) {
+					$.each(data, function (i, item) {
 
 
-					var itemHTML =
-					'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">'+
-							'<div class="mui-checkbox mui-left" >'+
-							'<div class="mui-card-header mui-card-media">'+
-
-//							'<img src="images/2.jpg" style="width: 20px;height: 20px">'+
-							'<div class="mui-media-body" style="margin-left: 10px">'+
-							item.ware+
-							'</div>'+
-							'</div>'+
-							'</div>'+
-							'<div class="mui-card-content">'+
-							'<ul class="mui-table-view" >'+
-							'<li class="mui-table-view-cell mui-media">'+
-							'<a>';
-					if (item.warepicture_content_type != null) {
-
-						itemHTML += '<img  class="mui-media-item mui-pull-left" style="height: 80px; width: 120px"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
-
-					}
-					else {
-						itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" style="height: 80px; width: 120px"  >';
-					}
-					itemHTML +=
-							'<div class="mui-media-body">'+
-							item.price+
-							'<p class="mui-ellipsis">'+item.describe+'</p>'+
-					'</div>'+
-					'</a>'+
-					'</li>'+
-					'</ul>'+
-					'</div>'+
-					'<div class="mui-card-footer">'+
-							'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" id="'+item.id+'" >删除</button>'+
-							'</div>'+
-							'</div>';
-					$("#collectlist").append(itemHTML)
-
-					var shopbtn = document.getElementById(item.id);
-					shopbtn.addEventListener("tap",function(){
-
-						mui.getJSON('http://localhost:3000/mobiles/destroycollect', {ware:item.id,userid:($.session.get('userid'))}, function (data) {
-                        mui.alert("删除成功")
-							window.location.reload();
-						})
-						});
-
-				});
-
-				$(document).ready(function () {
-					$('#search').keyup(function (e) {//捕获文档对象的按键弹起事件
-						if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
-							mui.getJSON('http://localhost:3000/mobiles/searchcollect', {searchtext:($("#search").val()),userid:($.session.get('userid'))}, function (data) {
-								$.each(data, function (i, item) {
-									var itemHTML =
-											'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">'+
-											'<div class="mui-checkbox mui-left" >'+
-											'<div class="mui-card-header mui-card-media">'+
+						var itemHTML =
+								'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">' +
+								'<div class="mui-checkbox mui-left" >' +
+								'<div class="mui-card-header mui-card-media">' +
 
 //							'<img src="images/2.jpg" style="width: 20px;height: 20px">'+
-											'<div class="mui-media-body" style="margin-left: 10px">'+
-											item.ware+
-											'</div>'+
-											'</div>'+
-											'</div>'+
-											'<div class="mui-card-content">'+
-											'<ul class="mui-table-view" >'+
-											'<li class="mui-table-view-cell mui-media">'+
-											'<a>';
-									if (item.warepicture_content_type != null) {
+								'<div class="mui-media-body" style="margin-left: 10px">' +
+								item.ware +
+								'</div>' +
+								'</div>' +
+								'</div>' +
+								'<div class="mui-card-content">' +
+								'<ul class="mui-table-view" >' +
+								'<li class="mui-table-view-cell mui-media">' +
+								'<a>';
+						if (item.warepicture_content_type != null) {
 
-										itemHTML += '<img  class="mui-media-item mui-pull-left" style="height: 80px; width: 120px"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
-
-									}
-									else {
-										itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" style="height: 80px; width: 120px"  >';
-									}
-									itemHTML +=
-											'<div class="mui-media-body">'+
-											item.price+
-											'<p class="mui-ellipsis">'+item.describe+'</p>'+
-											'</div>'+
-											'</a>'+
-											'</li>'+
-											'</ul>'+
-											'</div>'+
-											'<div class="mui-card-footer">'+
-											'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" id="'+item.id+'" >删除</button>'+
-											'</div>'+
-											'</div>';
-									$("#collectlist").append(itemHTML)
-								});
-								$("#search").val("");
-							})
+							itemHTML += '<img  class="mui-media-item mui-pull-left" style="height: 80px; width: 120px"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
 
 						}
+						else {
+							itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" style="height: 80px; width: 120px"  >';
+						}
+						itemHTML +=
+								'<div class="mui-media-body">' +
+								item.price +
+								'<p class="mui-ellipsis">' + item.describe + '</p>' +
+								'</div>' +
+								'</a>' +
+								'</li>' +
+								'</ul>' +
+								'</div>' +
+								'<div class="mui-card-footer">' +
+								'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" id="' + item.id + '" >删除</button>' +
+								'</div>' +
+								'</div>';
+						$("#collectlist").append(itemHTML)
+
+						var shopbtn = document.getElementById(item.id);
+						shopbtn.addEventListener("tap", function () {
+
+							mui.getJSON('http://localhost:3000/mobiles/destroycollect', {
+								ware: item.id,
+								userid: ($.session.get('userid'))
+							}, function (data) {
+								mui.alert("删除成功")
+								window.location.reload();
+							})
+						});
+
 					});
 
+					$(document).ready(function () {
+						$('#search').keyup(function (e) {//捕获文档对象的按键弹起事件
+							if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
+								mui.getJSON('http://localhost:3000/mobiles/searchcollect', {
+									searchtext: ($("#search").val()),
+									userid: ($.session.get('userid'))
+								}, function (data) {
+									$.each(data, function (i, item) {
+										var itemHTML =
+												'<div class="mui-card" style="width: 360px;height: 241px;margin-left: -1px ">' +
+												'<div class="mui-checkbox mui-left" >' +
+												'<div class="mui-card-header mui-card-media">' +
+
+//							'<img src="images/2.jpg" style="width: 20px;height: 20px">'+
+												'<div class="mui-media-body" style="margin-left: 10px">' +
+												item.ware +
+												'</div>' +
+												'</div>' +
+												'</div>' +
+												'<div class="mui-card-content">' +
+												'<ul class="mui-table-view" >' +
+												'<li class="mui-table-view-cell mui-media">' +
+												'<a>';
+										if (item.warepicture_content_type != null) {
+
+											itemHTML += '<img  class="mui-media-item mui-pull-left" style="height: 80px; width: 120px"  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+										}
+										else {
+											itemHTML += '<img class="mui-media-item mui-pull-left" src= "images/xiangji.jpg" style="height: 80px; width: 120px"  >';
+										}
+										itemHTML +=
+												'<div class="mui-media-body">' +
+												item.price +
+												'<p class="mui-ellipsis">' + item.describe + '</p>' +
+												'</div>' +
+												'</a>' +
+												'</li>' +
+												'</ul>' +
+												'</div>' +
+												'<div class="mui-card-footer">' +
+												'<button type="button" class="mui-btn" style="float: right;margin-right: 15px" id="' + item.id + '" >删除</button>' +
+												'</div>' +
+												'</div>';
+										$("#collectlist").append(itemHTML)
+									});
+									$("#search").val("");
+								})
+
+							}
+						});
+
+					});
 				});
-			});
+
 		});
 	</script>
 </head>
