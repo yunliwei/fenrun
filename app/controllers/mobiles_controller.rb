@@ -125,22 +125,22 @@ class MobilesController < ApplicationController
     @user = User.find( params[:userid])
     @collects=@user.favorites
 
-    # debugger
-    # if @collects.empty?
-    #   # @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
-    #   # debugger
-    #   render json:('[{"status":"0"}]')
-    # end
-
-
+    # # debugger
+    if @collects.empty?
+      @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+      render json:('[{"status":"1"}]')
+      # debugger
+    else
     @collects.each do |t|
+      debugger
       if t.ware_id.to_s!=collect
         debugger
         @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+        render json:('[{"status":"1"}]')
       else
         render json:('[{"status":"0"}]')
       end
-
+    end
 
     end
 
@@ -231,11 +231,16 @@ class MobilesController < ApplicationController
   end
 
   def orderdetail
-
+# ss= params[:status]
+    id = params[:userid]
+   rr= params[:status]
+    debugger
+ if params[:status]==1
+   debugger
     @user=User.find(params[:userid])
 
     @order=@user.orders
-    #debugger
+
     @wareid=''
     @order.each do|i|
       @wareid=@wareid+i.ware_id.to_s+','
@@ -245,6 +250,9 @@ class MobilesController < ApplicationController
     @waresss=Ware.find(arr)
     #debugger
     render json:@waresss
+ else
+   render json:('[{"status":"0"}]')
+  end
     # debugger
   end
 
