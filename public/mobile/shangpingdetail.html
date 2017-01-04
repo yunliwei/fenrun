@@ -66,7 +66,17 @@
 //                location.href = "collect.html?collect="+$("#collect").text()
 //                mui.alert($.session.get('userid'))
                 mui.getJSON('http://localhost:3000//mobiles/collect', {code: (code),userid:($.session.get('userid'))}, function (data) {
-                    mui.alert("加入收藏成功")
+                    $.each(data, function (i, item) {
+                        if(item.status == 0)
+                        {
+                            mui.alert("已经存在")
+                        }
+                        else if(item.status == 1)
+                        {
+                            mui.alert("加入收藏成功")
+                        }
+
+                    });
                 })
             });
 

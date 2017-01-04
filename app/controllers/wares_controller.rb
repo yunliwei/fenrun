@@ -47,18 +47,16 @@ end
     params[:wareid]=@ware.id
     #debugger
    @waretype =Waretype.where(:ware_id=>@ware.id)
-    @warelabel=''
-@waretype.each do |t|
-  @warelabel =@warelabel+t.warelabels
 
-end
+@warelabel=@ware.warelabels
 
-    #
+    @aa={"waretype"=>@waretype,"data"=>@warelabel}.to_json
+    # render json:
     # @waretype =Waretype.find(1)
     #
     # @warelabel =@waretype.warelabels
 
-    # debugger
+     debugger
   # if @waretype !=nil
 
 
