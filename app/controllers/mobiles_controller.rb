@@ -121,21 +121,42 @@ class MobilesController < ApplicationController
   def collect
     collect = params[:code]
     user = params[:userid]
+# debugger
     @user = User.find( params[:userid])
     @collects=@user.favorites
-    #debugger
-    # ss = @collects[0].ware_id.to_s
-    if
-    @collects[0].ware_id != "" && @collects[0].ware_id.to_s == params[:code]
 
-      render json:('[{"status":"0"}]')
-      debugger
-    else
-      @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
-      render json:('[{"status":"1"}]')
+    # debugger
+    # if @collects.empty?
+    #   # @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+    #   # debugger
+    #   render json:('[{"status":"0"}]')
+    # end
+
+
+    @collects.each do |t|
+      if t.ware_id.to_s!=collect
+        debugger
+        @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+      else
+        render json:('[{"status":"0"}]')
+      end
+
+
     end
 
     #debugger
+    # ss = @collects[0].ware_id.to_s
+    # if (@collects[0].ware_id.to_s != "" && @collects[0].ware_id.to_s == params[:code])
+    #
+    #   render json:('[{"status":"0"}]')
+    #
+    # else
+    #   @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+    #   render json:('[{"status":"1"}]')
+    # end
+
+    #debugger
+
 
     #debugger
     # @favorites=User.find(params[:userid]).favorites

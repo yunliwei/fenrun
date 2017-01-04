@@ -48,15 +48,23 @@ end
     #debugger
    @waretype =Waretype.where(:ware_id=>@ware.id)
 
+@warelabel=@ware.warelabels
 
-   if @waretype !=nil
+    @aa={"waretype"=>@waretype,"data"=>@warelabel}.to_json
+    # render json:
+    # @waretype =Waretype.find(1)
+    #
+    # @warelabel =@waretype.warelabels
 
-     # @warelabel =@waretype.warelabels
-# debugger
+     debugger
+  # if @waretype !=nil
+
+
+
 
      # render json: @waretype
 
-   end
+ #  end
 
 
 
