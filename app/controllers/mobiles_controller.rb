@@ -178,7 +178,7 @@ end
   def createshopcar
 
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
-
+render json:(@shopcar)
   end
 
   def shopcar
