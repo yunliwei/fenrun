@@ -17,6 +17,8 @@
 				mui.getJSON('http://localhost:3000//mobiles/orderdetail',{userid:($.session.get('userid'))},function(data){
 
 					$.each(data, function (i, item) {
+						var status = item.state
+
 var itemHtml =
 
 						'<div class="mui-card" style="width: 100%;">'+
@@ -42,7 +44,17 @@ var itemHtml =
 
 								'</div>'+
 								'</div>';
-						$('#list').append(itemHtml)
+						if (status != "") {
+							$('#list').append(itemHtml)
+						}
+						else if (status == "2")
+						{
+							$('#item2mobile').append(itemHtml)
+						}
+						else if(status == "1")
+						{
+							$('#item3mobile').append(itemHtml)
+						}
 
 					});
 				});
@@ -71,13 +83,17 @@ var itemHtml =
 
 		                </ul>
 		            </div>
-		            <div id="item2mobile" class="mui-slider-item mui-control-content">
-		            	
-		            	<p> 您还没有相关订单</p> 
+		            <div  class="mui-slider-item mui-control-content">
+
+						<ul class="mui-table-view" id="item2mobile">
+
+						</ul>
 	                    
 		            </div>
-		            <div id="item3mobile" class="mui-slider-item mui-control-content">
-		               <p> 您还没有相关订单</p> 
+		            <div class="mui-slider-item mui-control-content">
+						<ul class="mui-table-view" id="item3mobile">
+
+						</ul>
 		            </div>
 		             <div id="item4mobile" class="mui-slider-item mui-control-content">
 		               <p> 您还没有相关订单</p> 

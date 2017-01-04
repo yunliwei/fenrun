@@ -121,11 +121,25 @@ end
   def collect
     collect = params[:code]
     user = params[:userid]
-    @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+    @user = User.find( params[:userid])
+    @collects=@user.favorites
+    # debugger
+    # ss = @collects[0].ware_id.to_s
+    if
+    @collects[0].ware_id.to_s != nil
+      @collects[0].ware_id.to_s == params[:code]
+      render json:('[{"status":"0"}]')
+    else
+      @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+      render json:('[{"status":"1"}]')
+    end
+
+    #debugger
+
     #debugger
     # @favorites=User.find(params[:userid]).favorites
     # @favorites.create(link:params[:link])
-    render json:(@collect)
+
     # cccc=Favorite.find(collect)
     # @ware.favorite.push(cccc)
     # debugger
