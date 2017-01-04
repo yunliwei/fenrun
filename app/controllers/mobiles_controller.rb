@@ -123,12 +123,12 @@ end
     user = params[:userid]
     @user = User.find( params[:userid])
     @collects=@user.favorites
-    # debugger
+    #debugger
     # ss = @collects[0].ware_id.to_s
-    if
-    @collects[0].ware_id.to_s != nil
-      @collects[0].ware_id.to_s == params[:code]
+    if (@collects[0].ware_id.to_s != "" && @collects[0].ware_id.to_s == params[:code])
+
       render json:('[{"status":"0"}]')
+      debugger
     else
       @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
       render json:('[{"status":"1"}]')
