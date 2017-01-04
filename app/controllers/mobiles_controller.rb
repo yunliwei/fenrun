@@ -1,21 +1,21 @@
 class MobilesController < ApplicationController
 
-def reg
+  def reg
 
-  user=User.find_by(username:params[:acount])
-  if(user==nil)
-    user = User.create(username:params[:acount],password_digest:params[:password],email:params[:email])
-    render json:('[{"status":"1"}]')
-  else
-    render json:('[{"status":"0"}]')
+    user=User.find_by(username:params[:acount])
+    if(user==nil)
+      user = User.create(username:params[:acount],password_digest:params[:password],email:params[:email])
+      render json:('[{"status":"1"}]')
+    else
+      render json:('[{"status":"0"}]')
+    end
+
   end
-
-end
 
   def login
 
     user=User.find_by(username:params[:acount],password_digest:params[:password])
-     #debugger
+    #debugger
 
     if(user!=nil)
 
@@ -23,7 +23,7 @@ end
       #       session[:password]="321"
       id=user.id.to_s
       aa='[{"status":"1","id":"'+id+'"}]'
-     #debugger
+      #debugger
       render json:('[{"status":"1","id":"'+id+'"}]')
       #debugger
 
@@ -34,44 +34,44 @@ end
   end
 
 
-def shangjiaruzhu
+  def shangjiaruzhu
 
-  businesssettled = Businesssettled.find_by(name:params[:ruzhuname])
-  if(businesssettled==nil)
-    businesssettled = Businesssettled.create(name:params[:ruzhuname],phonenumber:params[:ruzhuphone])
-    render json:('[{"status":"1"}]')
-  else
-  render json:('[{"status":"0"}]')
+    businesssettled = Businesssettled.find_by(name:params[:ruzhuname])
+    if(businesssettled==nil)
+      businesssettled = Businesssettled.create(name:params[:ruzhuname],phonenumber:params[:ruzhuphone])
+      render json:('[{"status":"1"}]')
+    else
+      render json:('[{"status":"0"}]')
+    end
+
   end
 
-end
+  def shangjiatype
 
-def shangjiatype
+    busines = Busine.find_by(name:params[:shangjianame])
+    if(busines==nil)
+      busines = Busine.create(name:params[:shangjianame])
+      render json:('[{"status":"1"}]')
+    else
+      render json:('[{"status":"0"}]')
+    end
 
-  busines = Busine.find_by(name:params[:shangjianame])
-  if(busines==nil)
-    busines = Busine.create(name:params[:shangjianame])
-    render json:('[{"status":"1"}]')
-  else
-    render json:('[{"status":"0"}]')
   end
-
-end
 
   def search
     searchware = params[:sea].to_s
     waretype = params[:type].to_s
     if(searchware !="")
-    @search = Ware.where("ware like '%"+searchware+"%'")
-    #debugger
-    render json:(@search)
+      @search = Ware.where("ware like '%"+searchware+"%'")
+      #debugger
+      render json:(@search)
 
     else if(waretype!="")
-      a=Classification.where(:classname=>waretype)
-      @ware = Classification.find(a.first.id)
-      @search=@ware.wares
-    #  debugger
-      render json:(@search)
+           a=Classification.where(:classname=>waretype)
+           @ware = Classification.find(a.first.id)
+           @search=@ware.wares
+           #  debugger
+           render json:(@search)
          end
     end
 
@@ -86,30 +86,30 @@ end
 
 
   def businelist
-  @busines = Busine.all
+    @busines = Busine.all
     render json:(@busines)
   end
 
-   def selecttype
+  def selecttype
 
-      searchname = params[:sea].to_s
-      searchtype= params[:type].to_s
+    searchname = params[:sea].to_s
+    searchtype= params[:type].to_s
 
-      if ( searchname !="")
-        @busines = Busine.where("name like '%"+searchname+"%'")
-        render json:(@busines)
-        else if(searchtype !="")
-        a=Classification.where(:classname=>searchtype)
-        @busine = Classification.find(a.first.id)
-        @bus=@busine.busines
+    if ( searchname !="")
+      @busines = Busine.where("name like '%"+searchname+"%'")
+      render json:(@busines)
+    else if(searchtype !="")
+           a=Classification.where(:classname=>searchtype)
+           @busine = Classification.find(a.first.id)
+           @bus=@busine.busines
 
-        render json:(@bus)
+           render json:(@bus)
 
-             end
+         end
 
-      end
+    end
 
-   end
+  end
 
   def detail
     goods = params[:code]
@@ -125,7 +125,8 @@ end
     @collects=@user.favorites
     #debugger
     # ss = @collects[0].ware_id.to_s
-    if (@collects[0].ware_id.to_s != "" && @collects[0].ware_id.to_s == params[:code])
+    if
+    @collects[0].ware_id != "" && @collects[0].ware_id.to_s == params[:code]
 
       render json:('[{"status":"0"}]')
       debugger
@@ -145,11 +146,11 @@ end
     # debugger
   end
 
-def buy
-  wareid = params[:wareid]
-  userid = params[:userid]
+  def buy
+    wareid = params[:wareid]
+    userid = params[:userid]
 
-  # if session[:userid]
+    # if session[:userid]
     @address = Receiptadd.where(:user_id =>userid,:isselect =>1)
 
 
@@ -164,10 +165,10 @@ def buy
 #     render json:('[{"status":"0"}]')
 #     debugger
 # end
-end
+  end
 
   def createorder
-   # userid = params[:userid]
+    # userid = params[:userid]
     #debugger
     @order = Order.create(ware_id:params[:wareid],user_id:params[:userid],number:params[:number],sum:params[:sum],userintegral:params[:user],state:params[:states],fare:params[:fare],ramarks:params[:ramark])
     #debugger
@@ -178,7 +179,7 @@ end
   def createshopcar
 
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
-render json:(@shopcar)
+    render json:(@shopcar)
   end
 
   def shopcar
@@ -223,30 +224,30 @@ render json:(@shopcar)
     @waresss=Ware.find(arr)
     #debugger
     render json:@waresss
-   # debugger
+    # debugger
   end
 
 
 
-def collectlist
-  #debugger
-  userid = params[:userid]
+  def collectlist
+    #debugger
+    userid = params[:userid]
 
-  @user = User.find( params[:userid])
-  @collects=@user.favorites
- # debugger
-  @collect = ""
+    @user = User.find( params[:userid])
+    @collects=@user.favorites
+    # debugger
+    @collect = ""
 
-  @collects.each do |i|
-    @collect =@collect+i.ware_id.to_s+','
+    @collects.each do |i|
+      @collect =@collect+i.ware_id.to_s+','
+    end
+
+    arry = Array.new(@collect.split(','))
+    @collectlist = Ware.find(arry)
+    render json:(@collectlist)
+    #debugger
+
   end
-
-  arry = Array.new(@collect.split(','))
-  @collectlist = Ware.find(arry)
-  render json:(@collectlist)
-  #debugger
-
-end
 
   def destroycollect
     wareid = params[:ware]
@@ -254,33 +255,33 @@ end
     @user=User.find(params[:userid])
 #debugger
     @destroy=@user.favorites.where(:ware_id=>params[:ware])
-    # @destroycollect = Favorite.where(:ware_id=>params[:ware])
-    # debugger
+# @destroycollect = Favorite.where(:ware_id=>params[:ware])
+# debugger
     @destroy[0].destroy
 
   end
 
   def searchcollect
 
- #
- # @wares=Ware.all
- #  @wareid=''
- #  @wares.each do |f|
- #    @wareid=@wareid+f.ware_id.to_s+','
- #  end
- #  warearry = Array.new(@wareid.split(','))
+    #
+    # @wares=Ware.all
+    #  @wareid=''
+    #  @wares.each do |f|
+    #    @wareid=@wareid+f.ware_id.to_s+','
+    #  end
+    #  warearry = Array.new(@wareid.split(','))
 
-searchname = "e"
+    searchname = "e"
     @user = User.find(params[:userid])
     @seacollect = @user.favorites
     @userid=''
- @seacollect.each do |f|
-   @userid=@userid+f.ware_id.to_s+','
- end
- collarry = Array.new(@userid.split(','))
+    @seacollect.each do |f|
+      @userid=@userid+f.ware_id.to_s+','
+    end
+    collarry = Array.new(@userid.split(','))
     @ware = Ware.find(collarry)
 
-#debugger
+    #debugger
     # @waresearch = @ware.where("ware like '%"+searchname+"%'")
   end
 
