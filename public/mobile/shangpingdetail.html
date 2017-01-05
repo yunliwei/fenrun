@@ -14,6 +14,10 @@
     <link href="css/mui.min.css" rel="stylesheet"/>
     <link href="css/iconfont.css" rel="stylesheet" >
     <script src="js/juqerysession.js"></script>
+    <script src="js/mui.picker.js"></script>
+    <script src="js/mui.poppicker.js"></script>
+
+
 
     <script>
         $(document).ready(function() {
@@ -88,7 +92,29 @@
             var shopbtn = document.getElementById("shop");
             shopbtn.addEventListener("tap",function(){
 
-                location.href = "order.html?wareid="+$("#getid").val()
+                var picker = new mui.PopPicker();
+                picker.setData([{
+                    value: "first",
+                    text: "第一项"
+                }, {
+                    value: "second",
+                    text: "第一项"
+                }, {
+                    value: "third",
+                    text: "第三项"
+                }, {
+                    value: "fourth",
+                    text: "第四项"
+                }, {
+                    value: "fifth",
+                    text: "第五项"
+                }])
+                picker.pickers[0].setSelectedValue('fourth', 2000);
+                picker.show(function(SelectedItem) {
+                    console.log(SelectedItem);
+                })
+//
+//                location.href = "order.html?wareid="+$("#getid").val()
             });
 //加入购物车
             var shopcar = document.getElementById("shopcar");
