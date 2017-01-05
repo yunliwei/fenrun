@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get 'destroycollect'
       get 'searchcollect'
       get 'destroyshopcar'
+      get 'selectjifen'
     end
   end
 

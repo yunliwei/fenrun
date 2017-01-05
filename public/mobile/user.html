@@ -10,6 +10,74 @@
       <script src="js/iconfont.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/juqerysession.js"></script>
+	<script>
+		$(document).ready(function() {
+			mui.init();
+
+
+//
+//		$(document).ready(function(){
+//
+//			//alert($.session.get('UserName'))
+//		 $('#name').text(   $.session.get('UserName'))
+//
+//		})
+
+			var shopbtn = document.getElementById("jifen");
+			shopbtn.addEventListener("tap",function(){
+				$("#ppp").text("")
+				$("#keyongssss").text("")
+				mui.getJSON('http://localhost:3000//mobiles/selectjifen', {userid:($.session.get('userid'))}, function (data) {
+					$.each(data.jifen, function (i, item1) {
+//						alert(item1.canuserebate)
+
+						var itenhtml=
+
+								'<p>可用积分:'+item1.canuserebate+'</p>'+
+						'<p>须返积分：'+item1.rebate+'</p>';
+						$("#keyongssss").append(itenhtml)
+					});
+
+
+
+					$.each(data.detailjifen, function (i, item2) {
+alert("ddd")
+						var itemhtml1=
+
+										'<p> 积分数：'+item2.integralnumber;
+						if (item2.status == "1")
+						{
+							itemhtml1 +=
+									'<p>状态： 支出</p>';
+						}
+						else if (item2.status == "2")
+						{
+							itemhtml1 +=
+									'<p>状态： 支出</p>';
+						}
+
+								itemhtml1 += '</p>';
+
+						$("#ppp").append(itemhtml1)
+//						var userjifen = item.canuserebate
+//						$("#keyong").text(userjifen)
+					});
+
+
+				});
+
+
+
+
+			});
+
+			mui('body').on('tap','a',function(){document.location.href=this.href;});
+
+
+		});
+
+
+	</script>
 </head>
 <body>
 	<!-- 主界面不动、菜单移动 -->
@@ -110,22 +178,22 @@
         
         <div class="user-tool">
         <div class=" mui-bar-tab">
-        	<a class="mui-tab-item" href="shopcar.html">
+        	<a class="mui-tab-item"  id="shopcar" href="shopcar.html">
         		<span class="mui-icon iconfont icon-gouwuche"></span>
         		<span class="mui-tab-label">购物车</span>
         	</a>
         	
-        	<a class="mui-tab-item" href="collect.html">
+        	<a class="mui-tab-item" id="collect" href="collect.html">
         		<span class="mui-icon mui-icon-compose"></span>
         		<span class="mui-tab-label">收藏夹</span>
         	</a>
         	
-        	<a class="mui-tab-item" href="order_control.html">
+        	<a class="mui-tab-item" id="order" href="order_control.html">
         		<span class="mui-icon mui-icon-compose"></span>
         		<span class="mui-tab-label">订单</span>
         	</a>
         	
-        	<a class="mui-tab-item" >
+        	<a class="mui-tab-item" id="jifen">
         		<span class="mui-icon mui-icon-compose"></span>
         		<span class="mui-tab-label">积分</span>
         	</a>
@@ -133,8 +201,11 @@
         </div>
         </div>
         
-        <div class="user-main">
-        	
+        <div >
+			<div id="keyongssss">
+
+			</div>
+			<div id="ppp"></div>
        </div> 
        
        
@@ -150,15 +221,15 @@
     </div>
     <script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-    mui.init();
-    mui('body').on('tap','a',function(){document.location.href=this.href;});
-
-		$(document).ready(function(){
-
-			//alert($.session.get('UserName'))
-		 $('#name').text(   $.session.get('UserName'))
-
-		})
+//    mui.init();
+//    mui('body').on('tap','a',function(){document.location.href=this.href;});
+////
+//		$(document).ready(function(){
+//
+//			//alert($.session.get('UserName'))
+//		 $('#name').text(   $.session.get('UserName'))
+//
+//		})
 
     </script>
 </body>

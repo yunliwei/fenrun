@@ -333,4 +333,18 @@ class MobilesController < ApplicationController
 
   end
 
+  def selectjifen
+
+    @jifen = User.where(:id=>params[:userid])
+    # debugger
+    # render json:(@jifen)
+
+    @detail = Integraldetailed.where(:user_id => params[:userid])
+    # debugger
+    @all={"jifen"=>@jifen,"detailjifen"=>@detail}.to_json
+
+    # debugger
+    render json: @all
+  end
+
 end
