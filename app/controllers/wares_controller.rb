@@ -61,8 +61,9 @@ end
 
     @waretype.each do |waretype|
       @json=Warelabel.where(:waretype_id=>waretype.id)
-      debugger
-       #@waretypes=@waretypes+@json
+
+      @arr=Array.new(@json)
+
       end
 
     debugger
