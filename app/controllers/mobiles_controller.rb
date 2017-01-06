@@ -207,8 +207,20 @@ class MobilesController < ApplicationController
 
   def createshopcar
 
-    @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
-    render json:(@shopcar)
+
+
+    @wares=Ware.find(params[:code])
+    # debugger
+    @waretype=Waretype.where(:ware_id=>@wares.id)
+@warelabe=Warelabel.where(:waretype_id=>@waretype.ids)
+    @all={"typer"=>@waretype,"labell"=>@warelabel}.to_json
+     render json:(@all)
+    # debugger
+
+
+    #
+    # @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
+    # render json:(@shopcar)
   end
 
   def shopcar

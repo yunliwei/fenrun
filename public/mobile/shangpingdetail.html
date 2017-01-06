@@ -108,9 +108,19 @@
                     location.href = "login.html"
                 }
                 else {
-                    mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code), userid: ($.session.get('userid'))}, function (data) {
-
-                            mui.alert("加入购物车成功")
+                    mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code)}, function (data) {
+                        alert("ooo")
+//                        $.each(data.typer, function (i, item) {
+//alert("ooo")
+//                           var itemhtml =
+//                            '<li class="mui-table-view-cell"><div style="float: left">'+'<p >颜色分类：</p>'+'<button type="button" style="margin-left: 10px">'+item.typename+'</div>'+'</li>';
+//                           $("#tan").append(itemhtml)
+//                        });
+                        $.each(data.labell, function (i, item1) {
+                           var itemhtml=
+                                   '<li class="mui-table-view-cell"><div style="float: left">'+'<p >颜色分类：</p>'+'<button type="button" style="margin-left: 10px">'+item1.labelname+'</div>'+'</li>';
+                              $("#tan").append(itemhtml)
+                        });
 
                     });
                 }
@@ -227,16 +237,25 @@
 
             <span>购买</span>
         </a>
-        <a class="mui-tab-item" style="width: 5px;" id="shopcar">
+        <a class="mui-tab-item" style="width: 5px;" href="#ddd" id="shopcar">
+
+
 
             <span>加入购物车</span>
         </a>
 
     </nav>
 
+    <div id="ddd" class="box mui-popover mui-popover-action mui-popover-bottom" style=" background: white">
+        <ul class="mui-table-view" id="tan">
+
+        </ul>
+    </div>
+
+
     <div id="弹窗ID" class="box mui-popover mui-popover-action mui-popover-bottom" style=" background: white">
     <ul class="mui-table-view">
-        <li class="mui-table-view-cell">Item 1</li>
+        <li class="mui-table-view-cell"><div style="float: left"><p >颜色分类：</p><button type="button" style="margin-left: 10px">pp787787878787878</button><button type="button"   style="margin-left: 10px">pp55555</button></div></li>
         <li class="mui-table-view-cell">Item 2</li>
         <li class="mui-table-view-cell">Item 3</li>
     </ul>
