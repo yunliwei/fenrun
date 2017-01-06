@@ -54,17 +54,11 @@ end
     @ware = Ware.find(params[:ware_id])
     # debugger
     @waretype =Waretype.where(:ware_id=>@ware.id)
+@b=@waretype.ids
 
-    @warelabel=@ware.warelabels
+    @warelabel=Warelabel.where(:waretype_id=>@waretype.ids)
 
-    @waretypes=''
 
-    @waretype.each do |waretype|
-      @json=Warelabel.where(:waretype_id=>waretype.id)
-
-      @arr=Array.new(@json)
-
-      end
 
     debugger
 
