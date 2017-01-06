@@ -213,7 +213,10 @@ class MobilesController < ApplicationController
     # debugger
     @waretype=Waretype.where(:ware_id=>@wares.id)
 @warelabe=Warelabel.where(:waretype_id=>@waretype.ids)
-    @all={"typer"=>@waretype,"labell"=>@warelabel}.to_json
+
+    #debugger
+    @all={"labell"=>@warelabe,"typer"=>@waretype}.to_json
+    #debugger
      render json:(@all)
     # debugger
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,19 +85,14 @@
                         {
                             mui.alert("加入收藏成功")
                         }
-
                     });
                 })
             });
-
 //购买
             var shopbtn = document.getElementById("shop");
             shopbtn.addEventListener("tap",function(){
 //                var picker = new mui.PopPicker();
 //                picker.setData([{value:'zz',text:'智子'}]);
-
-
-
 //
                 location.href = "order.html?wareid="+$("#getid").val()
             });
@@ -104,24 +100,22 @@
             var shopcar = document.getElementById("shopcar");
             shopcar.addEventListener("tap",function(){
                 if ($.session.get('userid') == undefined) {
-
                     location.href = "login.html"
                 }
                 else {
                     mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code)}, function (data) {
-                        alert("ooo")
-//                        $.each(data.typer, function (i, item) {
-//alert("ooo")
-//                           var itemhtml =
-//                            '<li class="mui-table-view-cell"><div style="float: left">'+'<p >颜色分类：</p>'+'<button type="button" style="margin-left: 10px">'+item.typename+'</div>'+'</li>';
-//                           $("#tan").append(itemhtml)
-//                        });
-                        $.each(data.labell, function (i, item1) {
-                           var itemhtml=
-                                   '<li class="mui-table-view-cell"><div style="float: left">'+'<p >颜色分类：</p>'+'<button type="button" style="margin-left: 10px">'+item1.labelname+'</div>'+'</li>';
-                              $("#tan").append(itemhtml)
-                        });
+//                        alert("ooo")
+                        $.each(data.typer, function (i, item) {
 
+                           var itemhtml =
+                                   ' <button type="button" style="margin-left: 10px">'+item.typename+'</button>';
+                           $("#tan").append(itemhtml)
+                        });
+                        $.each(data.labell, function (i, item1) {
+                            var itemhtml=
+                                    ' <button type="button" style="margin-left: 10px">'+item1.typename+'</button>';
+                            $("#tan1").append(itemhtml)
+                        });
                     });
                 }
             });
@@ -196,7 +190,7 @@
                 </div>
             </ul>
         </div>
-<input type="hidden" id="getid">
+        <input type="hidden" id="getid">
         <div class="mui-card" style="width: 100%; float: left; margin-left: 0px">
             <!--页眉，放置标题-->
             <div class="mui-card-header"style="height: 20px;" id="namex"></div>
@@ -247,18 +241,31 @@
     </nav>
 
     <div id="ddd" class="box mui-popover mui-popover-action mui-popover-bottom" style=" background: white">
-        <ul class="mui-table-view" id="tan">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div style="float: left">
+                    <p >颜色分类：</p>
+                    <div id="tan"></div>
+                </div>
+            </li>
 
+            <li class="mui-table-view-cell">
+                <div style="float: left">
+                    <p >颜色分类：</p>
+                    <div id="tan1"></div>
+                </div>
+            </li>
         </ul>
+        <button type="button" style="background-color:coral ;line-height: 20px;width: 100%; font-size: large">确  定</button>
     </div>
 
 
     <div id="弹窗ID" class="box mui-popover mui-popover-action mui-popover-bottom" style=" background: white">
-    <ul class="mui-table-view">
-        <li class="mui-table-view-cell"><div style="float: left"><p >颜色分类：</p><button type="button" style="margin-left: 10px">pp787787878787878</button><button type="button"   style="margin-left: 10px">pp55555</button></div></li>
-        <li class="mui-table-view-cell">Item 2</li>
-        <li class="mui-table-view-cell">Item 3</li>
-    </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell"><div style="float: left"><p >颜色分类：</p><button type="button" style="margin-left: 10px">pp787787878787878</button><button type="button"   style="margin-left: 10px">pp55555</button></div></li>
+            <li class="mui-table-view-cell">Item 2</li>
+            <li class="mui-table-view-cell">Item 3</li>
+        </ul>
     </div>
 
 
@@ -273,7 +280,6 @@
     gallery.slider({
         interval:1000//自动轮播周期，若为0则不自动播放，默认为0；
     });
-
 </script>
 <style>
     /*点击变蓝色高亮*/
