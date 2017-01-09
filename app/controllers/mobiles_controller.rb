@@ -1,5 +1,8 @@
 class MobilesController < ApplicationController
 
+
+
+
   def reg
 
     user=User.find_by(username:params[:acount])
@@ -212,11 +215,12 @@ class MobilesController < ApplicationController
     @wares=Ware.find(params[:code])
     # debugger
     @waretype=Waretype.where(:ware_id=>@wares.id)
+    #debugger
 @warelabe=Warelabel.where(:waretype_id=>@waretype.ids)
 
     #debugger
-    @all={"labell"=>@warelabe,"typer"=>@waretype}.to_json
-    #debugger
+    @all={"data"=>@warelabe,"waretype"=>@waretype}.to_json
+    # debugger
      render json:(@all)
     # debugger
 
@@ -258,7 +262,7 @@ class MobilesController < ApplicationController
 #     id = params[:userid]
 #    rr= params[:status]
 #     # debugger
-#  if params[:status]==1
+  if params[:status]==1
 #    # debugger
     @user=User.find(params[:userid])
 
@@ -278,7 +282,7 @@ class MobilesController < ApplicationController
   end
     # debugger
 
-
+end
 
 
   def collectlist

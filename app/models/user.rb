@@ -12,4 +12,11 @@ class User < ApplicationRecord
   has_many :orders
   has_many :carnumbers
   has_many :withdraws
+
+
+  def self.createuser
+
+    user = User.create(username:'whenever',password_digest:'123',email:'123@qq.com')
+  end
+
 end

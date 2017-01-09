@@ -130,7 +130,10 @@
     </div>
 
 
-    <div id="showdiv">sdf</div>
+    <div id="showdiv">
+
+
+    </div>
 
 
 
@@ -269,20 +272,26 @@ $('#showguige').click(function(){
 
 
         $.each(data.waretype, function (i, itemware) {
-          var itemHTML ='<div id='+itemware.id+'>'+itemware.id+'</div>';
+          var itemHTML ='<div id='+itemware.id+'>'+itemware.typename+'</div>';
           $("#showdiv").append(itemHTML);
-var temid=itemware.id;
+
+
+
           $.each(data.data, function (i, itemdata) {
-            var itemhtml ='<div>'+itemdata.id+'</div>';
+
+            var itemhtml ='<div  id='+itemdata.id+'>'+itemdata.labelname+'' +
+
+                    '<td>'+itemdata.labelname+'</td>'+
+                    '<td>'+itemdata.increaseprice+'</td>'+
+
+
+                '</div>';
+
             if(itemdata.waretype_id==itemware.id){
 
-              //$('#1')
-              //$("div[id='"+itemware.id+"']").append(itemhtml);
-              document.getElementById(itemware.id).append(itemhtml);
+              $("#"+itemware.id).append(itemhtml);
             }
             //alert(itemdata.waretype_id)
-
-
           })
 
         })

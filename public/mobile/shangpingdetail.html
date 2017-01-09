@@ -105,16 +105,27 @@
                 else {
                     mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code)}, function (data) {
 //                        alert("ooo")
-                        $.each(data.typer, function (i, item) {
-
+                        $.each(data.waretype, function (i, itemware) {
+//                            mui.alert(itemware.id);
                            var itemhtml =
-                                   ' <button type="button" style="margin-left: 10px">'+item.typename+'</button>';
-                           $("#tan").append(itemhtml)
+                                   '<li class="mui-table-view-cell id=tan">'+
+                                       '<div style="float: left">'+
+                                   ' <div style="margin-left: 10px"  id='+itemware.id+'>'+ itemware.typename +'</div>'+
+                                           '</div>'+
+                                   '</li>';
+
+                           $("#tan").append(itemhtml);
+
+                        $.each(data.data, function (i, itemdata) {
+                       //   mui.alert(  item1.labelname);
+                            var itemhtmlss=
+                                    ' <button type="button" style="margin-left: 10px">'+ itemdata.labelname +'</button>';
+
+                            if(itemdata.waretype_id==itemware.id){
+
+                                $("#"+itemware.id).append(itemhtmlss);
+                            }
                         });
-                        $.each(data.labell, function (i, item1) {
-                            var itemhtml=
-                                    ' <button type="button" style="margin-left: 10px">'+item1.typename+'</button>';
-                            $("#tan1").append(itemhtml)
                         });
                     });
                 }
@@ -241,20 +252,8 @@
     </nav>
 
     <div id="ddd" class="box mui-popover mui-popover-action mui-popover-bottom" style=" background: white">
-        <ul class="mui-table-view">
-            <li class="mui-table-view-cell">
-                <div style="float: left">
-                    <p >颜色分类：</p>
-                    <div id="tan"></div>
-                </div>
-            </li>
+        <ul class="mui-table-view" id="tan">
 
-            <li class="mui-table-view-cell">
-                <div style="float: left">
-                    <p >颜色分类：</p>
-                    <div id="tan1"></div>
-                </div>
-            </li>
         </ul>
         <button type="button" style="background-color:coral ;line-height: 20px;width: 100%; font-size: large">确  定</button>
     </div>

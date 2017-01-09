@@ -60,7 +60,7 @@ end
 
 
 
-    debugger
+  #  debugger
 
 
     @aa={"waretype"=>@waretype,"data"=>@warelabel}.to_json
