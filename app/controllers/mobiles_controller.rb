@@ -18,7 +18,7 @@ class MobilesController < ApplicationController
   def login
 
     user=User.find_by(username:params[:acount],password_digest:params[:password])
-    #debugger
+    debugger
 
     if(user!=nil)
 
@@ -262,10 +262,10 @@ class MobilesController < ApplicationController
 #     id = params[:userid]
 #    rr= params[:status]
 #     # debugger
-  if params[:status]==1
+#   if params[:status]==1
 #    # debugger
     @user=User.find(params[:userid])
-
+    # debugger
     @order=@user.orders
 
     @wareid=''
@@ -275,14 +275,15 @@ class MobilesController < ApplicationController
     arr = Array.new(@wareid.split(','))
 
     @waresss=Ware.find(arr)
-    #debugger
+
     render json:@waresss
- else
-   render json:('[{"status":"0"}]')
+ # else
+ #   render json:('[{"status":"0"}]')
+ #    debugger
   end
     # debugger
 
-end
+
 
 
   def collectlist

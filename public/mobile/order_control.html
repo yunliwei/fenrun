@@ -18,7 +18,8 @@
 					location.href = "login.html"
 				}
 				else {
-					mui.getJSON('http://localhost:3000//mobiles/orderdetail', {}, function (data) {
+
+					mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid:($.session.get('userid'))}, function (data) {
 
 						$.each(data, function (i, item) {
 //						varstate status = item.
@@ -49,16 +50,16 @@
 
 									'</div>' +
 									'</div>';
-							if (item.status != "") {
+//							if (item.status != "") {
 								$('#list').append(itemHtml)
-							}
-							else if (item.status == 2) {
-								alert("44444")
-								$('#item2mobile').append(itemHtml)
-							}
-							else if (item.status == 1) {
-								$('#item3mobile').append(itemHtml)
-							}
+//							}
+//							else if (item.status == 2) {
+//								alert("44444")
+//								$('#item2mobile').append(itemHtml)
+//							}
+//							else if (item.status == 1) {
+//								$('#item3mobile').append(itemHtml)
+//							}
 
 						});
 					});
@@ -79,6 +80,7 @@
 
 //
 
+//						function _$(id) { return document.getElementById(id);}_$('parent').onclick = function(e) { var e = e|| window.event,  target = e.target || e.srcElement; //输出点击div的id  alert(target.id);}
 
 					})
 

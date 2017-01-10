@@ -104,7 +104,8 @@
                 }
                 else {
                     mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code)}, function (data) {
-//                        alert("ooo")
+
+                        $("#tan").text("")
                         $.each(data.waretype, function (i, itemware) {
 //                            mui.alert(itemware.id);
                            var itemhtml =
@@ -113,13 +114,13 @@
                                    ' <div style="margin-left: 10px"  id='+itemware.id+'>'+ itemware.typename +'</div>'+
                                            '</div>'+
                                    '</li>';
-
                            $("#tan").append(itemhtml);
 
+                            
                         $.each(data.data, function (i, itemdata) {
                        //   mui.alert(  item1.labelname);
                             var itemhtmlss=
-                                    ' <button type="button" style="margin-left: 10px">'+ itemdata.labelname +'</button>';
+                                    ' <button type="button" style="margin-left: 10px" id='+itemdata.id+'>'+ itemdata.labelname +'</button>';
 
                             if(itemdata.waretype_id==itemware.id){
 
