@@ -265,7 +265,13 @@ class MobilesController < ApplicationController
 #   if params[:status]==1
 #    # debugger
     @user=User.find(params[:userid])
-    @order=@user.orders
+    if (params[:state]!=nil)
+    @order=@user.orders.where(state:params[:state])
+# debugger
+    else
+      @order=@user.orders
+    end
+    # debugger
     @wareid=''
     @order.each do|i|
       @wareid=@wareid+i.ware_id.to_s+','
