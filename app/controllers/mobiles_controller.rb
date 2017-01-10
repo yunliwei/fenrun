@@ -276,7 +276,7 @@ class MobilesController < ApplicationController
 
     @waresss=Ware.find(arr)
 
-    render json:@waresss
+    render json: {"order"=>@order,"waress"=>@waresss}.to_json
  # else
  #   render json:('[{"status":"0"}]')
  #    debugger

@@ -21,7 +21,7 @@
 
 					mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid:($.session.get('userid'))}, function (data) {
 
-						$.each(data, function (i, item) {
+						$.each(data.order, function (i, itemorder) {
 //						varstate status = item.
 
 
