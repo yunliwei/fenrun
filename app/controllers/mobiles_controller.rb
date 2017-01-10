@@ -265,6 +265,7 @@ class MobilesController < ApplicationController
 #   if params[:status]==1
 #    # debugger
     @user=User.find(params[:userid])
+
     if (params[:state]!=nil)
     @order=@user.orders.where(state:params[:state])
 # debugger
@@ -272,15 +273,18 @@ class MobilesController < ApplicationController
       @order=@user.orders
     end
     # debugger
+
     @wareid=''
     @order.each do|i|
       @wareid=@wareid+i.ware_id.to_s+','
     end
     arr = Array.new(@wareid.split(','))
 
+
     @wares=Ware.find(arr)
 @or = {"order"=>@order,"ware"=>@wares}.to_json
     render json:@or
+
  # else
  #   render json:('[{"status":"0"}]')
  #
