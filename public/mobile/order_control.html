@@ -19,39 +19,68 @@
 				}
 				else {
 
-					mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid:($.session.get('userid'))}, function (data) {
+					mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid: ($.session.get('userid'))}, function (data) {
+						$('#list').val("")
 
-						$.each(data.order, function (i, itemorder) {
+
+
+							$.each(data.order, function (i, itemorder) {
+								var itemHtml =
+										'<div class="mui-card" style="width: 100%;" id='+itemorder.id+'>' +
+											<!--页眉，放置标题-->
+										'</div>';
+
+								$('#list').append(itemHtml)
+								$.each(data.ware, function (i, itemware) {
+
 //						varstate status = item.
 
 
-							var itemHtml =
+									alert("oo")
+									var itemhtml =
 
-									'<div class="mui-card" style="width: 100%;">' +
 										<!--页眉，放置标题-->
-									'<div class="mui-card-header" style="height: 25px;">' + item.ware +
-									'<p style=" color: red; float: right;">交易成功</p>' +
+											'<div class="mui-card-header" style="height: 25px;">' + itemware.ware +
+											'<p style=" color: red; float: right;">交易成功</p>' +
+											'</div>' +
+												<!--内容区-->
+											'<div class="mui-card-header mui-card-media">' +
+											'<img  src= "/warepictures/' + itemware.id + '/' + itemware.warepicture_file_name + '" />'+
+											'<div class="mui-media-body" '+'id='+itemware.id+'>' +
+											itemware.ware +
+											'<p>￥' + itemorder.sum +
+											'<p>创建于:' + itemorder.created_at + '</p>'+
 									'</div>' +
-										<!--内容区-->
-									'<div class="mui-card-header mui-card-media">' +
-									'<img  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '" />' +
-									'<div class="mui-media-body">' +
-									item.ware +
-									'<p>￥' + item.sum +
-									'<p>创建于:' + item.created_at + '</p>' +
-									'</div>' +
-									'</div>' +
-										<!--页脚，放置补充信息或支持的操作-->
-									'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
+											'</div>' ;
 
-									'<button type="button" class="mui-btn">删除订单</button>' +
 
-									'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
 
-									'</div>' +
-									'</div>';
+									if (itemware.id ==itemorder.ware_id) {
+										$("#" + itemorder.id).append(itemhtml)
+									}
+
+						});
+
+								var httttt=
+
+									<!--页脚，放置补充信息或支持的操作-->
+										'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
+
+										'<button type="button" class="mui-btn">删除订单</button>' +
+
+										'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
+
+										'</div>';
+
+								$("#" + itemorder.id).append(httttt)
+
 //							if (item.status != "") {
-								$('#list').append(itemHtml)
+
+//								alert(itemorder.state)
+//								if (itemorder.state != "")
+
+//							})
+
 //							}
 //							else if (item.status == 2) {
 //								alert("44444")
@@ -62,41 +91,62 @@
 //							}
 
 						});
-					});
 
-//
-					var dd = 1
-					var shop = document.getElementById("daifukuan");
-
-					shop.addEventListener("tap", function () {
-
-
-//						$.ajax({
-//							type: 'get',
-//							url: '/mobiles/orderdetail?status=1'
-//
-//						});
-
-
-//
-
-//						function _$(id) { return document.getElementById(id);}_$('parent').onclick = function(e) { var e = e|| window.event,  target = e.target || e.srcElement; //输出点击div的id  alert(target.id);}
 
 					})
 
-//					$("#daifukuan").click(function(){
-//						alert("444")
+//					var shop = document.getElementById("daifukuan");
 //
+//					shop.addEventListener("tap", function () {
+//						mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid: ($.session.get('userid'))}, function (data) {
+//
+//							$.each(data, function (i, item) {
+////						varstate status = item.
+//								alert(item.state)
+//
+//if (item.state == 1)
+//{
+//								var itemHtml =
+//
+//										'<div class="mui-card" style="width: 100%;">' +
+//											<!--页眉，放置标题-->
+//										'<div class="mui-card-header" style="height: 25px;">' + item.ware +
+//										'<p style=" color: red; float: right;">交易成功</p>' +
+//										'</div>' +
+//											<!--内容区-->
+//										'<div class="mui-card-header mui-card-media">' +
+//										'<img  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '" />' +
+//										'<div class="mui-media-body">' +
+//										item.ware +
+//										'<p>￥' + item.sum +
+//										'<p>创建于:' + item.created_at + '</p>' +
+//										'</div>' +
+//										'</div>' +
+//											<!--页脚，放置补充信息或支持的操作-->
+//										'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
+//
+//										'<button type="button" class="mui-btn">删除订单</button>' +
+//
+//										'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
+//
+//										'</div>' +
+//										'</div>';
+////							if (item.status != "") {
+//								$('#item2mobile').append(itemHtml)
+//}
+//
+//							})
+//						});
+
+//					$("#daifukuan").click(function(){
+//
+
 //					})
+                 }
 
-//					$(".mui-table-view").each(function(){
-//						$(this).click(function(){
-//							var imgid = $(this).attr("id");
-//							alert(imgid );
-//						})
-//					});
 
-				}
+				
+
 			});
 		</script>
 	</head>
