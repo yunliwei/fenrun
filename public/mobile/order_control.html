@@ -18,28 +18,17 @@
 					location.href = "login.html"
 				}
 				else {
-					var shop = document.getElementById("quanbu");
 
-<<<<<<< HEAD
-					shop.addEventListener("tap", function () {
-						mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid: ($.session.get('userid'))}, function (data) {
-							$('#list').val("")
-=======
+
 					var btn = document.getElementById("daifukuan");
 
 					btn.addEventListener("tap",function () {
->>>>>>> dff4b14aec640bb9fddd1eb12d5fd9485c232d7d
+
 
                       order(1)
 					});
 
-<<<<<<< HEAD
-							$.each(data.order, function (i, itemorder) {
-								var itemHtml =
-										'<div class="mui-card" style="width: 100%;" id=' + itemorder.id + '>' +
-											<!--页眉，放置标题-->
-										'</div>';
-=======
+
                  }
 
 function order(status){
@@ -99,183 +88,15 @@ function order(status){
 
 								$("#" + itemorder.id).append(httttt)
 
-//							if (item.status != "") {
 
-//								alert(itemorder.state)
-//								if (itemorder.state != "")
-
-//							})
-
-//							}
-//							else if (item.status == 2) {
-//								alert("44444")
-//								$('#item2mobile').append(itemHtml)
-//							}
-//							else if (item.status == 1) {
-//								$('#item3mobile').append(itemHtml)
-//							}
 
 							});
 
 
 						})
-					})
-
-					var shop = document.getElementById("daifukuan");
-
-					shop.addEventListener("tap", function () {
-						$("#list2").val("")
-						mui.getJSON('http://localhost:3000//mobiles/orderdetail', {
-							userid: ($.session.get('userid')),
-							state: ("1")
-						}, function (data) {
-							$('#list').val("")
-							alert('789')
+					}
 
 
-							$.each(data.order, function (i, itemorder) {
-								var itemHtml =
-										'<div class="mui-card" style="width: 100%;" id=' + itemorder.id + '>' +
-											<!--页眉，放置标题-->
-										'</div>';
-
-								$('#list2').append(itemHtml)
-								$.each(data.ware, function (i, itemware) {
-//						varstate status = item.
-
-
-									alert("oo")
-									var itemhtml =
-
-										<!--页眉，放置标题-->
-											'<div class="mui-card-header" style="height: 25px;">' + itemware.ware +
-											'<p style=" color: red; float: right;">交易成功</p>' +
-											'</div>' +
-												<!--内容区-->
-											'<div class="mui-card-header mui-card-media">' +
-											'<img  src= "/warepictures/' + itemware.id + '/' + itemware.warepicture_file_name + '" />' +
-											'<div class="mui-media-body" ' + 'id=' + itemware.id + '>' +
-											itemware.ware +
-											'<p>￥' + itemorder.sum +
-											'<p>创建于:' + itemorder.created_at + '</p>' +
-											'</div>' +
-											'</div>';
-
-
-									if (itemware.id == itemorder.ware_id) {
-										$("#" + itemorder.id).append(itemhtml)
-									}
-
-								});
-
-								var httttt =
-
-									<!--页脚，放置补充信息或支持的操作-->
-										'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
-
-										'<button type="button" class="mui-btn">删除订单</button>' +
-
-										'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
-
-										'</div>';
-
-								$("#" + itemorder.id).append(httttt)
-
-							})
-						})
-					})
-//						mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid: ($.session.get('userid'))}, function (data) {
-//
-//							$.each(data, function (i, item) {
-////						varstate status = item.
-//								alert(item.state)
-//
-//if (item.state == 1)
-//{
-//								var itemHtml =
-//
-//										'<div class="mui-card" style="width: 100%;">' +
-//											<!--页眉，放置标题-->
-//										'<div class="mui-card-header" style="height: 25px;">' + item.ware +
-//										'<p style=" color: red; float: right;">交易成功</p>' +
-//										'</div>' +
-//											<!--内容区-->
-//										'<div class="mui-card-header mui-card-media">' +
-//										'<img  src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '" />' +
-//										'<div class="mui-media-body">' +
-//										item.ware +
-//										'<p>￥' + item.sum +
-//										'<p>创建于:' + item.created_at + '</p>' +
-//										'</div>' +
-//										'</div>' +
-//											<!--页脚，放置补充信息或支持的操作-->
-//										'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
-//
-//										'<button type="button" class="mui-btn">删除订单</button>' +
-//
-//										'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
-//
-//										'</div>' +
-//										'</div>';
-////							if (item.status != "") {
-//								$('#item2mobile').append(itemHtml)
-//}
-//
-//							})
-//						});
-
-//					$("#daifukuan").click(function(){
-//
-
-//					})
-                 }
-=======
-				alert("oo")
-				var itemhtml =
-
-					<!--页眉，放置标题-->
-						'<div class="mui-card-header" style="height: 25px;">' + itemware.ware +
-						'<p style=" color: red; float: right;">交易成功</p>' +
-						'</div>' +
-							<!--内容区-->
-						'<div class="mui-card-header mui-card-media">' +
-						'<img  src= "/warepictures/' + itemware.id + '/' + itemware.warepicture_file_name + '" />'+
-						'<div class="mui-media-body" '+'id='+itemware.id+'>' +
-						itemware.ware +
-						'<p>￥' + itemorder.sum +
-						'<p>创建于:' + itemorder.created_at + '</p>'+
-						'</div>' +
-						'</div>' ;
-
-
-
-				if (itemware.id ==itemorder.ware_id) {
-					$("#" + itemorder.id).append(itemhtml)
-				}
-
-			});
-
-			var httttt=
-
-				<!--页脚，放置补充信息或支持的操作-->
-					'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
-
-					'<button type="button" class="mui-btn">删除订单</button>' +
-
-					'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
-
-					'</div>';
-
-			$("#" + itemorder.id).append(httttt)
-
-
-
-		});
-
->>>>>>> dff4b14aec640bb9fddd1eb12d5fd9485c232d7d
-
-	})
-}
 
 
 
@@ -304,11 +125,9 @@ function order(status){
 
 		                </ul>
 		            </div>
-<<<<<<< HEAD
+
 		            <div  class="mui-slider-item mui-control-content"  id="item2mobile">
-=======
-		            <div  class="mui-slider-item mui-control-content" id="item2mobile">
->>>>>>> dff4b14aec640bb9fddd1eb12d5fd9485c232d7d
+
 
 						<ul class="mui-table-view" id="list2">
 
