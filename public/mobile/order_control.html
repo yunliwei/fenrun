@@ -19,15 +19,43 @@
 				}
 				else {
 
+					var btn = document.getElementById("quanbu");
+
+					btn.addEventListener("tap",function () {
+						$('#list').empty()
+						order(0)
+					});
 
 					var btn = document.getElementById("daifukuan");
 
 					btn.addEventListener("tap",function () {
-
-
+						$('#list1').empty()
                       order(1)
 					});
 
+					var btn = document.getElementById("daishouhuo");
+
+					btn.addEventListener("tap",function () {
+
+
+						order(2)
+					});
+
+					var btn = document.getElementById("daifahuo");
+
+					btn.addEventListener("tap",function () {
+
+
+						order(3)
+					});
+
+					var btn = document.getElementById("daipingjia");
+
+					btn.addEventListener("tap",function () {
+
+
+						order(4)
+					});
 
                  }
 
@@ -45,13 +73,20 @@ function order(status){
 						<!--页眉，放置标题-->
 					'</div>';
 
+			$.each(data.type, function (i, itemtype) {
+				if (itemtype.state == 1) {
+					alert(itemorder.state)
+					$('#list1').append(itemHtml)
+				}
+				else if (itemorder.state != "") {
+//alert(itemorder.state)
+//
+					$('#list').append(itemHtml)
+				}
 
-			if(itemorder.state==1) {
-				alert(itemorder.state)
-				$('#list2').append(itemHtml)
-			}
+			});
 			$.each(data.ware, function (i, itemware) {
-									alert("oo")
+//									alert("oo")
 									var itemhtml =
 
 										<!--页眉，放置标题-->
@@ -129,21 +164,25 @@ function order(status){
 		            <div  class="mui-slider-item mui-control-content"  id="item2mobile">
 
 
-						<ul class="mui-table-view" id="list2">
+						<ul class="mui-table-view" id="list1">
 
 						</ul>
 	                    
 		            </div>
-		            <div class="mui-slider-item mui-control-content">
-						<ul class="mui-table-view" id="item3mobile">
+		            <div class="mui-slider-item mui-control-content" id="item3mobile">
+						<ul class="mui-table-view" id="list2">
 
 						</ul>
 		            </div>
 		             <div id="item4mobile" class="mui-slider-item mui-control-content">
-		               <p> 您还没有相关订单</p> 
+						 <ul class="mui-table-view" id="list3">
+
+						 </ul>
 		            </div>
 		             <div id="item5mobile" class="mui-slider-item mui-control-content">
-		                <p> 您还没有相关订单</p> 
+						 <ul class="mui-table-view" id="list4">
+
+						 </ul>
 		            </div>
 		        </div>
 		   
