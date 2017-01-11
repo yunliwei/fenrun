@@ -18,7 +18,7 @@
 					location.href = "login.html"
 				}
 				else {
-
+//					order(0)
 					var btn = document.getElementById("quanbu");
 
 					btn.addEventListener("tap",function () {
@@ -73,18 +73,21 @@ function order(status){
 						<!--页眉，放置标题-->
 					'</div>';
 
-			$.each(data.type, function (i, itemtype) {
-				if (itemtype.state == 1) {
-					alert(itemorder.state)
-					$('#list1').append(itemHtml)
-				}
-				else if (itemorder.state != "") {
+//			$.each(data.typeor, function (i, itemtype) {
+
+				 if (status== 0) {
 //alert(itemorder.state)
 //
 					$('#list').append(itemHtml)
-				}
 
-			});
+				}
+			if (status== 1) {
+
+				$('#list1').append(itemHtml)
+				alert(status)
+			}
+
+//			});
 			$.each(data.ware, function (i, itemware) {
 //									alert("oo")
 									var itemhtml =

@@ -18,7 +18,7 @@ class MobilesController < ApplicationController
   def login
 
     user=User.find_by(username:params[:acount],password_digest:params[:password])
-    debugger
+    # debugger
 
     if(user!=nil)
 
@@ -212,23 +212,39 @@ class MobilesController < ApplicationController
 
 
 
-    @wares=Ware.find(params[:code])
-    # debugger
-    @waretype=Waretype.where(:ware_id=>@wares.id)
-    #debugger
-@warelabe=Warelabel.where(:waretype_id=>@waretype.ids)
-
-    #debugger
-    @all={"data"=>@warelabe,"waretype"=>@waretype}.to_json
-    # debugger
-     render json:(@all)
+#     @wares=Ware.find(params[:code])
+#     # debugger
+#     @waretype=Waretype.where(:ware_id=>@wares.id)
+#     #debugger
+# @warelabe=Warelabel.where(:waretype_id=>@waretype.ids)
+#
+#     #debugger
+#     @all={"data"=>@warelabe,"waretype"=>@waretype}.to_json
+#     # debugger
+#      render json:(@all)
     # debugger
 
 
     #
-    # @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
-    # render json:(@shopcar)
+    @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
+    render json:(@shopcar)
   end
+
+  def selectlabel
+    @wares=Ware.find(params[:code])
+    # debugger
+    @waretype=Waretype.where(:ware_id=>@wares.id)
+    #debugger
+    @warelabe=Warelabel.where(:waretype_id=>@waretype.ids)
+
+    #debugger
+    @all={"data"=>@warelabe,"waretype"=>@waretype}.to_json
+    # debugger
+    render json:(@all)
+    # debugger
+  end
+
+
 
   def shopcar
     userid = params[:userid]
@@ -264,6 +280,7 @@ class MobilesController < ApplicationController
 #     # debugger
 #   if params[:status]==1
 #    # debugger
+    @type = params[:status]
     @user=User.find(params[:userid])
     @order=''
     if (params[:status]!="0")
@@ -271,10 +288,10 @@ class MobilesController < ApplicationController
  # debugger
     else
       @order=@user.orders
-      # debugger
+       # debugger
     end
 # debugger
-@type = params[:status]
+
     @wareid=''
     @order.each do|i|
       @wareid=@wareid+i.ware_id.to_s+','
@@ -283,9 +300,9 @@ class MobilesController < ApplicationController
 
 
     @wares=Ware.find(arr)
-@or = {"order"=>@order,"ware"=>@wares,"type"=>@type}.to_json
+@or = {"order"=>@order,"ware"=>@wares}.to_json
     render json:@or
-
+     debugger
  # else
  #   render json:('[{"status":"0"}]')
  #
