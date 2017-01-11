@@ -26,13 +26,20 @@
                       order(1)
 					});
 
+
+					var btn = document.getElementById("allorder");
+
+					btn.addEventListener("tap",function () {
+
+						order(0)
+					});
+
                  }
 
 function order(status){
 
 
 	mui.getJSON('http://localhost:3000//mobiles/orderdetail', {userid: ($.session.get('userid')),status:status}, function (data) {
-		//$('#list').val("")
 
 
 
@@ -44,9 +51,11 @@ function order(status){
 
 
 			if(itemorder.state==1) {
-				alert(itemorder.state)
+//				alert(itemorder.state)
+				$('#list2').empty();
 				$('#list2').append(itemHtml)
 			}
+
 			$.each(data.ware, function (i, itemware) {
 
 //						varstate status = item.
@@ -112,7 +121,7 @@ function order(status){
 		<div class="mui-content">
 		
 		        <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-		            <a class="mui-control-item mui-active" href="#item1mobile">全部</a>
+		            <a class="mui-control-item mui-active" href="#item1mobile" id="allorder">全部</a>
 		            <a class="mui-control-item" href="#item2mobile" id="daifukuan">待付款</a>
 		            <a class="mui-control-item" href="#item3mobile">待发货</a>
 		             <a class="mui-control-item" href="#item4mobile">待收货</a>

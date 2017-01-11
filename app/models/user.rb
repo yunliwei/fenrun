@@ -19,4 +19,8 @@ class User < ApplicationRecord
     user = User.create(username:'whenever',password_digest:'123',email:'123@qq.com')
   end
 
+
+
+
+
 end

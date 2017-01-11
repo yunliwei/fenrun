@@ -18,6 +18,7 @@ class MobilesController < ApplicationController
   def login
 
     user=User.find_by(username:params[:acount],password_digest:params[:password])
+    aa=user.created_at
     debugger
 
     if(user!=nil)
@@ -244,7 +245,10 @@ class MobilesController < ApplicationController
     arry = Array.new(@shop.split(','))
     @shopss = Ware.find(arry)
 
-    render json:(@shopss)
+    #render   json: params[:callback]+ '([{"status":"0"}])',content_type: "application/javascript"
+     render json: params[:callback]+'('+ @shopss.to_json+')' , content_type: "application/javascript"
+
+    # render file: filename, content_type: "application/rss"
 
   end
 
@@ -265,7 +269,12 @@ class MobilesController < ApplicationController
 #   if params[:status]==1
 #    # debugger
     @user=User.find(params[:userid])
+    if(params[:status]!=0)
     @order=@user.orders.where(state:params[:status])
+    else
+      @order=@user.orders
+    end
+
     #debugger
     @wareid=''
     @order.each do|i|
