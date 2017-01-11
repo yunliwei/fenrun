@@ -18,20 +18,45 @@
 					location.href = "login.html"
 				}
 				else {
+//					order(0)
+					var btn = document.getElementById("quanbu");
+
+					btn.addEventListener("tap",function () {
+						$('#list').empty()
+						order(0)
+					});
 
 					var btn = document.getElementById("daifukuan");
 
 					btn.addEventListener("tap",function () {
-
+						$('#list1').empty()
                       order(1)
 					});
 
 
-					var btn = document.getElementById("allorder");
+					var btn = document.getElementById("daishouhuo");
 
 					btn.addEventListener("tap",function () {
 
-						order(0)
+
+						order(2)
+					});
+
+					var btn = document.getElementById("daifahuo");
+
+					btn.addEventListener("tap",function () {
+
+
+						order(3)
+					});
+
+					var btn = document.getElementById("daipingjia");
+
+					btn.addEventListener("tap",function () {
+
+
+						order(4)
+
 					});
 
                  }
@@ -49,7 +74,14 @@ function order(status){
 						<!--页眉，放置标题-->
 					'</div>';
 
+//			$.each(data.typeor, function (i, itemtype) {
 
+				 if (status== 0) {
+//alert(itemorder.state)
+//
+					$('#list').append(itemHtml)
+
+<<<<<<< HEAD
 			if(itemorder.state==1) {
 //				alert(itemorder.state)
 				$('#list2').empty();
@@ -57,57 +89,65 @@ function order(status){
 			}
 
 			$.each(data.ware, function (i, itemware) {
-
-//						varstate status = item.
-
-
-				alert("oo")
-				var itemhtml =
-
-					<!--页眉，放置标题-->
-						'<div class="mui-card-header" style="height: 25px;">' + itemware.ware +
-						'<p style=" color: red; float: right;">交易成功</p>' +
-						'</div>' +
-							<!--内容区-->
-						'<div class="mui-card-header mui-card-media">' +
-						'<img  src= "/warepictures/' + itemware.id + '/' + itemware.warepicture_file_name + '" />'+
-						'<div class="mui-media-body" '+'id='+itemware.id+'>' +
-						itemware.ware +
-						'<p>￥' + itemorder.sum +
-						'<p>创建于:' + itemorder.created_at + '</p>'+
-						'</div>' +
-						'</div>' ;
-
-
-
-				if (itemware.id ==itemorder.ware_id) {
-					$("#" + itemorder.id).append(itemhtml)
+=======
 				}
+			if (status== 1) {
 
-			});
+				$('#list1').append(itemHtml)
+				alert(status)
+			}
+>>>>>>> 5c443548045d803176ae18400601ef58242a495f
 
-			var httttt=
+//			});
+			$.each(data.ware, function (i, itemware) {
+//									alert("oo")
+									var itemhtml =
 
-				<!--页脚，放置补充信息或支持的操作-->
-					'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
+										<!--页眉，放置标题-->
+											'<div class="mui-card-header" style="height: 25px;">' + itemware.ware +
+											'<p style=" color: red; float: right;">交易成功</p>' +
+											'</div>' +
+												<!--内容区-->
+											'<div class="mui-card-header mui-card-media">' +
+											'<img  src= "/warepictures/' + itemware.id + '/' + itemware.warepicture_file_name + '" />' +
+											'<div class="mui-media-body" ' + 'id=' + itemware.id + '>' +
+											itemware.ware +
+											'<p>￥' + itemorder.sum +
+											'<p>创建于:' + itemorder.created_at + '</p>' +
+											'</div>' +
+											'</div>';
 
-					'<button type="button" class="mui-btn">删除订单</button>' +
 
-					'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
+									if (itemware.id == itemorder.ware_id) {
+										$("#" + itemorder.id).append(itemhtml)
+									}
 
-					'</div>';
+								});
 
-			$("#" + itemorder.id).append(httttt)
+								var httttt =
+
+									<!--页脚，放置补充信息或支持的操作-->
+										'<div class="mui-card-footer" style="float: right; margin-right: 5px;">' +
+
+										'<button type="button" class="mui-btn">删除订单</button>' +
+
+										'<button style="margin-right: 5px;"type="button" class="mui-btn">追加评价</button>' +
+
+										'</div>';
+
+								$("#" + itemorder.id).append(httttt)
 
 
 
-		});
+							});
 
 
-	})
-}
+						})
+					}
 
-				
+
+
+
 
 			});
 		</script>
@@ -121,11 +161,15 @@ function order(status){
 		<div class="mui-content">
 		
 		        <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+<<<<<<< HEAD
 		            <a class="mui-control-item mui-active" href="#item1mobile" id="allorder">全部</a>
+=======
+		            <a class="mui-control-item mui-active" href="#item1mobile" id="quanbu">全部</a>
+>>>>>>> 5c443548045d803176ae18400601ef58242a495f
 		            <a class="mui-control-item" href="#item2mobile" id="daifukuan">待付款</a>
-		            <a class="mui-control-item" href="#item3mobile">待发货</a>
-		             <a class="mui-control-item" href="#item4mobile">待收货</a>
-		            <a class="mui-control-item"  href="#item5mobile">待评价</a>
+		            <a class="mui-control-item" href="#item3mobile" id="daishouhuo">待发货</a>
+		             <a class="mui-control-item" href="#item4mobile" id="daifahuo">待收货</a>
+		            <a class="mui-control-item"  href="#item5mobile" id="daipingjia">待评价</a>
 		        </div>
 		        
 		        <div class="mui-slider-group">
@@ -134,23 +178,29 @@ function order(status){
 
 		                </ul>
 		            </div>
-		            <div  class="mui-slider-item mui-control-content" id="item2mobile">
 
-						<ul class="mui-table-view" id="list2">
+		            <div  class="mui-slider-item mui-control-content"  id="item2mobile">
+
+
+						<ul class="mui-table-view" id="list1">
 
 						</ul>
 	                    
 		            </div>
-		            <div class="mui-slider-item mui-control-content">
-						<ul class="mui-table-view" id="item3mobile">
+		            <div class="mui-slider-item mui-control-content" id="item3mobile">
+						<ul class="mui-table-view" id="list2">
 
 						</ul>
 		            </div>
 		             <div id="item4mobile" class="mui-slider-item mui-control-content">
-		               <p> 您还没有相关订单</p> 
+						 <ul class="mui-table-view" id="list3">
+
+						 </ul>
 		            </div>
 		             <div id="item5mobile" class="mui-slider-item mui-control-content">
-		                <p> 您还没有相关订单</p> 
+						 <ul class="mui-table-view" id="list4">
+
+						 </ul>
 		            </div>
 		        </div>
 		   

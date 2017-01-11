@@ -103,7 +103,7 @@
                     location.href = "login.html"
                 }
                 else {
-                    mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code)}, function (data) {
+                    mui.getJSON('http://localhost:3000//mobiles/selectlabel', {code: (code)}, function (data) {
 
                         $("#tan").text("")
                         $.each(data.waretype, function (i, itemware) {
@@ -131,6 +131,14 @@
                     });
                 }
             });
+
+
+            var shopcar = document.getElementById("sure");
+            shopcar.addEventListener("tap",function(){
+
+                mui.getJSON('http://localhost:3000//mobiles/createshopcar', {code: (code),userid: ($.session.get('userid'))}, function (data) {
+                })
+            })
         });
     </script>
 </head>
@@ -256,7 +264,7 @@
         <ul class="mui-table-view" id="tan">
 
         </ul>
-        <button type="button" style="background-color:coral ;line-height: 20px;width: 100%; font-size: large">确  定</button>
+        <button type="button" style="background-color:coral ;line-height: 20px;width: 100%; font-size: large" id="sure">确  定</button>
     </div>
 
 
