@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   #belings_to :ware
  belongs_to :user
 
-
+#自动确认收货
   def self.update_status
 
    @selorder=Order.where(["user_id = ? and state = ? and updated_at <?",1,2,Time.now-10.day])
@@ -24,7 +24,8 @@ class Order < ApplicationRecord
      # debugger
      @order.each do |o|
       @pricesum=@pricesum+o.sum.to_i
-      s.phonenumber=@pricesum
+      s.alreadamount=@pricesum
+      s.arrear=@pricesum
       s.save
      end
      @pricesum=0
