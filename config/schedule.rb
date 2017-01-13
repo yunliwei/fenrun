@@ -26,4 +26,5 @@ end
 
 every :day, :at => '3:08pm' do
   runner "Order.update_status"
+
   end
