@@ -54,8 +54,9 @@
 									'</li>';
 							$("#list").append(itemHTML)
 
-							var btn = document.getElementById(id);
+							var btn = document.getElementById(item.id);
 							btn.addEventListener("tap",function () {
+
 								location.href = "shangpingdetail.html?code="+id
 							});
 						});
@@ -75,7 +76,7 @@
 									'<a>' ;
 							if(item.warepicture_content_type !=null ) {
 
-								itemHTML += '<img class="mui-media-object mui-pull-left"  '+'id='+item.id+' src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+								itemHTML += '<img class="mui-media-object mui-pull-left"  '+'id='+id+' src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
 
 							}
 							else {
@@ -89,12 +90,12 @@
 									'</div>' +
 									'</a>' +
 									'</li>' ;
-							$("#list").append(itemHTML);
+							$("#list").append(itemHTML)
 
 
 							var btn1 = document.getElementById(id)
 							btn1.addEventListener("tap",function () {
-
+alert("pp")
 								location.href = "shangpingdetail.html?code="+id
 							});
 						});
