@@ -85,7 +85,8 @@ class MobilesController < ApplicationController
   def warelist
 
     @ware = Ware.all
-    render json:(@ware)
+    # render json:(@ware)
+    render json: params[:callback]+'('+ @ware.to_json+')' , content_type: "application/javascript"
   end
 
 
