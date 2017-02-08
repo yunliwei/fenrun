@@ -64,9 +64,17 @@
       </div>
 
       <div class="form-group">
-        <label  class="col-sm-2 control-label">图片：</label>
+        <label  class="col-sm-2 control-label">主图片：</label>
         <div class="col-sm-7">
           <%= file_field_tag  "warepicture" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label  class="col-sm-2 control-label">图片：</label>
+        <div class="col-sm-7">
+          <%= file_field_tag  :picture  %>
+          <button type="button"  id="upload" >上传</button>
         </div>
       </div>
 
@@ -104,7 +112,21 @@
       <br>
   <% end %>
 
+
+  <%= form_tag({controller:'wares', action:'upload'},{ :method => "put",:multipart=>true}) do  %>
+
+      <div class="form-group">
+        <label  class="col-sm-2 control-label">图片：</label>
+        <div class="col-sm-7">
+          <%= file_field_tag  "picture" %>
+
+        </div>
+      </div>
+      <%= submit_tag 'shangchuan' %>
+  <% end%>
+
 </div>
+
 
 
   <h4>图片预览</h4>
@@ -151,6 +173,7 @@
 
   </div>
 
+
 <div id="hideguigedetail">
   <h4>规格详情</h4>
   <div class="  form-horizontal col-sm-4" >
@@ -185,6 +208,11 @@
 
 
   </div>
+
+
+
+
+
   <%= render 'layerend' %>
   <script language="javascript">
 
@@ -212,6 +240,18 @@ if (a!="") {
 $('#showguige').click(function(){
   $('#hideguige').show()
 })
+
+      $('#upload').click(function(){
+        //alert("122")
+//        $.get('http://localhost:3000//wares/upload')
+//        $.ajax({ url:'http://localhost:3000//wares/upload'})
+        $.ajax({
+          type: 'get',
+          url: '/wares/upload'
+        });
+
+
+      })
 
         $("#hideguige").hide();
       $("#hideguigedetail").hide();

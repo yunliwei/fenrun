@@ -86,6 +86,17 @@ render json: @aa
 
   end
 
+  def upload
+
+    # @ware = Ware.find(params[:ware_id])
+    #debugger
+    @picture = Warepicture.new(wareid:2,picture:params[:picture])
+    @picture.save
+    #render json:('[{"status":"0"}]')
+
+  end
+
+
 
 def create
 
@@ -157,6 +168,9 @@ end
 def ware_params
   params.require(:ware).permit(:ware, :price,:discountprice,:salevolume,:describe,:stock,:freight,:discount,:baseprice,:warepicture)
 end
+
+
+
 
 
 end

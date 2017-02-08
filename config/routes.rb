@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     get 'edit'
     get 'createwarelabel'
     get 'renderwarebiaoqian'
+    get 'upload'
   end
   end
     
