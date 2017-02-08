@@ -2,7 +2,6 @@ class WaresController < ApplicationController
   before_action :set_ware, only: [ :edit,:update,  :destroy]
 def index
   @wares = Ware.all
-
 end
 
 
@@ -125,8 +124,9 @@ end
     #debugger
     cccc=Classification.find(arr)
     @ware.classifications.replace(cccc)
-    redirect_to(:action => "index" )
+
     @ware.save
+    redirect_to(:action => "index" )
      # respond_to do |format|
      #   if @ware.update(ware_params)
      #

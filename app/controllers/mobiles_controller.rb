@@ -5,19 +5,25 @@ class MobilesController < ApplicationController
 
   def reg
 
-    user=User.find_by(username:params[:acount])
+    aa=params[:name]
+    # debugger
+    user=User.find_by(username:params[:name])
     if(user==nil)
-      user = User.create(username:params[:acount],password_digest:params[:password],email:params[:email])
-      render json:('[{"status":"1"}]')
+      user = User.create(username:params[:name],password_digest:params[:password],email:params[:email])
+      success='[{"status":"1"}]'
+      # render json:('[{"status":"1"}]')
+       render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
     else
-      render json:('[{"status":"0"}]')
+      failed='[{"status":"0"}]'
+      # render json:('[{"status":"0"}]')
+      render json: params[:callback]+'('+ failed+')' , content_type: "application/javascript"
     end
 
   end
 
   def login
 
-    user=User.find_by(username:params[:acount],password_digest:params[:password])
+    user=User.find_by(username:params[:name],password_digest:params[:password])
 
 
     if(user!=nil)
@@ -25,13 +31,16 @@ class MobilesController < ApplicationController
       # session[:name]="123"
       #       session[:password]="321"
       id=user.id.to_s
-      aa='[{"status":"1","id":"'+id+'"}]'
+      success='[{"status":"1","id":"'+id+'","name":"'+user.username+'"}]'
       #debugger
-      render json:('[{"status":"1","id":"'+id+'"}]')
+      # render json:('[{"status":"1","id":"'+id+'"}]')
+      render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
       #debugger
 
     else
-      render json:('[{"status":"0"}]')
+      failed='[{"status":"0"}]'
+      # render json:('[{"status":"0"}]')
+      render json: params[:callback]+'('+ failed+')' , content_type: "application/javascript"
 
     end
   end
@@ -42,9 +51,13 @@ class MobilesController < ApplicationController
     businesssettled = Businesssettled.find_by(name:params[:ruzhuname])
     if(businesssettled==nil)
       businesssettled = Businesssettled.create(name:params[:ruzhuname],phonenumber:params[:ruzhuphone])
-      render json:('[{"status":"1"}]')
+      success='[{"status":"1"}]'
+      render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+      # render json:('[{"status":"1"}]')
     else
-      render json:('[{"status":"0"}]')
+      failed='[{"status":"0"}]'
+      # render json:('[{"status":"0"}]')
+      render json: params[:callback]+'('+ failed+')' , content_type: "application/javascript"
     end
 
   end
@@ -92,7 +105,8 @@ class MobilesController < ApplicationController
 
   def businelist
     @busines = Busine.all
-    render json:(@busines)
+    # render json:(@busines)
+    render json: params[:callback]+'('+ @busines.to_json+')' , content_type: "application/javascript"
   end
 
   def selecttype
@@ -117,10 +131,11 @@ class MobilesController < ApplicationController
   end
 
   def detail
-    goods = params[:code]
-    @goods = Ware.where(:id =>goods)
+   # goods = params[:code]
+    @goods = Ware.where(:id => params[:code])
     # debugger
-    render json:(@goods)
+    # render json:(@goods)
+    render json: params[:callback]+'('+ @goods.to_json+')' , content_type: "application/javascript"
   end
 
   def collect
@@ -150,7 +165,6 @@ class MobilesController < ApplicationController
         render json:('[{"status":"1"}]')
       else
         render json:('[{"status":"0"}]')
-
     end
     end
     end
@@ -307,7 +321,7 @@ class MobilesController < ApplicationController
     @wares=Ware.find(arr)
 @or = {"order"=>@order,"ware"=>@wares}.to_json
     render json:@or
-     debugger
+     # debugger
  # else
  #   render json:('[{"status":"0"}]')
  #

@@ -59,9 +59,12 @@ class User < ApplicationRecord
     # debugger
     #求当天每个点数需返的积分
     @todaysmount=(@sum*0.04)/@dianshu
+    debugger
     #每个用返多少积分
     @user.each do |f|
+      # debugger
       if f.backintegration.to_f<f.rebate.to_f #判断是否达到返利条件
+
         @userdianshu=f.alreadamount.to_i/1000#计算有用户点数
         canbackjifen=@userdianshu*@todaysmount #该用户可以返还的积分
         chazhi=f.rebate.to_f-f.backintegration.to_f  #需返还积分与已返还差值
