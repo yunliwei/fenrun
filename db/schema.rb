@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170113061546) do
     t.string   "businelogo_content_type"
     t.integer  "businelogo_file_size"
     t.datetime "businelogo_updated_at"
-    t.integer  "classification_id"
   end
 
   create_table "busines_classifications", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

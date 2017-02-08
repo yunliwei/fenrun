@@ -1,157 +1,157 @@
 <!DOCTYPE html>
 <html>
-	<head>
-    <meta charset="UTF-8" />
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
-    <link rel="stylesheet" href="css/iconfont.css">
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/app.js"></script>
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/mui.css"/>
+	<link rel="stylesheet" href="css/iconfont.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/app.js"></script>
 
-		<script>
+	<script>
 
 
 
-			$(document).ready(function() {
+		$(document).ready(function() {
 
 //				var ss = $.getUrlParam('sea')
-					var getQueryString = function(key) {
-						var search = decodeURIComponent(location.search);
-						var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
-						return search.replace(reg, "$1");
-					}
-					var ss=getQueryString("sea");
-					var dd=getQueryString("type")
+			var getQueryString = function(key) {
+				var search = decodeURIComponent(location.search);
+				var reg = new RegExp(".*" + key + "\\=" + "([^&]*)(&?.*|)", "g");
+				return search.replace(reg, "$1");
+			}
+			var ss=getQueryString("sea");
+			var dd=getQueryString("type")
 //
-				if(ss !=null)
- {
-					mui.getJSON('http://localhost:3000/mobiles/search', {sea: (ss)}, function (data) {
+			if(ss !=null)
+			{
+				mui.getJSON('http://localhost:3000/mobiles/search', {sea: (ss)}, function (data) {
 
-						$.each(data, function (i, item) {
+					$.each(data, function (i, item) {
 
-							var id = item.id.toString();
+						var id = item.id.toString();
 
-							var itemHTML =
-									'<li class="mui-table-view-cell mui-media">' +
-									'<a>';
-							if (item.warepicture_content_type != null) {
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media">' +
+								'<a>';
+						if (item.warepicture_content_type != null) {
 
-								itemHTML += '<img class="mui-media-object mui-pull-left"  '+'id='+item.id+' src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+							itemHTML += '<img class="mui-media-object mui-pull-left"  '+'id='+item.id+' src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
 
-							}
-							else {
-								itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
-							}
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
+						}
 
 
-							itemHTML +=
+						itemHTML +=
 //										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
-									'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
-									'</div>' +
-									'</a>' +
-									'</li>';
-							$("#list").append(itemHTML)
+								'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
+								'</div>' +
+								'</a>' +
+								'</li>';
+						$("#list").append(itemHTML)
 
-							var btn = document.getElementById(item.id);
-							btn.addEventListener("tap",function () {
+						var btn = document.getElementById(item.id);
+						btn.addEventListener("tap",function () {
 
-								location.href = "shangpingdetail.html?code="+id
-							});
-						});
-					})
-				}
-				if(dd!=null)
-				{
-
-					mui.getJSON('http://localhost:3000/mobiles/search',{type:(dd)}, function (data) {
-
-						$.each(data, function (i, item) {
-							var id = item.id.toString();
-
-
-							var itemHTML =
-									'<li class="mui-table-view-cell mui-media">' +
-									'<a>' ;
-							if(item.warepicture_content_type !=null ) {
-
-								itemHTML += '<img class="mui-media-object mui-pull-left"  '+'id='+id+' src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
-
-							}
-							else {
-								itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
-							}
-
-
-							itemHTML+=
-//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
-									'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
-									'</div>' +
-									'</a>' +
-									'</li>' ;
-							$("#list").append(itemHTML)
-
-
-							var btn1 = document.getElementById(id)
-							btn1.addEventListener("tap",function () {
-alert("pp")
-								location.href = "shangpingdetail.html?code="+id
-							});
+							location.href = "shangpingdetail.html?code="+id
 						});
 					});
+				})
+			}
+			if(dd!=null)
+			{
 
-				}
+				mui.getJSON('http://localhost:3000/mobiles/search',{type:(dd)}, function (data) {
+
+					$.each(data, function (i, item) {
+						var id = item.id.toString();
+
+
+						var itemHTML =
+								'<li class="mui-table-view-cell mui-media">' +
+								'<a>' ;
+						if(item.warepicture_content_type !=null ) {
+
+							itemHTML += '<img class="mui-media-object mui-pull-left"  '+'id='+id+' src= "/warepictures/' + item.id + '/' + item.warepicture_file_name + '">';
+
+						}
+						else {
+							itemHTML += '<img class="mui-media-object mui-pull-left" src= "images/xiangji.jpg" >';
+						}
+
+
+						itemHTML+=
+//										 '<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">' +
+								'<div class="mui-media-body">' + item.ware + '<p style="color:black;" class="mui-ellipsis">' + item.price + '</p>' +
+								'</div>' +
+								'</a>' +
+								'</li>' ;
+						$("#list").append(itemHTML)
+
+
+						var btn1 = document.getElementById(id)
+						btn1.addEventListener("tap",function () {
+							alert("pp")
+							location.href = "shangpingdetail.html?code="+id
+						});
+					});
+				});
+
+			}
 
 //				else
 //				{
 //					mui.alert('没有该商品存在!!');
 //				}
 
-			});
+		});
 
-		</script>
+	</script>
 </head>
-	<body>
-		
-		<header class="mui-bar mui-bar-nav">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		    <h1 class="mui-title">商品列表</h1>
-		</header>
-		<div class="mui-content">
+<body>
+
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">商品列表</h1>
+</header>
+<div class="mui-content">
 
 
 
 
-		<ul class="mui-table-view" id="list">
-		    <!--<li class="mui-table-view-cell mui-media">-->
-		        <!--<a href="javascript:;">-->
-		            <!--<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">-->
-		            <!--<div class="mui-media-body">-->
-		                <!--<h4 id='ti'></h4>-->
-		                <!--<p style="color:black;" class="mui-ellipsis" id='price'></p>-->
-		                <!--<p>免运费</p>-->
-		            <!--</div>-->
-		        <!--</a>-->
-		    <!--</li>-->
+	<ul class="mui-table-view" id="list">
+		<!--<li class="mui-table-view-cell mui-media">-->
+		<!--<a href="javascript:;">-->
+		<!--<img class="mui-media-object mui-pull-left" src="images/xiangji.jpg">-->
+		<!--<div class="mui-media-body">-->
+		<!--<h4 id='ti'></h4>-->
+		<!--<p style="color:black;" class="mui-ellipsis" id='price'></p>-->
+		<!--<p>免运费</p>-->
+		<!--</div>-->
+		<!--</a>-->
+		<!--</li>-->
 
-		</ul>
-		<!-- -->
-	
-		</div>
-		
-		
+	</ul>
+	<!-- -->
 
-    <script type="text/javascript">
-    mui.init();
-    mui('body').on('tap','a',function(){document.location.href=this.href;});
+</div>
 
 
+
+<script type="text/javascript">
+	mui.init();
+	mui('body').on('tap','a',function(){document.location.href=this.href;});
 
 
 
 
-    </script>
 
-	</body>
+
+</script>
+
+</body>
 </html>
