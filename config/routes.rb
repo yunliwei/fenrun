@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
 
   resources :wares do
+  resources :warepictures
   collection do
     get 'update'
     get 'createtype'

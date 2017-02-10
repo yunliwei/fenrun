@@ -255,7 +255,9 @@ class MobilesController < ApplicationController
     #debugger
     @all={"data"=>@warelabe,"waretype"=>@waretype}.to_json
     # debugger
-    render json:(@all)
+    # render json:(@all)
+    # debugger
+    render json: params[:callback]+'('+ @all.to_json+')' , content_type: "application/javascript"
     # debugger
   end
 

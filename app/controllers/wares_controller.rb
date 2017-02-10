@@ -1,7 +1,7 @@
 class WaresController < ApplicationController
-  before_action :set_ware, only: [ :edit,:update,  :destroy]
+  before_action :set_ware, only: [ :show,:edit,:update,  :destroy]
 def index
-  @wares = Ware.all
+  @wares= Ware.all
 end
 
 
@@ -137,12 +137,14 @@ end
     @ware.classifications.replace(cccc)
 
     @ware.save
-    redirect_to(:action => "index" )
+      redirect_to(:action => "index" )
+    # render json: @ware
+    #  render :show
      # respond_to do |format|
      #   if @ware.update(ware_params)
      #
      #     format.html { redirect_to @ware, notice: 'Test was successfully updated.' }
-     #     format.json { render :show, status: :ok, location: @ware }
+     #     format.json {, status: :ok, location: @ware }
      #   else
      #     format.html { render :edit }
      #     format.json { render json: @ware.errors, status: :unprocessable_entity }

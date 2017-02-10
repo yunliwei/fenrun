@@ -48,5 +48,18 @@
   <%= @ware.baseprice %>
 </p>
 
+
+<%= form_for([@ware, @ware.warepictures.build],:html => {:multipart => true}) do |f| %>
+
+    <div class="form-group">
+      <label  class="col-sm-2 control-label">图片：</label>
+      <div class="col-sm-7">
+        <%= f.file_field :picture %>
+
+      </div>
+    </div>
+    <%= submit_tag 'shangchuan' %>
+<% end%>
+
 <%= link_to 'Back', wares_path %>
 <%= render 'layerend' %>
