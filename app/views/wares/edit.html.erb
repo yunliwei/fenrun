@@ -107,20 +107,9 @@
       <br>
   <% end %>
 
-  <%= form_for([@ware, @ware.warepictures.build],:html => {:multipart => true}) do |f| %>
-
-      <div class="form-group">
-        <label  class="col-sm-2 control-label">图片：</label>
-        <div class="col-sm-7">
-          <%= f.file_field :picture %>
-
-        </div>
-      </div>
-      <%= submit_tag 'shangchuan' %>
-  <% end%>
 
 </div>
-
+  <%= render 'warepictures/form' %>
 
 
   <h4>图片预览</h4>
