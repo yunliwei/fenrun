@@ -109,10 +109,10 @@
 
 
 </div>
-  <%= render 'warepictures/form' %>
 
 
-  <h4>图片预览</h4>
+
+
   <div class="  form-horizontal col-sm-4" >
 
 
@@ -184,12 +184,12 @@
         </div>
     <button type="button" class="btn btn-outline btn-primary" id="savedetail">保存</button>
 
-    <input id="waretypeid" >
+    <input id="waretypeid" style="display: none " >
 
 </div>
 </div>
 
-
+  <%= render 'warepictures/form' %>
   </div>
 
 
@@ -248,7 +248,7 @@ $('#showguige').click(function(){
        $.getJSON('/wares/createtype', {typename:$("#shangpinguige").val(),ware_id:$('#wareid').val()}, function (data) {
 //alert('213')
          $.each(data, function (i, item) {
-           alert(item.waretypeid)
+         //  alert(item.waretypeid)
            $('#waretypeid').val(item.waretypeid)
 
          })

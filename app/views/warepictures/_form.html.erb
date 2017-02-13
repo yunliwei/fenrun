@@ -30,7 +30,7 @@
 
 
 
-              <img src=<%= image_path('attch.png') %> title=<%=f.picture_file_name %> width=100px>
+              <img src=<%= image_path f.picture.url %> title=<%=f.picture_file_name %> width=100px>
             </div>
             <div class="file-name">
               <%= f.picture_file_name %>

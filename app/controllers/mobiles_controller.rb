@@ -133,7 +133,11 @@ class MobilesController < ApplicationController
   def detail
    # goods = params[:code]
     @goods = Ware.where(:id => params[:code])
-    # debugger
+    @picture=Warepicture.where(:ware_id=>params[:code])
+
+    @all={"goodsdata"=>@goods,"warepicture"=>@picture}.to_json
+     # debugger
+    
     # render json:(@goods)
     render json: params[:callback]+'('+ @goods.to_json+')' , content_type: "application/javascript"
   end
@@ -160,7 +164,7 @@ class MobilesController < ApplicationController
     @collects.each do |t|
       debugger
       if t.ware_id.to_s!=collect
-        debugger
+        # debugger
         @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
         render json:('[{"status":"1"}]')
       else
