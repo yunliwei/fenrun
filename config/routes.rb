@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
 
+  get 'banners/index'
+
+  get 'banners/edit'
+
+  get 'banners/new'
+
   resources :tests
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :mobiles do
@@ -45,10 +51,10 @@ Rails.application.routes.draw do
     get 'upload'
   end
   end
-    
-    
-  
 
+
+
+  resources :banners
 
 
 

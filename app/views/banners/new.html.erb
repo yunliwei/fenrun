@@ -1,0 +1,107 @@
+<script>
+  $(document).ready(function() {
+    var check
+
+    $('#xianshi').on('ifChecked', function(event) {
+      check="";
+
+
+        check=$(this).val();
+        alert(check)
+        $('#active').val(check);
+
+    });
+
+    $('#yincang').on('ifChecked', function(event) {
+      check="";
+
+
+        check=$(this).val();
+        alert(check)
+        $('#active').val(check);
+
+    });
+
+    $('.i-checks').iCheck({
+      checkboxClass: 'icheckbox_square-green',
+      radioClass: 'iradio_square-green'
+    });
+    var typecheck = $("#active").val().split(':');
+    $.each(typecheck,function(i,n){
+      if (n=='xianshi') {
+        $('#xianshi').iCheck('check');
+      }
+      if (n=='yincang'){
+        $('#yincang').iCheck('check')
+      }
+    })
+    $('#xianshi').on('ifChecked',function(event){
+      $('#yincang').iCheck('uncheck');
+    });
+    $('#yincang').on('ifChecked',function(event){
+      $('#xianshi').iCheck('uncheck');
+    });
+  });
+</script>
+<%= render 'layerbegin' %>
+<div class="ibox-content form-horizontal m-t">
+
+
+  <div class="form-group">
+    <%= form_for(@banner,:html => {:class=>'form-horizontal m-t',:multipart => true}) do |f| %>
+
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">链接：</label>
+          <div class="col-sm-6">
+            <%= f.text_field :link, class:"form-control" %>
+          </div>
+        </div>
+
+
+
+        <%= f.text_field :status ,id:"active"%>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">显示：</label>
+          <div class="col-sm-6">
+            <div class="col-sm-12">
+              <table>
+                <td>
+                  <div class="icheckbox i-checks">
+                    <label> <i></i>显示
+                      <input type="checkbox" id="xianshi" value="1" ></label>
+                  </div>
+                </td>
+
+                <td style="padding-left: 10px">
+                  <div class="icheckbox i-checks">
+                    <label> <i></i>隐藏
+                      <input  type="checkbox" id="yincang" value="0" ></label>
+                  </div>
+                </td>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">主页图片：</label>
+          <div class="col-sm-6">
+            <%= f.file_field :banner, placeholder:"Banner" %>
+          </div>
+        </div>
+
+
+
+
+        <div class="actions">
+          <%= f.submit'确定',class: "btn btn-w-m btn-success mylink pull-right",id:'smt','data-no-turbolink'=>true%>
+        </div>
+    <% end %>
+
+    <%= link_to '返回', banners_path %>
+    </div>
+</div>
+<%= render 'layerend' %>
