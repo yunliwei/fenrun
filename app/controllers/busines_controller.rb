@@ -4,8 +4,13 @@ class BusinesController < ApplicationController
     @busines = Busine.all
   end
   def new
-    @busines = Busine.new
-    @class=Classification.all
+    # @busines = Busine.new
+    # @class=Classification.all
+
+
+    @busines=Busine.create()
+    #@class=Classification.all
+    redirect_to edit_busine_path(@busines)
   end
 
   def createcla

@@ -1,0 +1,71 @@
+<script>
+  $(document).ready(function () {
+    $('.file-box').each(function () {
+      animationHover(this, 'pulse');
+    });
+    $('#fj_submit').click(function(){
+      if($('#fj_att').val()=='')
+      {
+        $('#fj_alert_lab').html('附件不能为空！');
+        $('#fj_alert').show();
+
+        return false;
+      }
+    });
+  });
+</script>
+<div class="ibox-content">
+
+  <h3>&nbsp;&nbsp;&nbsp;&nbsp;附件</h3>
+
+
+  <% @busine.businespictures.each do |f| %>
+
+      <div class="file-box">
+        <div class="file">
+          <a href=<%= f.picture.url %>>
+            <span class="corner"></span>
+
+            <div class="image" align="center">
+
+
+
+              <img src=<%= image_path f.picture.url %> title=<%=f.picture_file_name %> width=100px>
+            </div>
+            <div class="file-name">
+              <%= f.picture_file_name %>
+              <%= link_to '',[f.busine,f], class: "fa fa-trash pull-right fa-2x", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </a>
+        </div>
+      </div>
+
+  <% end %>
+
+  <div class="ibox-content">
+
+    <%= form_for([@busine,@busine.businespictures.build],:html => {:class=>'form-horizontal m-t',id:"signupForm",:multipart => true}) do |f| %>
+
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">选择附件：</label>
+          <div class="col-sm-3">
+            <%= f.file_field :picture ,class:"form-control",id:'fj_att'%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label"></label>
+          <div>
+            <button class="btn btn-w-m btn-success mylink pull-left" type="submit" id="fj_submit">上传附件</button>
+            <i class="pull-left">&nbsp;</i>
+            <div id="fj_alert" class="alert alert-danger text-center col-sm-2 " style="display: none;padding-top: 8px;padding-bottom: 0px;">
+              <label id="fj_alert_lab"></label></a>
+            </div>
+          </div>
+        </div>
+        </div>
+    <% end %>
+    </div>
+
+

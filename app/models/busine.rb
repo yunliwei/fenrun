@@ -6,5 +6,6 @@ class Busine < ApplicationRecord
   do_not_validate_attachment_file_type :businelogo
 
   has_and_belongs_to_many :classifications
+  has_many :businespictures,dependent: :destroy
 
 end
