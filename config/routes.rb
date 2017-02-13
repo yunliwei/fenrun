@@ -64,7 +64,9 @@ Rails.application.routes.draw do
   resources :classifications
   resources :businesssettleds
   resources :malls
-  resources :busines
+  resources :busines do
+  resources :businespictures
+  end
   resources :waretypes
 
 
