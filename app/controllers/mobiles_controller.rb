@@ -12,7 +12,7 @@ class MobilesController < ApplicationController
       user = User.create(username:params[:name],password_digest:params[:password],email:params[:email])
       success='[{"status":"1"}]'
       # render json:('[{"status":"1"}]')
-       render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+      render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
     else
       failed='[{"status":"0"}]'
       # render json:('[{"status":"0"}]')
@@ -131,13 +131,13 @@ class MobilesController < ApplicationController
   end
 
   def detail
-   # goods = params[:code]
+    # goods = params[:code]
     @goods = Ware.where(:id => params[:code])
     @picture=Warepicture.where(:ware_id=>params[:code])
 
     @all={"goodsdata"=>@goods,"warepicture"=>@picture}.to_json
-     # debugger
-    
+    # debugger
+
     # render json:(@goods)
     render json: params[:callback]+'('+ @goods.to_json+')' , content_type: "application/javascript"
   end
@@ -145,56 +145,44 @@ class MobilesController < ApplicationController
   def collect
     collect = params[:code]
     user = params[:userid]
- # debugger
- #    if user ==""
- #      render json:('[{"login":"1"}]')
- #      debugger
- #    else
-
 
     @user = User.find( params[:userid])
     @collects=@user.favorites
-
+    success='[{"status":"1"}]'
+    fail='[{"status":"0"}]'
     # # debugger
-    if @collects.empty?
+    ff=Favorite.find_by(ware_id:params[:code])
+    if (ff == nil)
       @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
-      render json:('[{"status":"1"}]')
-      # debugger
+      
+        render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+
     else
-    @collects.each do |t|
-      debugger
-      if t.ware_id.to_s!=collect
-        # debugger
-        @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
-        render json:('[{"status":"1"}]')
-      else
-        render json:('[{"status":"0"}]')
-    end
-    end
-    end
 
-
-    #debugger
-    # ss = @collects[0].ware_id.to_s
-    # if (@collects[0].ware_id.to_s != "" && @collects[0].ware_id.to_s == params[:code])
-    #
-    #   render json:('[{"status":"0"}]')
-    #
-    # else
+        render json: params[:callback]+'('+ fail+')' , content_type: "application/javascript"
+    end
+    # if @collects.empty?
     #   @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
-    #   render json:('[{"status":"1"}]')
+    #
+    #
+    #   # render json:('[{"status":"0"}]')
+    #   render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+    #   # debugger
+    # else
+    #   @collects.each do |t|
+    #     # debugger
+    #     if t.ware_id.to_s!=collect
+    #       debugger
+    #       @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
+    #       # render json:('[{"status":"0"}]')
+    #       render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+    #     else
+    #       # render json:('[{"status":"0"}]')
+    #       render json: params[:callback]+'('+ fail+')' , content_type: "application/javascript"
+    #     end
+    #   end
     # end
 
-    #debugger
-
-
-    #debugger
-    # @favorites=User.find(params[:userid]).favorites
-    # @favorites.create(link:params[:link])
-
-    # cccc=Favorite.find(collect)
-    # @ware.favorite.push(cccc)
-    # debugger
   end
 
   def buy
@@ -241,10 +229,10 @@ class MobilesController < ApplicationController
 #     @all={"data"=>@warelabe,"waretype"=>@waretype}.to_json
 #     # debugger
 #      render json:(@all)
-    # debugger
+# debugger
 
 
-    #
+#
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
     # render json:(@shopcar)
 
@@ -288,7 +276,7 @@ class MobilesController < ApplicationController
     @shopss = Ware.find(arry)
 
     #render   json: params[:callback]+ '([{"status":"0"}])',content_type: "application/javascript"
-     render json: params[:callback]+'('+ @shopss.to_json+')' , content_type: "application/javascript"
+    render json: params[:callback]+'('+ @shopss.to_json+')' , content_type: "application/javascript"
 
     # render file: filename, content_type: "application/rss"
 
@@ -315,11 +303,11 @@ class MobilesController < ApplicationController
 
     @order=''
     if (params[:status]!="0")
-    @order=@user.orders.where(state:params[:status])
- # debugger
+      @order=@user.orders.where(state:params[:status])
+      # debugger
     else
       @order=@user.orders
-       # debugger
+      # debugger
     end
 # debugger
 
@@ -331,14 +319,14 @@ class MobilesController < ApplicationController
 
 
     @wares=Ware.find(arr)
-@or = {"order"=>@order,"ware"=>@wares}.to_json
+    @or = {"order"=>@order,"ware"=>@wares}.to_json
     render json:@or
-     # debugger
- # else
- #   render json:('[{"status":"0"}]')
- #
+# debugger
+# else
+#   render json:('[{"status":"0"}]')
+#
   end
-    # debugger
+  # debugger
 
 
 
