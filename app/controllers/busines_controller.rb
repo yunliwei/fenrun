@@ -67,6 +67,7 @@ class BusinesController < ApplicationController
     #debugger
     cccc=Classification.find(arr)
     @busines.classifications.replace(cccc)
+    redirect_to(:action => "index" )
   end
 
   def destroy

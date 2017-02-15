@@ -246,7 +246,13 @@ class MobilesController < ApplicationController
 
     #
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
-    render json:(@shopcar)
+    # render json:(@shopcar)
+
+    failed='[{"status":"0"}]'
+    # render json:('[{"status":"0"}]')
+    render json: params[:callback]+'('+ failed+')' , content_type: "application/javascript"
+
+
   end
 
   def selectlabel
