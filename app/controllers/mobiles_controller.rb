@@ -67,9 +67,12 @@ class MobilesController < ApplicationController
     busines = Busine.find_by(name:params[:shangjianame])
     if(busines==nil)
       busines = Busine.create(name:params[:shangjianame])
-      render json:('[{"status":"1"}]')
+      sta = '[{"status":"1"}]'
+      fail = '[{"status":"0"}]'
+      render json: params[:callback]+'('+ sta+')' , content_type: "application/javascript"
     else
-      render json:('[{"status":"0"}]')
+
+      render json: params[:callback]+'('+ fail+')' , content_type: "application/javascript"
     end
 
   end
@@ -80,14 +83,14 @@ class MobilesController < ApplicationController
     if(searchware !="")
       @search = Ware.where("ware like '%"+searchware+"%'")
       #debugger
-      render json:(@search)
+      render json: params[:callback]+'('+ @search.to_json+')' , content_type: "application/javascript"
 
     else if(waretype!="")
            a=Classification.where(:classname=>waretype)
            @ware = Classification.find(a.first.id)
            @search=@ware.wares
            #  debugger
-           render json:(@search)
+           render json: params[:callback]+'('+ @search.to_json+')' , content_type: "application/javascript"
          end
     end
 
@@ -116,14 +119,13 @@ class MobilesController < ApplicationController
 
     if ( searchname !="")
       @busines = Busine.where("name like '%"+searchname+"%'")
-      render json:(@busines)
+      render json: params[:callback]+'('+ @busines.to_json+')' , content_type: "application/javascript"
     else if(searchtype !="")
            a=Classification.where(:classname=>searchtype)
            @busine = Classification.find(a.first.id)
            @bus=@busine.busines
 
-           render json:(@bus)
-
+           render json: params[:callback]+'('+ @bus.to_json+')' , content_type: "application/javascript"
          end
 
     end
@@ -154,7 +156,7 @@ class MobilesController < ApplicationController
     ff=Favorite.find_by(ware_id:params[:code])
     if (ff == nil)
       @collect = Favorite.create(ware_id:params[:code],user_id:params[:userid],link:params[:link])
-      
+
         render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
 
     else
@@ -199,7 +201,8 @@ class MobilesController < ApplicationController
 
     @all='[{"shouhuoname":"'+@address[0].shouhuoname.to_s+'","address":"'+@address[0].address.to_s+'","phonenumber":"'+@address[0].phonenumber.to_s+'","ware":"'+@waress[0].ware.to_s+'","price":"'+@waress[0].price.to_s+'","freight":"'+@waress[0].freight.to_s+'"}]'
     #debugger
-    render json:(@all)
+    # render json:(@all)
+    render json: params[:callback]+'('+ @all.to_json+')' , content_type: "application/javascript"
 #   else
 #     render json:('[{"status":"0"}]')
 #     debugger
@@ -211,7 +214,8 @@ class MobilesController < ApplicationController
     #debugger
     @order = Order.create(ware_id:params[:wareid],user_id:params[:userid],number:params[:number],sum:params[:sum],userintegral:params[:user],state:params[:states],fare:params[:fare],ramarks:params[:ramark])
     #debugger
-    render json:(@order)
+    # render json:(@order)
+    render json: params[:callback]+'('+ @order.to_json+')' , content_type: "application/javascript"
 
   end
 
@@ -287,8 +291,8 @@ class MobilesController < ApplicationController
     busineid = params[:code]
     @business = Busine.where(:id =>busineid)
     #debugger
-    render json:(@business)
-
+    # render json:(@business)
+    render json: params[:callback]+'('+ @business.to_json+')' , content_type: "application/javascript"
   end
 
   def orderdetail
@@ -320,7 +324,8 @@ class MobilesController < ApplicationController
 
     @wares=Ware.find(arr)
     @or = {"order"=>@order,"ware"=>@wares}.to_json
-    render json:@or
+    # render json:@or
+    render json: params[:callback]+'('+ @or.to_json+')' , content_type: "application/javascript"
 # debugger
 # else
 #   render json:('[{"status":"0"}]')
@@ -346,7 +351,8 @@ class MobilesController < ApplicationController
 
     arry = Array.new(@collect.split(','))
     @collectlist = Ware.find(arry)
-    render json:(@collectlist)
+    # render json:(@collectlist)
+    render json: params[:callback]+'('+ @collectlist.to_json+')' , content_type: "application/javascript"
     #debugger
 
   end
@@ -409,7 +415,8 @@ class MobilesController < ApplicationController
     @all={"jifen"=>@jifen,"detailjifen"=>@detail}.to_json
 
     # debugger
-    render json: @all
+    # render json: @all
+    render json: params[:callback]+'('+ @all.to_json+')' , content_type: "application/javascript"
   end
 
 end
