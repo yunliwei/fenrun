@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get 'destroyshopcar'
       get 'selectjifen'
       get 'selectlabel'
+      get 'businepicture'
 
     end
   end

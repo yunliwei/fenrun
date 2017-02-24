@@ -36,11 +36,12 @@ class BusinesController < ApplicationController
     params[:businelicense]=@busine.businelicense
     params[:businelogo]=@busine.businelogo
     params[:jianjie]=@busine.jianjie
+    params[:busineaddre]=@busine.busineaddre
 
   end
 
   def create
-    @busines = Busine.new(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo],jianjie:params[:jianjie])
+    @busines = Busine.new(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo],jianjie:params[:jianjie],busineaddtre:params[:busineaddre])
     id=params[:busines]
     arr = Array.new(id.split(','))
     #debugger
@@ -60,7 +61,7 @@ class BusinesController < ApplicationController
 
   def update
     @busines = Busine.find(params[:id])
-    @busines .update(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo],jianjie:params[:jianjie])
+    @busines .update(name:params[:name],salessum:params[:salessum],phonenumber:params[:phonenumber],businelicense:params[:businelicense],businelogo:params[:businelogo],jianjie:params[:jianjie],busineaddre:params[:busineaddre])
     id=params[:busines]
     arr = Array.new(id.split(','))
 
@@ -84,6 +85,6 @@ class BusinesController < ApplicationController
   end
 # Never trust parameters from the scary internet, only allow the white list through.
   def business_params
-    params.require(:busine).permit(:name, :salessum, :phonenumber, :businelicense ,:businelogo,:jianjie)
+    params.require(:busine).permit(:name, :salessum, :phonenumber, :businelicense ,:businelogo,:jianjie,:busineaddre)
   end
 end

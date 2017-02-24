@@ -294,7 +294,13 @@ class MobilesController < ApplicationController
     # render json:(@business)
     render json: params[:callback]+'('+ @business.to_json+')' , content_type: "application/javascript"
   end
+def businepicture
+  @busene=Busine.find(params[:code])
+  @businepictures=@busene.businespictures
+  # debugger
+  render json: params[:callback]+'('+ @businepictures.to_json+')' , content_type: "application/javascript"
 
+end
   def orderdetail
 # ss= params[:status]
 #     id = params[:userid]
