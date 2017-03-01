@@ -65,7 +65,9 @@
       <div class="form-group">
         <label class="col-sm-5 control-label">简介：</label>
         <div class="col-sm-3">
-          <%=  text_field_tag  :jianjie,params[:jianjie]  %>
+
+          <%= kindeditor_tag :jianjie, :owner => @jianjie  %>
+
         </div>
       </div>
 

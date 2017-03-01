@@ -4,6 +4,7 @@ gem 'paperclip'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'font-awesome-rails'
+gem 'rails_kindeditor', github: 'Macrow/rails_kindeditor'
 gem 'whenever', :require => false
 
 

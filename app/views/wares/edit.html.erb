@@ -1,4 +1,8 @@
-
+<script>
+    KindEditor.ready(function(K) {
+        window.ware = K.create('#ware_id');
+    });
+</script>
 <%= render 'layerbegin' %>
 
 <div class="ibox-content form-horizontal m-t" style="height: 1000px;">
@@ -59,7 +63,9 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">文字描述：</label>
         <div class="col-sm-7">
-          <%= text_field_tag :describe,params[:describe], class: "form-control" %>
+          <%= kindeditor_tag :describe, :owner => @describe  %>
+
+
         </div>
       </div>
 

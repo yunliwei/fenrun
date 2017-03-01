@@ -45,6 +45,46 @@ class MobilesController < ApplicationController
     end
   end
 
+  def userinformation
+     @information=User.where(:id=>params[:userid])
+     render json: params[:callback]+'('+ @information.to_json+')' , content_type: "application/javascript"
+
+  end
+
+  def createaddress
+    @receiptadd=Receiptadd.create(user_id:params[:userid],shouhuoname:params[:name],address:params[:address],phonenumber:params[:phonenumber],isselect:0)
+    success='[{"status":"1"}]'
+    render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+  end
+
+  def isselectaddress
+    @receiptadd=Receiptadd.where(user_id:params[:userid])
+debugger
+    @receiptadd.update(iselect:params[:iselect])
+    @receiptadd.save
+    render json: params[:callback]+'('+ @receiptadd.to_json+')' , content_type: "application/javascript"
+  end
+
+  def addresslist
+    @user=User.find(params[:userid])
+   @users= @user.receiptadds
+    render json: params[:callback]+'('+ @users.to_json+')' , content_type: "application/javascript"
+
+  end
+   def deleteaddress
+     @del=Receiptadd.find(params[:addressid])
+
+     @del.destroy
+     success='[{"status":"1"}]'
+     render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+   end
+   def updateaddress
+     @update=Receiptadd.find(params[:addressid])
+     @update.update(shouhuoname:params[:name],phonenumber:params[:phonenumber],address:params[:address])
+     @update.save
+     success='[{"status":"1"}]'
+     render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
+   end
 
   def shangjiaruzhu
 

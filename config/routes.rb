@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'banners/new'
 
+
   resources :tests
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :mobiles do
@@ -33,6 +34,12 @@ Rails.application.routes.draw do
       get 'selectjifen'
       get 'selectlabel'
       get 'businepicture'
+      get 'userinformation'
+      get 'isselectaddress'
+      get 'createaddress'
+      get 'addresslist'
+      get 'deleteaddress'
+      get 'updateaddress'
 
     end
   end

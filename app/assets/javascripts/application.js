@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require kindeditor
 //= require turbolinks
 
 //= require bootstrap.min.js
@@ -29,3 +30,5 @@
 //= require plugins/datapicker/bootstrap-datepicker.js
 //= require plugins/iCheck/icheck.min.js
 //=require plugins/chosen/chosen.jquery.js
+//=require kindeditor/kindeditor
+
