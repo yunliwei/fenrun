@@ -58,11 +58,18 @@ class MobilesController < ApplicationController
   end
 
   def isselectaddress
-    @receiptadd=Receiptadd.where(user_id:params[:userid])
-debugger
-    @receiptadd.update(iselect:params[:iselect])
+    user=User.find(params[:userid])
+    address=user.receiptadds
+    address.each do|f|
+      f.isselect=0
+      f.save
+    end
+
+    @receiptadd=Receiptadd.find(params[:addressid])
+
+    @receiptadd.update(isselect:1)
     @receiptadd.save
-    render json: params[:callback]+'('+ @receiptadd.to_json+')' , content_type: "application/javascript"
+    # render json: params[:callback]+'('+ @receiptadd.to_json+')' , content_type: "application/javascript"
   end
 
   def addresslist
@@ -341,6 +348,14 @@ def businepicture
   render json: params[:callback]+'('+ @businepictures.to_json+')' , content_type: "application/javascript"
 
 end
+
+  def warepicture
+    @ware=Ware.find(params[:code])
+    @warepicture=@ware.warepictures
+    # debugger
+    render json: params[:callback]+'('+ @warepicture.to_json+')' , content_type: "application/javascript"
+
+  end
   def orderdetail
 # ss= params[:status]
 #     id = params[:userid]
@@ -448,6 +463,24 @@ end
     @destroy[0].destroy
 
 
+  end
+
+
+  def editpassword
+    old = params[:old]
+    new = params[:new]
+    userid = params[:userid]
+    @userid = User.find(userid)
+   @userid.each do |f|
+     if  f.password==old
+       f.password=new
+       render json:('[{"status":"1"}]')
+     else
+       render json:('[{"status":"0"}]')
+     end
+
+
+   end
   end
 
   def selectjifen

@@ -30,5 +30,5 @@
 //= require plugins/datapicker/bootstrap-datepicker.js
 //= require plugins/iCheck/icheck.min.js
 //=require plugins/chosen/chosen.jquery.js
-//=require kindeditor/kindeditor
+
 

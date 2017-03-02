@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       get 'addresslist'
       get 'deleteaddress'
       get 'updateaddress'
+      get 'warepicture'
 
     end
   end

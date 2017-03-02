@@ -1,5 +1,6 @@
 <%= render 'layerbegin' %>
 
+
 <div class="ibox-content form-horizontal m-t">
 
   <%= form_tag({controller:'wares', action:'create'},{:multipart=>true}) do  %>
@@ -73,9 +74,9 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">文字描述：</label>
         <div class="col-sm-3">
-          <%= kindeditor_tag :describe, :owner => @describe  %>
 
 
+          <%= kindeditor_tag :describe, '', :simple_mode => true%>
         </div>
       </div>
 

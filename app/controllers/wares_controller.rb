@@ -1,7 +1,7 @@
 class WaresController < ApplicationController
   before_action :set_ware, only: [ :show,:edit,:update,:destroy]
 def index
-  @wares= Ware.all
+  @wares= Ware.where(isnew:'1')
 end
 
 
