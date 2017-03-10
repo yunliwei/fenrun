@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get 'deleteaddress'
       get 'updateaddress'
       get 'warepicture'
+      get 'editpassword'
 
     end
   end

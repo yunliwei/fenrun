@@ -262,8 +262,10 @@ class MobilesController < ApplicationController
     @order = Order.create(ware_id:params[:wareid],user_id:params[:userid],number:params[:number],sum:params[:sum],userintegral:params[:user],state:params[:states],fare:params[:fare],ramarks:params[:ramark])
     #debugger
     # render json:(@order)
-    render json: params[:callback]+'('+ @order.to_json+')' , content_type: "application/javascript"
-
+    # render json: params[:callback]+'('+ @order.to_json+')' , content_type: "application/javascript"
+    success='[{"status":"1"}]'
+    fail='[{"status":"0"}]'
+    render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
   end
 
   def createshopcar
@@ -287,9 +289,9 @@ class MobilesController < ApplicationController
     @shopcar = Shoppingcar.create(ware_id:params[:code],user_id:params[:userid],spec:params[:spec],number:"1")
     # render json:(@shopcar)
 
-    failed='[{"status":"0"}]'
+    success='[{"status":"1"}]'
     # render json:('[{"status":"0"}]')
-    render json: params[:callback]+'('+ failed+')' , content_type: "application/javascript"
+    render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
 
 
   end
@@ -470,16 +472,22 @@ end
     old = params[:old]
     new = params[:new]
     userid = params[:userid]
-    @userid = User.find(userid)
+
+
+    @userid = User.where(:id=>userid)
+
    @userid.each do |f|
-     if  f.password==old
-       f.password=new
-       render json:('[{"status":"1"}]')
+     if  f.password_digest==old
+       f.password_digest=new
+       f.save
+
+       # render json:('[{"status":"1"}]')
+       success='[{"status":"1"}]'
      else
-       render json:('[{"status":"0"}]')
+       success='[{"status":"0"}]'
      end
 
-
+     render json: params[:callback]+'('+ success+')' , content_type: "application/javascript"
    end
   end
 

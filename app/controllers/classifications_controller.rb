@@ -21,7 +21,7 @@ class ClassificationsController < ApplicationController
     def edit
       @ware = Classification.find(params[:id])
       @cla=@ware.wares
-      debgger
+
     end
     # POST /chapters
     # POST /chapters.json
