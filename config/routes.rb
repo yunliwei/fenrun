@@ -76,6 +76,6 @@ Rails.application.routes.draw do
   resources :businespictures
   end
   resources :waretypes
-
+ resources :adviertisements
 
 end
