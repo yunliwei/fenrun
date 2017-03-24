@@ -257,9 +257,9 @@ class MobilesController < ApplicationController
   end
 
   def createorder
-    # userid = params[:userid]
+     userid = params[:userid]
     #debugger
-    @order = Order.create(ware_id:params[:wareid],user_id:params[:userid],number:params[:number],sum:params[:sum],userintegral:params[:user],state:params[:states],fare:params[:fare],ramarks:params[:ramark])
+    @order = Order.create(ware_id:params[:wareid],user_id:params[:userid],number:params[:number],sum:params[:sum],userintegral:params[:user],state:params[:state],fare:params[:fare],ramarks:params[:ramark],ordernumber:params[:ordernumber],receiptadd_id:params[:receiptadd_id])
     #debugger
     # render json:(@order)
     # render json: params[:callback]+'('+ @order.to_json+')' , content_type: "application/javascript"
@@ -365,28 +365,36 @@ end
 #     # debugger
 #   if params[:status]==1
 #    # debugger
-    @type = params[:status]
+#     @type = params[:status]
     @user=User.find(params[:userid])
 
     @order=''
-    if (params[:status]!="0")
-      @order=@user.orders.where(state:params[:status])
+    # if (params[:status]!="0")
+      @order=@user.orders.where(state:1)
+     #  debugger
+    # else
+    #   @order=@user.orders
       # debugger
-    else
-      @order=@user.orders
-      # debugger
+    # end
+#debugger
+
+    #@wareid=@order.ware_id
+    wareid=0
+    if @order
+      @order.each do |f|
+        wareid=f.ware_id
+      end
     end
-# debugger
+    @wareid=wareid
 
-    @wareid=''
-    @order.each do|i|
-      @wareid=@wareid+i.ware_id.to_s+','
-    end
-    arr = Array.new(@wareid.split(','))
+    # @order.each do|i|
+    #   @wareid=@wareid+i.ware_id.to_s+','
+    # end
+    # arr = Array.new(@wareid.split(','))
 
 
-    @wares=Ware.find(arr)
-    @or = {"order"=>@order,"ware"=>@wares}.to_json
+    @wares=Ware.where(id:@wareid)
+    @or = {"order"=>@order,"ware"=>@wares}
     # render json:@or
     render json: params[:callback]+'('+ @or.to_json+')' , content_type: "application/javascript"
 # debugger
