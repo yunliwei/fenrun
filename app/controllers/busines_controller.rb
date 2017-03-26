@@ -69,8 +69,12 @@ class BusinesController < ApplicationController
     cccc=Classification.find(arr)
     @busines.classifications.replace(cccc)
     #同时保存生成用户
-     @user=User.new(username:params[:phonenumber],password_digest:123456)
-     @user.save
+    @checkuser=User.where(:username=>params[:phonenumber])
+    if @checkuser.count==0
+      @user=User.new(username:params[:phonenumber],password_digest:123456)
+      @user.save
+    end
+
     redirect_to(:action => "index" )
   end
 

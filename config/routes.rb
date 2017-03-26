@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       get 'updateaddress'
       get 'warepicture'
       get 'editpassword'
+      get 'ludan'
+      get 'checkshangjia'
 
     end
   end
@@ -77,5 +79,6 @@ Rails.application.routes.draw do
   end
   resources :waretypes
  resources :adviertisements
+  resources :ludans
 
 end

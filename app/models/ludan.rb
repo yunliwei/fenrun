@@ -1,0 +1,2 @@
+class Ludan < ApplicationRecord
+end

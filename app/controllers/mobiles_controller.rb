@@ -513,5 +513,28 @@ end
     # render json: @all
     render json: params[:callback]+'('+ @all.to_json+')' , content_type: "application/javascript"
   end
+  #商家录单
+  def ludan
+    @ludan=Ludan.create(ordernumber:params[:ordernumber],warename:params[:warename],payment:params[:payment],amount:params[:amount],servicecharges:params[:servicecharges],username:params[:username],name:params[:name],user_id:params[:userid])
+    @ludan.save
+    success='[{"status":"1"}]'
+    render json: params[:callback]+'('+success+')' , content_type: "application/javascript"
+  end
+  def checkshangjia
+    phonenumber=""
+    success='[{"status":"1"}]'
+    failed='[{"status":"0"}]'
+    @user=User.where(:id=>params[:userid])
+    @user.each do |u|
+      phonenumber=u.username;
+    end
+   # debugger
+    @shangjia=Busine.where(:phonenumber=>phonenumber)
+    if @shangjia.count>0
+      render json: params[:callback]+'('+success+')' , content_type: "application/javascript"
+    else
+      render json: params[:callback]+'('+failed+')' , content_type: "application/javascript"
+    end
+  end
 
 end

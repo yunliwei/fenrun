@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324064947) do
+ActiveRecord::Schema.define(version: 20170326090140) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170324064947) do
     t.integer  "businelogo_file_size"
     t.datetime "businelogo_updated_at"
     t.string   "busineaddre"
+    t.float    "balance",                    limit: 24
   end
 
   create_table "busines_classifications", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -139,6 +140,21 @@ ActiveRecord::Schema.define(version: 20170324064947) do
     t.string   "remarks"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "ludans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "ordernumber"
+    t.string   "warename"
+    t.string   "payment"
+    t.float    "amount",         limit: 24
+    t.float    "servicecharges", limit: 24
+    t.string   "username"
+    t.string   "name"
+    t.string   "status"
+    t.string   "remark"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "user_id"
   end
 
   create_table "malls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
