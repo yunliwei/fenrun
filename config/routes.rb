@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       get 'editpassword'
       get 'ludan'
       get 'checkshangjia'
+      get 'shangjiachongzhi'
 
     end
   end

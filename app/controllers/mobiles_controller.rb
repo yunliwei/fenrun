@@ -537,4 +537,23 @@ end
     end
   end
 
+  def shangjiachongzhi
+    phonenumber=""
+    success='[{"status":"1"}]'
+    # failed='[{"status":"0"}]'
+    @user=User.where(:id=>params[:userid])
+    @user.each do |u|
+      phonenumber=u.username;
+    end
+    # debugger
+    @shangjia=Busine.where(:phonenumber=>phonenumber)
+    @shangjia.each do |s|
+      s.balance=s.balance.to_f+params[:balance].to_f
+      s.save
+    end
+    # debugger
+    render json: params[:callback]+'('+success+')' , content_type: "application/javascript"
+  end
+
+
 end
